@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>陈伦-上海信隆行信息科技股份有限公司</title>
+    <script src="/static/js/alert.js" ></script>
+</head>
+<body>
+    <div style="width: 100px;">
+        <div id="process" style="width:10%;background-color: #2b542c;height: 20px;"></div>
+    </div>
+    <button id="btn1"  onclick="Stop();" >停止滚动</button>
+    <form id="F1" action="http://www.sogou.com/sogou?" method="GET">
+        <input type="text" name="query"/>
+        <input type="button" value="提交" onclick="Foo();"/>
+    </form>
+
+    <script type="text/javascript">
+        /**
+        var tag=document.createElement("a");
+        tag.href="http://www.baidu.com"
+        tag.innerText='百度一下'
+        id1.appendChild(tag);
+        console.log(tag.innerText)
+
+        function Foo(){
+            document.getElementById('F1').submit();
+        }
+
+        pro=10;
+         function Foo(){
+            var id=document.getElementById('process');
+             if(pro>100){
+                 clearInterval(Interval)
+             }else {
+                 pro = pro + 10;
+                 id.style.width=pro+'%';
+             }
+
+        }
+
+        setInterval("Foo();",1000);
+         **/
+        function Go(){
+            var content=document.title;
+            var firstChar=content.charAt(0)
+            var sub=content.substring(1,content.length)
+            document.title=sub+firstChar;
+        }
+
+        interval=setInterval('Go()',1000)
+        function Stop(){
+            clearTimeout(interval);
+        }
+    </script>
+</body>
+</html>

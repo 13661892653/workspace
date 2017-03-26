@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>贷款直通车</title>
+    <link rel="stylesheet" href="http://fwgl.easyrong.test2/static/css/grid.css">
+<link rel="stylesheet" href="http://fwgl.easyrong.test2/static/css/font.css">
+<link rel="stylesheet" href="http://fwgl.easyrong.test2/static/css/form.css">
+<link rel="stylesheet" href="http://fwgl.easyrong.test2/static/css/button.css">
+<link rel="stylesheet" href="http://fwgl.easyrong.test2/static/css/base.css">
+<link rel="stylesheet" href="http://fwgl.easyrong.test2/static/css/widget.css">
+<link rel="stylesheet" href="http://fwgl.easyrong.test2/static/css/layer1.css">
+<link href="http://fwgl.easyrong.test2/static/css/common.css" rel="stylesheet">
+<link href="http://fwgl.easyrong.test2/static/css/jquery.datetimepicker.css" rel="stylesheet">
+</head>
+
+<body>
+<div id="wrapper">
+    <div class="g-top">
+    <div class="row">
+        <div class="col-2">
+            <div class="logo pl10"><img src="http://fwgl.easyrong.test2/static/img/logo.png" alt="logo"></div>
+        </div>
+        <div class="col-10">
+            <div class="col-9">
+                <ul class="menu">
+                            <li class=""><a onclick="select_top_menu('1','1');" href="javascript:void(0);">工作台</a></li>
+                            <li class="top_class"><a onclick="select_top_menu('8','8');" href="javascript:void(0);">一融贷</a></li>
+                            <li class=""><a onclick="select_top_menu('3','3');" href="javascript:void(0);">一融赋</a></li>
+                            <li class=""><a onclick="select_top_menu('4','4');" href="javascript:void(0);">一融邦</a></li>
+                            <li class=""><a onclick="select_top_menu('5','5');" href="javascript:void(0);">一融孵化</a></li>
+                            <li class=""><a onclick="select_top_menu('2','2');" href="javascript:void(0);">用户</a></li>
+                            <li class=""><a onclick="select_top_menu('6','6');" href="javascript:void(0);">建站</a></li>
+                            <li class=""><a onclick="select_top_menu('7','7');" href="javascript:void(0);">统计</a></li>
+                            <li class=""><a onclick="select_top_menu('9','9');" href="javascript:void(0);">系统</a></li>
+                            <li class=""><a onclick="select_top_menu('66','66');" href="javascript:void(0);">媒体</a></li>
+                            <li class=""><a onclick="select_top_menu('103','103');" href="javascript:void(0);">营销</a></li>
+                            <li class=""><a onclick="select_top_menu('117','117');" href="javascript:void(0);">财务</a></li>
+                        </ul>
+                <!--menu:end-->
+            </div>
+            <div class="col-3">
+                <div class="fr pr10">
+                    <ul class="fl notice">
+                        <li>
+                            <i class="fa fa-mail"></i>
+<!--                            <span class="count">2</span>-->
+                        </li>
+                        <li>
+                            <i class="fa fa-bell"></i>
+<!--                            <span class="count">8</span>-->
+                        </li>
+                    </ul>
+                    <!--notice:end-->
+                    <div class="fl logged" id="js-logged">
+                        <span class="user"><img src="http://fwgl.easyrong.test2/static/img/user-avatar.png" alt="">
+                            马先奇                            <b></b></span>
+                        <ul class="drop-down" style="display: none;">
+                            <li>
+                                <a href="javascript:;" onclick="show_change_password();"><i class="fa fa-tool"></i>密码修改</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" onclick="show_setup();"><i class="fa fa-setup"></i>设置</a>
+                            </li>
+                            <li>
+                                <a href="http://fwgl.easyrong.test2/login/logout"><i class="fa fa-logout"></i>退出</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--logged:end-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--g-top:end-->
+<script>
+    (function () {
+        /**
+         * [logged 用户移入对应下拉菜单]
+         * @return {[type]}   [description]
+         */
+        var logged = (function() {
+            var obj = document.getElementById('js-logged'),
+                drop = obj.getElementsByTagName('ul')[0];
+
+            obj.onmouseover = function () {
+                drop.style.display = 'block';
+            };
+
+            obj.onmouseout = function () {
+                drop.style.display = "none";
+            };
+        }());
+
+        /**
+         * [getClass 封装一个获取className的方法]
+         * @param  {[type]} obj [父元素]
+         * @param  {[type]} cls [className名字]
+         * @return {[type]}     [返回的是数组]
+         */
+        function getClass(obj, cls) {
+            if (obj.getElementsByClassName) {
+                return obj.getElementsByClassName(cls);
+            } else {
+                var regExp = new RegExp('(^|\\s)' + cls + '(\\s|$)'),
+                    result = [],
+                    elems = obj.getElementsByTagName('*');
+
+                for (var i = 0, len = elems.length; i < len; i += 1) {
+                    if (regExp.test(elems[i].className)) {
+                        result.push(elems[i].className);
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        var root = document.getElementById('wrapper'),
+            gTop = getClass(root, 'g-top'),
+            gTopMenu = getClass(gTop[0], 'menu'),
+            gTopMenuLis = gTopMenu[0].getElementsByTagName('li');
+
+        for (var i = 0, len = gTopMenuLis.length; i < len; i += 1) {
+            (function (index) {
+                gTopMenuLis[index].onclick = function () {
+                    for (var i = 0,len = gTopMenuLis.length; i < len; i += 1) {
+                        gTopMenuLis[i].className = '';
+                    }
+
+                    this.className = 'top_class';
+                };
+            }(i));
+        }
+    }());
+</script>    <div class="row">
+        <div class="col-2">
+            <script>
+    function select_menu(site_url_str,menu_str,li)
+    {
+        // id = 'li_'+li;
+        // $('#'+id+'a').addClass("bgcolor");return;
+        $.ajax({
+            url: site_url+"sys/common/set_menu_cookie",
+            data: {"menu_str": menu_str},
+            type: "post",
+            success: function (data) {
+                 window.location.href=site_url_str;
+            }, error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+    function select_top_menu(v,menu_str)
+    {
+        $.ajax({
+            url: site_url+"sys/common/set_menu_cookie",
+            data: {"menu_str": menu_str},
+            type: "post",
+            success: function (data) {
+                $(".g-nav").hide();
+                $("#ul_"+v).show();
+            }, error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+</script>
+    <ul class="g-nav" style="display: none;" id="ul_1">
+                        <li class="" id="li_96">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">一融网需求管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_97">
+                                                                        <a style="" target="_blank" href="http://chanpin.xinlonghang.cn/">内部需求管理</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" id="ul_8">
+                        <li class="active" id="li_87">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">贷款管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_91">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrd/goods/index','8_87_91','91');" href="javascript:void(0);">贷款产品管理</a>
+
+                                </li>
+                                                            <li id="li_92">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrd/goods/apply_index','8_87_92','92');" href="javascript:void(0);">贷款申请管理</a>
+
+                                </li>
+                                                            <li id="li_93">
+
+                                    <a style="color:#A87E1B" onclick="select_menu('http://fwgl.easyrong.test2/yrd/goods/simple_index','8_87_93','93');" href="javascript:void(0);">贷款直通车</a>
+
+                                </li>
+                                                            <li id="li_112">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/credit/orders/index','8_87_112','112');" href="javascript:void(0);">征信订单</a>
+
+                                </li>
+                                                            <li id="li_113">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/credit/reports/index','8_87_113','113');" href="javascript:void(0);">报告管理</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_90">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">贷投联动</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_94">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrd/loan_invest/project_index','8_90_94','94');" href="javascript:void(0);">项目列表</a>
+
+                                </li>
+                                                            <li id="li_95">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrd/loan_invest/apply_index','8_90_95','95');" href="javascript:void(0);">申请列表</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" style="display: none;" id="ul_3">
+                        <li class="" id="li_31">
+                    <a href="javascript:;"><i class="fa  fa-info"></i><span class="txt">需求街</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_32">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/app/demand/audit_index','3_31_32','32');" href="javascript:void(0);">需求审核</a>
+
+                                </li>
+                                                            <li id="li_33">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/app/demand/response_index','3_31_33','33');" href="javascript:void(0);">需求响应</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_34">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">股权融资</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_35">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/app/invite/index','3_34_35','35');" href="javascript:void(0);">项目跟踪</a>
+
+                                </li>
+                                                            <li id="li_83">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrf/project/index','3_34_83','83');" href="javascript:void(0);">项目管理</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_36">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">信息收集</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_37">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrf/delivery/index','3_36_37','37');" href="javascript:void(0);">项目申请管理</a>
+
+                                </li>
+                                                            <li id="li_131">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrf/delivery_hd/index','3_36_131','131');" href="javascript:void(0);">活动服务申请管理</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_73">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">问诊管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_74">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrf/counsel/counsel_special_list','3_73_74','74');" href="javascript:void(0);">问诊订单</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_81">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">提现管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_82">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/app/enchashment/index','3_81_82','82');" href="javascript:void(0);">导师提现</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" style="display: none;" id="ul_4">
+                        <li class="" id="li_10">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">订单管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_21">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/orders/index','4_10_21','21');" href="javascript:void(0);">订单列表</a>
+
+                                </li>
+                                                            <li id="li_77">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/orders/search_list','4_10_77','77');" href="javascript:void(0);">订单查询</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_11">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">服务产品管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_22">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/product/index','4_11_22','22');" href="javascript:void(0);">服务产品列表</a>
+
+                                </li>
+                                                            <li id="li_23">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/product/add_index','4_11_23','23');" href="javascript:void(0);">新增服务产品</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_12">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">供应商管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_24">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/supplier/index','4_12_24','24');" href="javascript:void(0);">供应商列表</a>
+
+                                </li>
+                                                            <li id="li_25">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/supplier/add_supplier','4_12_25','25');" href="javascript:void(0);">新增供应商</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_13">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">设置</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_16">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/label/index','4_13_16','16');" href="javascript:void(0);">商品标签设置</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_14">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">首页广告设置</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_26">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/advert/index','4_14_26','26');" href="javascript:void(0);">广告列表</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_71">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">购物车管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_72">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/shopcar/shopcar_list','4_71_72','72');" href="javascript:void(0);">购物车列表</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_78">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">促销管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_79">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/group/index','4_78_79','79');" href="javascript:void(0);">套餐列表</a>
+
+                                </li>
+                                                            <li id="li_80">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/sales_promotion/index','4_78_80','80');" href="javascript:void(0);">折扣列表</a>
+
+                                </li>
+                                                            <li id="li_126">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/coupon/index','4_78_126','126');" href="javascript:void(0);">优惠券</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_114">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">报告管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_115">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/reports/index','4_114_115','115');" href="javascript:void(0);">报告列表</a>
+
+                                </li>
+                                                            <li id="li_116">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrb/reports/add_report','4_114_116','116');" href="javascript:void(0);">新增报告</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" style="display: none;" id="ul_5">
+                        <li class="" id="li_57">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">孵化器</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_58">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrfh/incubator/index','5_57_58','58');" href="javascript:void(0);">孵化管理</a>
+
+                                </li>
+                                                            <li id="li_98">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrfh/incubator_verify/index','5_57_98','98');" href="javascript:void(0);">孵化审核</a>
+
+                                </li>
+                                                            <li id="li_104">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrfh/incubator_apply/index','5_57_104','104');" href="javascript:void(0);">孵化申请</a>
+
+                                </li>
+                                                            <li id="li_121">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrfh/sharing_template/index','5_57_121','121');" href="javascript:void(0);">分成模板</a>
+
+                                </li>
+                                                            <li id="li_122">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrfh/sharing_check/index','5_57_122','122');" href="javascript:void(0);">分成审核</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_102">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">专栏管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_75">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/magazine/index','5_102_75','75');" href="javascript:void(0);">孵化器杂志</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_123">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">广告管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_124">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrfh/advert','5_123_124','124');" href="javascript:void(0);">广告列表</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" style="display: none;" id="ul_2">
+                        <li class="" id="li_42">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">注册管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_44">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yr/register/index','2_42_44','44');" href="javascript:void(0);">用户库</a>
+
+                                </li>
+                                                            <li id="li_84">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yr/register/temporary_user','2_42_84','84');" href="javascript:void(0);">初始用户管理(个人)</a>
+
+                                </li>
+                                                            <li id="li_99">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yr/register/temporary_region_user','2_42_99','99');" href="javascript:void(0);">初始用户管理(管理)</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_101">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">股权机构库</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_100">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yr/user/equity_institutions_region','2_101_100','100');" href="javascript:void(0);">股权机构库(个人)</a>
+
+                                </li>
+                                                            <li id="li_46">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yr/user/equity_institutions_index','2_101_46','46');" href="javascript:void(0);">股权机构库(管理)</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_43">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">用户信息库</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_45">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yr/user/enterprise_index','2_43_45','45');" href="javascript:void(0);">企业库</a>
+
+                                </li>
+                                                            <li id="li_47">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yr/user/debt_institutions_index','2_43_47','47');" href="javascript:void(0);">债权机构库</a>
+
+                                </li>
+                                                            <li id="li_109">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/credit/institutions/index','2_43_109','109');" href="javascript:void(0);">征信机构库</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" style="display: none;" id="ul_6">
+                        <li class="" id="li_48">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">APP 端</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_49">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/app/pageset/pageset_business_index','6_48_49','49');" href="javascript:void(0);">页面设置</a>
+
+                                </li>
+                                                            <li id="li_50">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/app/recommendset/recommend_index','6_48_50','50');" href="javascript:void(0);">推荐设置</a>
+
+                                </li>
+                                                            <li id="li_120">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/app/adverts/entrepreneur_index','6_48_120','120');" href="javascript:void(0);">首屏广告</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_128">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">广告管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_130">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yr/advert_manage/index','6_128_130','130');" href="javascript:void(0);">广告位设置</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_85">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">公共模块</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_86">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/knowledge/list_data','6_85_86','86');" href="javascript:void(0);">知识库</a>
+
+                                </li>
+                                                            <li id="li_88">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/help/list_data','6_85_88','88');" href="javascript:void(0);">帮助中心</a>
+
+                                </li>
+                                                            <li id="li_89">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/category/category_list','6_85_89','89');" href="javascript:void(0);">类型管理</a>
+
+                                </li>
+                                                            <li id="li_125">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yr/common/zpt_index','6_85_125','125');" href="javascript:void(0);">子平台建站</a>
+
+                                </li>
+                                                            <li id="li_127">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/about_us/index','6_85_127','127');" href="javascript:void(0);">关于我们</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" style="display: none;" id="ul_7">
+                        <li class="" id="li_51">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">调研管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_52">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/app/suggestion_app/suggestion_app_index','7_51_52','52');" href="javascript:void(0);">意见反馈</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_59">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">征信数据库</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_60">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/yr_enterprise/add_enterprise','7_59_60','60');" href="javascript:void(0);">新增征信信息</a>
+
+                                </li>
+                                                            <li id="li_61">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/yr_enterprise/index','7_59_61','61');" href="javascript:void(0);">征信信息列表</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_62">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">小工具</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_63">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrd/voucher/index','7_62_63','63');" href="javascript:void(0);">票据申请管理</a>
+
+                                </li>
+                                                            <li id="li_64">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrd/voucher/voucher_set','7_62_64','64');" href="javascript:void(0);">票据配置管理</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" style="display: none;" id="ul_9">
+                        <li class="" id="li_17">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">公司信息设置</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_27">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/sys/company/branch_index','9_17_27','27');" href="javascript:void(0);">公司设置</a>
+
+                                </li>
+                                                            <li id="li_28">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/sys/department/index','9_17_28','28');" href="javascript:void(0);">部门设置</a>
+
+                                </li>
+                                                            <li id="li_29">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/sys/staff/index','9_17_29','29');" href="javascript:void(0);">员工设置</a>
+
+                                </li>
+                                                            <li id="li_30">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/sys/position/index','9_17_30','30');" href="javascript:void(0);">职位设置</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_54">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">系统设置</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_55">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/sys/menus/index','9_54_55','55');" href="javascript:void(0);">菜单管理</a>
+
+                                </li>
+                                                            <li id="li_56">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/sys/operations/index','9_54_56','56');" href="javascript:void(0);">操作管理</a>
+
+                                </li>
+                                                            <li id="li_65">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/sys/platform/platform_list','9_54_65','65');" href="javascript:void(0);">平台设置</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_105">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">组织与权限</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_106">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/sys/organization/index ','9_105_106','106');" href="javascript:void(0);">组织架构管理</a>
+
+                                </li>
+                                                            <li id="li_107">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/sys/role/index','9_105_107','107');" href="javascript:void(0);">角色列表</a>
+
+                                </li>
+                                                            <li id="li_108">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/sys/employee/index','9_105_108','108');" href="javascript:void(0);">员工列表</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" style="display: none;" id="ul_66">
+                        <li class="" id="li_67">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">新闻政策管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_68">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/news/news_list','66_67_68','68');" href="javascript:void(0);">新闻政策列表</a>
+
+                                </li>
+                                                            <li id="li_69">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/news/news_add_special','66_67_69','69');" href="javascript:void(0);">新增张江静安园</a>
+
+                                </li>
+                                                            <li id="li_70">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/news/news_list_special','66_67_70','70');" href="javascript:void(0);">新闻政策列表(全国/管理员)</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                            <li class="" id="li_110">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">红黑榜管理</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_111">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/credit/red_black/index','66_110_111','111');" href="javascript:void(0);">红黑榜列表</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" style="display: none;" id="ul_103">
+                        <li class="" id="li_40">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">活动报名</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_41">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrt/activity/index','103_40_41','41');" href="javascript:void(0);">活动管理</a>
+
+                                </li>
+                                                            <li id="li_53">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrt/activity_track/index','103_40_53','53');" href="javascript:void(0);">报名管理</a>
+
+                                </li>
+                                                            <li id="li_76">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/admin/innovate/index','103_40_76','76');" href="javascript:void(0);">创新大赛报名跟踪</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+    <ul class="g-nav" style="display: none;" id="ul_117">
+                        <li class="" id="li_118">
+                    <a href="javascript:;"><i class="fa fa-info"></i><span class="txt">财务结算</span><i class="toggle-icon fa fa-arrow-l"></i></a>
+                    <ul class="sub-menu">
+                                                        <li id="li_119">
+
+                                    <a style="" onclick="select_menu('http://fwgl.easyrong.test2/yrt/liquidation/index','117_118_119','119');" href="javascript:void(0);">费用清算管理</a>
+
+                                </li>
+                                                </ul>
+                </li>
+                </ul>
+
+            <!--sidebar:end-->
+        </div>
+        <div class="col-10">
+            <div class="main" style="min-height: 302px;">
+                <div class="pad20">
+                    <div class="row">
+                        <div class="col-20">
+                            <ul class="crumb">
+                                <li><i class="fa fa-home"></i><a href="#">首页</a></li>
+                                <li><a href="#">贷款管理</a></li>
+                                <li><a href="#">贷款直通车</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--面包屑-->
+                    <div class="row">
+                        <div class="col-20">
+                            <form action="http://fwgl.easyrong.test2/yrd/goods/simple_index" method="get" id="_select_form">
+                            <div class="widget-form widget-form-staff search-inline pad20  mt20">
+                                <span class="search-field"><label class="lab">企业名称</label><input class="inp" name="company_name" value="" type="text"></span>
+
+                                <span class="search-field"><label class="lab">项目地区：</label>
+                                    <span id="area">
+                                        <select class="prov" name="city1" style="width:80px"><option value="-1">请选择</option><option value="2">北京</option><option value="3">安徽</option><option value="4">福建</option><option value="5">甘肃</option><option value="6">广东</option><option value="7">广西</option><option value="8">贵州</option><option value="9">海南</option><option value="10">河北</option><option value="11">河南</option><option value="12">黑龙江</option><option value="13">湖北</option><option value="14">湖南</option><option value="15">吉林</option><option value="16">江苏</option><option value="17">江西</option><option value="18">辽宁</option><option value="19">内蒙古</option><option value="20">宁夏</option><option value="21">青海</option><option value="22">山东</option><option value="23">山西</option><option value="24">陕西</option><option value="25">上海</option><option value="26">四川</option><option value="27">天津</option><option value="28">西藏</option><option value="29">新疆</option><option value="30">云南</option><option value="31">浙江</option><option value="32">重庆</option><option value="33">香港</option><option value="34">澳门</option><option value="35">台湾</option></select>
+                                        <select class="city" name="city2" style="width:80px" disabled=""><option value="-1">请选择</option></select>
+                                        <select class="area" name="city3" style="width:80px" disabled=""><option value="-1">请选择</option></select>
+                                    </span>
+                                </span>
+                                <label class="lab">申请时间 </label><input autocomplete="off" class="inp selecttime" name="s_time" value="" type="text"><label class="lab"> 至 </label><input autocomplete="off" class="inp selecttime" name="e_time" value="" type="text">
+                                <br><br>
+                                <span class="search-field"><label class="lab">手机号</label><input class="inp" name="user_moblie" value="" type="text"></span>
+                                <input name="setdraw" value="1" type="hidden">
+                                <span class="search-field"><input value="搜索" class="button dark-button" type="submit"></span>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--条件搜索区域-->
+                    <div class="row">
+                        <div class="col-20">
+                            <div class="form pad10 mt20 clearfix">
+                                <div id="_list_wrapper" class="dataTables_wrapper no-footer"><div id="_list_processing" class="dataTables_processing" style="display: none;">正在玩命的加载数据...</div><table id="_list" class="dataTable no-footer" role="grid" aria-describedby="_list_info" style="width: 100%;" width="100%">
+                                    <thead>
+                                        <tr role="row"><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 32px;">#</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 133px;">订单号</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 326px;">公司名</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 207px;">所在区域</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 130px;">申请人</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 139px;">申请金额/万</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 157px;">手机</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 281px;">申请时间</th></tr>
+                                    </thead>
+                                <tbody><tr id="26" role="row" class="odd"><td>1</td><td>订单号-待定</td><td>fsdhg</td><td>北京-北京-西城区</td><td>dcghbf</td><td>100</td><td>15200000000</td><td>2016/7/26 下午1:58:25</td></tr><tr id="25" role="row" class="even"><td>2</td><td>订单号-待定</td><td>嘉兴市来东纺织品有限公司</td><td>浙江-嘉兴-南湖区</td><td>钱徐峰</td><td>50</td><td>13305730777</td><td>2016/5/30 上午12:50:05</td></tr><tr id="24" role="row" class="odd"><td>3</td><td>订单号-待定</td><td>张家港市永和金属制品有限公司</td><td>江苏-苏州-张家港市</td><td>徐龙</td><td>100</td><td>13962223275</td><td>2016/3/14 下午1:46:30</td></tr><tr id="23" role="row" class="even"><td>4</td><td>订单号-待定</td><td>张家港市永和金属制品有限公司</td><td>江苏-苏州-张家港市</td><td>徐龙</td><td>100</td><td>13962223275</td><td>2016/2/27 下午1:55:20</td></tr><tr id="22" role="row" class="odd"><td>5</td><td>订单号-待定</td><td>信隆行</td><td>福建-宁德-福鼎市</td><td>jinxiao</td><td>100</td><td>18779831365</td><td>2016/1/6 下午6:09:33</td></tr><tr id="21" role="row" class="even"><td>6</td><td>订单号-待定</td><td>信隆行</td><td>上海-上海-杨浦区</td><td>jinxiao</td><td>100</td><td>18779831365</td><td>2016/1/6 下午6:08:02</td></tr><tr id="20" role="row" class="odd"><td>7</td><td>订单号-待定</td><td>wqertyuiop</td><td>全国-全国-全国</td><td>wqertyuiop</td><td>100</td><td>18779831365</td><td>2016/1/4 下午3:44:43</td></tr><tr id="19" role="row" class="even"><td>8</td><td>订单号-待定</td><td>绍兴人众医疗科技有限公司</td><td>全国-全国-全国</td><td>郁晓伟</td><td>100</td><td>18658585688</td><td>2015/12/29 上午11:07:44</td></tr><tr id="18" role="row" class="odd"><td>9</td><td>订单号-待定</td><td>合肥市乐腾科技咨询有限公司</td><td>全国-全国-全国</td><td>徐乐</td><td>10</td><td>18154229976</td><td>2015/12/21 下午8:19:31</td></tr><tr id="17" role="row" class="even"><td>10</td><td>订单号-待定</td><td>安徽易才网络信息科技有限公司</td><td>全国-全国-全国</td><td>禹涛</td><td>300</td><td>18110906111</td><td>2015/12/12 上午11:24:17</td></tr></tbody></table><div class="dataTables_info" id="_list_info" role="status" aria-live="polite">当前显示 1 到 10 条，共 19 条记录。</div><div class="dataTables_length" id="_list_length"><label>显示 <select name="_list_length" aria-controls="_list" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> 记录</label></div><div class="dataTables_paginate paging_full_numbers" id="_list_paginate"><a class="paginate_button first disabled" aria-controls="_list" data-dt-idx="0" tabindex="0" id="_list_first">首页</a><a class="paginate_button previous disabled" aria-controls="_list" data-dt-idx="1" tabindex="0" id="_list_previous"> 上一页 </a><span><a class="paginate_button current" aria-controls="_list" data-dt-idx="2" tabindex="0">1</a><a class="paginate_button " aria-controls="_list" data-dt-idx="3" tabindex="0">2</a></span><a class="paginate_button next" aria-controls="_list" data-dt-idx="4" tabindex="0" id="_list_next"> 下一页 </a><a class="paginate_button last" aria-controls="_list" data-dt-idx="5" tabindex="0" id="_list_last"> 尾页 </a></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var QUERY_STRING = "";
+</script>
+<script>
+    var site_url = "http://fwgl.easyrong.test2/";
+    var base_url = "http://fwgl.easyrong.test2/";
+    var static_url = "http://fwgl.easyrong.test2/static";
+    var default_table = "";
+    var my_loading_object = '';
+    var admin_operation_info = '["yrf_stock_project_edit","yrf_stock_project_check","yrf_stock_project_view","yr_public_investor_check_admin","yr_public_investor_edit_admin","yr_public_investor_edit","yr_public_investor_check","register_user_mobile","register_personal_mobile","register_manage_mobile","equity_personal_mobile","equity_manage_mobile","enterprise_mobile","debt_mobile","yrfh_excel_out","yrfh_incubator_rebate","yrfh_apply_excel_out","admin_news_all_edit","add_category_default"]';
+</script>
+<script src="http://fwgl.easyrong.test2/static/js/jquery.js"></script>
+<script src="http://fwgl.easyrong.test2/static/js/tables.js"></script>
+<!--<script src="--><!--"></script>-->
+<script src="http://fwgl.easyrong.test2/static/js/layer1.js"></script>
+<script src="http://fwgl.easyrong.test2/static/js/public/check_operation.js"></script>
+
+<!-- 自定义js -->
+<script src="http://fwgl.easyrong.test2/static/js/common.js"></script>
+<script src="http://fwgl.easyrong.test2/static/js/city.js"></script>
+<script src="http://fwgl.easyrong.test2/static/js/jquery.datetimepicker.js"></script>
+<script src="http://fwgl.easyrong.test2/static/js/yrd/simple_list.js"></script><div class="xdsoft_datetimepicker xdsoft_noselect "><div class="xdsoft_datepicker active"><div class="xdsoft_mounthpicker"><button type="button" class="xdsoft_prev"></button><button type="button" class="xdsoft_today_button" style="visibility: visible;"></button><div class="xdsoft_label xdsoft_month"><span>十二月</span><div class="xdsoft_select xdsoft_monthselect xdsoft_scroller_box"><div style="margin-top: 0px;"><div class="xdsoft_option " data-value="0">一月</div><div class="xdsoft_option " data-value="1">二月</div><div class="xdsoft_option " data-value="2">三月</div><div class="xdsoft_option " data-value="3">四月</div><div class="xdsoft_option " data-value="4">五月</div><div class="xdsoft_option " data-value="5">六月</div><div class="xdsoft_option " data-value="6">七月</div><div class="xdsoft_option " data-value="7">八月</div><div class="xdsoft_option " data-value="8">九月</div><div class="xdsoft_option " data-value="9">十月</div><div class="xdsoft_option " data-value="10">十一月</div><div class="xdsoft_option xdsoft_current" data-value="11">十二月</div></div><div class="xdsoft_scrollbar"><div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div></div></div></div><div class="xdsoft_label xdsoft_year"><span>2016</span><div class="xdsoft_select xdsoft_yearselect xdsoft_scroller_box"><div style="margin-top: 0px;"><div class="xdsoft_option " data-value="1960">1960</div><div class="xdsoft_option " data-value="1961">1961</div><div class="xdsoft_option " data-value="1962">1962</div><div class="xdsoft_option " data-value="1963">1963</div><div class="xdsoft_option " data-value="1964">1964</div><div class="xdsoft_option " data-value="1965">1965</div><div class="xdsoft_option " data-value="1966">1966</div><div class="xdsoft_option " data-value="1967">1967</div><div class="xdsoft_option " data-value="1968">1968</div><div class="xdsoft_option " data-value="1969">1969</div><div class="xdsoft_option " data-value="1970">1970</div><div class="xdsoft_option " data-value="1971">1971</div><div class="xdsoft_option " data-value="1972">1972</div><div class="xdsoft_option " data-value="1973">1973</div><div class="xdsoft_option " data-value="1974">1974</div><div class="xdsoft_option " data-value="1975">1975</div><div class="xdsoft_option " data-value="1976">1976</div><div class="xdsoft_option " data-value="1977">1977</div><div class="xdsoft_option " data-value="1978">1978</div><div class="xdsoft_option " data-value="1979">1979</div><div class="xdsoft_option " data-value="1980">1980</div><div class="xdsoft_option " data-value="1981">1981</div><div class="xdsoft_option " data-value="1982">1982</div><div class="xdsoft_option " data-value="1983">1983</div><div class="xdsoft_option " data-value="1984">1984</div><div class="xdsoft_option " data-value="1985">1985</div><div class="xdsoft_option " data-value="1986">1986</div><div class="xdsoft_option " data-value="1987">1987</div><div class="xdsoft_option " data-value="1988">1988</div><div class="xdsoft_option " data-value="1989">1989</div><div class="xdsoft_option " data-value="1990">1990</div><div class="xdsoft_option " data-value="1991">1991</div><div class="xdsoft_option " data-value="1992">1992</div><div class="xdsoft_option " data-value="1993">1993</div><div class="xdsoft_option " data-value="1994">1994</div><div class="xdsoft_option " data-value="1995">1995</div><div class="xdsoft_option " data-value="1996">1996</div><div class="xdsoft_option " data-value="1997">1997</div><div class="xdsoft_option " data-value="1998">1998</div><div class="xdsoft_option " data-value="1999">1999</div><div class="xdsoft_option " data-value="2000">2000</div><div class="xdsoft_option " data-value="2001">2001</div><div class="xdsoft_option " data-value="2002">2002</div><div class="xdsoft_option " data-value="2003">2003</div><div class="xdsoft_option " data-value="2004">2004</div><div class="xdsoft_option " data-value="2005">2005</div><div class="xdsoft_option " data-value="2006">2006</div><div class="xdsoft_option " data-value="2007">2007</div><div class="xdsoft_option " data-value="2008">2008</div><div class="xdsoft_option " data-value="2009">2009</div><div class="xdsoft_option " data-value="2010">2010</div><div class="xdsoft_option " data-value="2011">2011</div><div class="xdsoft_option " data-value="2012">2012</div><div class="xdsoft_option " data-value="2013">2013</div><div class="xdsoft_option " data-value="2014">2014</div><div class="xdsoft_option " data-value="2015">2015</div><div class="xdsoft_option xdsoft_current" data-value="2016">2016</div><div class="xdsoft_option " data-value="2017">2017</div><div class="xdsoft_option " data-value="2018">2018</div><div class="xdsoft_option " data-value="2019">2019</div><div class="xdsoft_option " data-value="2020">2020</div><div class="xdsoft_option " data-value="2021">2021</div><div class="xdsoft_option " data-value="2022">2022</div><div class="xdsoft_option " data-value="2023">2023</div><div class="xdsoft_option " data-value="2024">2024</div><div class="xdsoft_option " data-value="2025">2025</div><div class="xdsoft_option " data-value="2026">2026</div><div class="xdsoft_option " data-value="2027">2027</div><div class="xdsoft_option " data-value="2028">2028</div><div class="xdsoft_option " data-value="2029">2029</div><div class="xdsoft_option " data-value="2030">2030</div><div class="xdsoft_option " data-value="2031">2031</div><div class="xdsoft_option " data-value="2032">2032</div><div class="xdsoft_option " data-value="2033">2033</div><div class="xdsoft_option " data-value="2034">2034</div><div class="xdsoft_option " data-value="2035">2035</div><div class="xdsoft_option " data-value="2036">2036</div><div class="xdsoft_option " data-value="2037">2037</div><div class="xdsoft_option " data-value="2038">2038</div><div class="xdsoft_option " data-value="2039">2039</div><div class="xdsoft_option " data-value="2040">2040</div><div class="xdsoft_option " data-value="2041">2041</div><div class="xdsoft_option " data-value="2042">2042</div><div class="xdsoft_option " data-value="2043">2043</div><div class="xdsoft_option " data-value="2044">2044</div><div class="xdsoft_option " data-value="2045">2045</div><div class="xdsoft_option " data-value="2046">2046</div><div class="xdsoft_option " data-value="2047">2047</div><div class="xdsoft_option " data-value="2048">2048</div><div class="xdsoft_option " data-value="2049">2049</div><div class="xdsoft_option " data-value="2050">2050</div></div><div class="xdsoft_scrollbar"><div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div></div></div></div><button type="button" class="xdsoft_next"></button></div><div class="xdsoft_calendar"><table><thead><tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr></thead><tbody><tr><td data-date="27" data-month="10" data-year="2016" class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_other_month xdsoft_weekend"><div>27</div></td><td data-date="28" data-month="10" data-year="2016" class="xdsoft_date xdsoft_day_of_week1 xdsoft_date xdsoft_other_month"><div>28</div></td><td data-date="29" data-month="10" data-year="2016" class="xdsoft_date xdsoft_day_of_week2 xdsoft_date xdsoft_other_month"><div>29</div></td><td data-date="30" data-month="10" data-year="2016" class="xdsoft_date xdsoft_day_of_week3 xdsoft_date xdsoft_other_month"><div>30</div></td><td data-date="1" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week4 xdsoft_date"><div>1</div></td><td data-date="2" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week5 xdsoft_date"><div>2</div></td><td data-date="3" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend"><div>3</div></td></tr><tr><td data-date="4" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend"><div>4</div></td><td data-date="5" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week1 xdsoft_date"><div>5</div></td><td data-date="6" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week2 xdsoft_date"><div>6</div></td><td data-date="7" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week3 xdsoft_date"><div>7</div></td><td data-date="8" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week4 xdsoft_date"><div>8</div></td><td data-date="9" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week5 xdsoft_date"><div>9</div></td><td data-date="10" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend"><div>10</div></td></tr><tr><td data-date="11" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend"><div>11</div></td><td data-date="12" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week1 xdsoft_date"><div>12</div></td><td data-date="13" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week2 xdsoft_date"><div>13</div></td><td data-date="14" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week3 xdsoft_date xdsoft_current xdsoft_today"><div>14</div></td><td data-date="15" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week4 xdsoft_date"><div>15</div></td><td data-date="16" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week5 xdsoft_date"><div>16</div></td><td data-date="17" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend"><div>17</div></td></tr><tr><td data-date="18" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend"><div>18</div></td><td data-date="19" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week1 xdsoft_date"><div>19</div></td><td data-date="20" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week2 xdsoft_date"><div>20</div></td><td data-date="21" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week3 xdsoft_date"><div>21</div></td><td data-date="22" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week4 xdsoft_date"><div>22</div></td><td data-date="23" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week5 xdsoft_date"><div>23</div></td><td data-date="24" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend"><div>24</div></td></tr><tr><td data-date="25" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend"><div>25</div></td><td data-date="26" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week1 xdsoft_date"><div>26</div></td><td data-date="27" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week2 xdsoft_date"><div>27</div></td><td data-date="28" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week3 xdsoft_date"><div>28</div></td><td data-date="29" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week4 xdsoft_date"><div>29</div></td><td data-date="30" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week5 xdsoft_date"><div>30</div></td><td data-date="31" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend"><div>31</div></td></tr></tbody></table></div></div><div class="xdsoft_timepicker"><button type="button" class="xdsoft_prev"></button><div class="xdsoft_time_box xdsoft_scroller_box"><div class="xdsoft_time_variant" style="margin-top: 0px;"><div class="xdsoft_time " data-hour="0" data-minute="0">00:00</div><div class="xdsoft_time " data-hour="1" data-minute="0">01:00</div><div class="xdsoft_time " data-hour="2" data-minute="0">02:00</div><div class="xdsoft_time " data-hour="3" data-minute="0">03:00</div><div class="xdsoft_time " data-hour="4" data-minute="0">04:00</div><div class="xdsoft_time " data-hour="5" data-minute="0">05:00</div><div class="xdsoft_time " data-hour="6" data-minute="0">06:00</div><div class="xdsoft_time " data-hour="7" data-minute="0">07:00</div><div class="xdsoft_time " data-hour="8" data-minute="0">08:00</div><div class="xdsoft_time " data-hour="9" data-minute="0">09:00</div><div class="xdsoft_time " data-hour="10" data-minute="0">10:00</div><div class="xdsoft_time xdsoft_current" data-hour="11" data-minute="0">11:00</div><div class="xdsoft_time " data-hour="12" data-minute="0">12:00</div><div class="xdsoft_time " data-hour="13" data-minute="0">13:00</div><div class="xdsoft_time " data-hour="14" data-minute="0">14:00</div><div class="xdsoft_time " data-hour="15" data-minute="0">15:00</div><div class="xdsoft_time " data-hour="16" data-minute="0">16:00</div><div class="xdsoft_time " data-hour="17" data-minute="0">17:00</div><div class="xdsoft_time " data-hour="18" data-minute="0">18:00</div><div class="xdsoft_time " data-hour="19" data-minute="0">19:00</div><div class="xdsoft_time " data-hour="20" data-minute="0">20:00</div><div class="xdsoft_time " data-hour="21" data-minute="0">21:00</div><div class="xdsoft_time " data-hour="22" data-minute="0">22:00</div><div class="xdsoft_time " data-hour="23" data-minute="0">23:00</div></div><div class="xdsoft_scrollbar"><div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div></div></div><button type="button" class="xdsoft_next"></button></div></div><div class="xdsoft_datetimepicker xdsoft_noselect "><div class="xdsoft_datepicker active"><div class="xdsoft_mounthpicker"><button type="button" class="xdsoft_prev"></button><button type="button" class="xdsoft_today_button" style="visibility: visible;"></button><div class="xdsoft_label xdsoft_month"><span>十二月</span><div class="xdsoft_select xdsoft_monthselect xdsoft_scroller_box"><div style="margin-top: 0px;"><div class="xdsoft_option " data-value="0">一月</div><div class="xdsoft_option " data-value="1">二月</div><div class="xdsoft_option " data-value="2">三月</div><div class="xdsoft_option " data-value="3">四月</div><div class="xdsoft_option " data-value="4">五月</div><div class="xdsoft_option " data-value="5">六月</div><div class="xdsoft_option " data-value="6">七月</div><div class="xdsoft_option " data-value="7">八月</div><div class="xdsoft_option " data-value="8">九月</div><div class="xdsoft_option " data-value="9">十月</div><div class="xdsoft_option " data-value="10">十一月</div><div class="xdsoft_option xdsoft_current" data-value="11">十二月</div></div><div class="xdsoft_scrollbar"><div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div></div></div></div><div class="xdsoft_label xdsoft_year"><span>2016</span><div class="xdsoft_select xdsoft_yearselect xdsoft_scroller_box"><div style="margin-top: 0px;"><div class="xdsoft_option " data-value="1960">1960</div><div class="xdsoft_option " data-value="1961">1961</div><div class="xdsoft_option " data-value="1962">1962</div><div class="xdsoft_option " data-value="1963">1963</div><div class="xdsoft_option " data-value="1964">1964</div><div class="xdsoft_option " data-value="1965">1965</div><div class="xdsoft_option " data-value="1966">1966</div><div class="xdsoft_option " data-value="1967">1967</div><div class="xdsoft_option " data-value="1968">1968</div><div class="xdsoft_option " data-value="1969">1969</div><div class="xdsoft_option " data-value="1970">1970</div><div class="xdsoft_option " data-value="1971">1971</div><div class="xdsoft_option " data-value="1972">1972</div><div class="xdsoft_option " data-value="1973">1973</div><div class="xdsoft_option " data-value="1974">1974</div><div class="xdsoft_option " data-value="1975">1975</div><div class="xdsoft_option " data-value="1976">1976</div><div class="xdsoft_option " data-value="1977">1977</div><div class="xdsoft_option " data-value="1978">1978</div><div class="xdsoft_option " data-value="1979">1979</div><div class="xdsoft_option " data-value="1980">1980</div><div class="xdsoft_option " data-value="1981">1981</div><div class="xdsoft_option " data-value="1982">1982</div><div class="xdsoft_option " data-value="1983">1983</div><div class="xdsoft_option " data-value="1984">1984</div><div class="xdsoft_option " data-value="1985">1985</div><div class="xdsoft_option " data-value="1986">1986</div><div class="xdsoft_option " data-value="1987">1987</div><div class="xdsoft_option " data-value="1988">1988</div><div class="xdsoft_option " data-value="1989">1989</div><div class="xdsoft_option " data-value="1990">1990</div><div class="xdsoft_option " data-value="1991">1991</div><div class="xdsoft_option " data-value="1992">1992</div><div class="xdsoft_option " data-value="1993">1993</div><div class="xdsoft_option " data-value="1994">1994</div><div class="xdsoft_option " data-value="1995">1995</div><div class="xdsoft_option " data-value="1996">1996</div><div class="xdsoft_option " data-value="1997">1997</div><div class="xdsoft_option " data-value="1998">1998</div><div class="xdsoft_option " data-value="1999">1999</div><div class="xdsoft_option " data-value="2000">2000</div><div class="xdsoft_option " data-value="2001">2001</div><div class="xdsoft_option " data-value="2002">2002</div><div class="xdsoft_option " data-value="2003">2003</div><div class="xdsoft_option " data-value="2004">2004</div><div class="xdsoft_option " data-value="2005">2005</div><div class="xdsoft_option " data-value="2006">2006</div><div class="xdsoft_option " data-value="2007">2007</div><div class="xdsoft_option " data-value="2008">2008</div><div class="xdsoft_option " data-value="2009">2009</div><div class="xdsoft_option " data-value="2010">2010</div><div class="xdsoft_option " data-value="2011">2011</div><div class="xdsoft_option " data-value="2012">2012</div><div class="xdsoft_option " data-value="2013">2013</div><div class="xdsoft_option " data-value="2014">2014</div><div class="xdsoft_option " data-value="2015">2015</div><div class="xdsoft_option xdsoft_current" data-value="2016">2016</div><div class="xdsoft_option " data-value="2017">2017</div><div class="xdsoft_option " data-value="2018">2018</div><div class="xdsoft_option " data-value="2019">2019</div><div class="xdsoft_option " data-value="2020">2020</div><div class="xdsoft_option " data-value="2021">2021</div><div class="xdsoft_option " data-value="2022">2022</div><div class="xdsoft_option " data-value="2023">2023</div><div class="xdsoft_option " data-value="2024">2024</div><div class="xdsoft_option " data-value="2025">2025</div><div class="xdsoft_option " data-value="2026">2026</div><div class="xdsoft_option " data-value="2027">2027</div><div class="xdsoft_option " data-value="2028">2028</div><div class="xdsoft_option " data-value="2029">2029</div><div class="xdsoft_option " data-value="2030">2030</div><div class="xdsoft_option " data-value="2031">2031</div><div class="xdsoft_option " data-value="2032">2032</div><div class="xdsoft_option " data-value="2033">2033</div><div class="xdsoft_option " data-value="2034">2034</div><div class="xdsoft_option " data-value="2035">2035</div><div class="xdsoft_option " data-value="2036">2036</div><div class="xdsoft_option " data-value="2037">2037</div><div class="xdsoft_option " data-value="2038">2038</div><div class="xdsoft_option " data-value="2039">2039</div><div class="xdsoft_option " data-value="2040">2040</div><div class="xdsoft_option " data-value="2041">2041</div><div class="xdsoft_option " data-value="2042">2042</div><div class="xdsoft_option " data-value="2043">2043</div><div class="xdsoft_option " data-value="2044">2044</div><div class="xdsoft_option " data-value="2045">2045</div><div class="xdsoft_option " data-value="2046">2046</div><div class="xdsoft_option " data-value="2047">2047</div><div class="xdsoft_option " data-value="2048">2048</div><div class="xdsoft_option " data-value="2049">2049</div><div class="xdsoft_option " data-value="2050">2050</div></div><div class="xdsoft_scrollbar"><div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div></div></div></div><button type="button" class="xdsoft_next"></button></div><div class="xdsoft_calendar"><table><thead><tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr></thead><tbody><tr><td data-date="27" data-month="10" data-year="2016" class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_other_month xdsoft_weekend"><div>27</div></td><td data-date="28" data-month="10" data-year="2016" class="xdsoft_date xdsoft_day_of_week1 xdsoft_date xdsoft_other_month"><div>28</div></td><td data-date="29" data-month="10" data-year="2016" class="xdsoft_date xdsoft_day_of_week2 xdsoft_date xdsoft_other_month"><div>29</div></td><td data-date="30" data-month="10" data-year="2016" class="xdsoft_date xdsoft_day_of_week3 xdsoft_date xdsoft_other_month"><div>30</div></td><td data-date="1" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week4 xdsoft_date"><div>1</div></td><td data-date="2" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week5 xdsoft_date"><div>2</div></td><td data-date="3" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend"><div>3</div></td></tr><tr><td data-date="4" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend"><div>4</div></td><td data-date="5" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week1 xdsoft_date"><div>5</div></td><td data-date="6" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week2 xdsoft_date"><div>6</div></td><td data-date="7" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week3 xdsoft_date"><div>7</div></td><td data-date="8" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week4 xdsoft_date"><div>8</div></td><td data-date="9" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week5 xdsoft_date"><div>9</div></td><td data-date="10" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend"><div>10</div></td></tr><tr><td data-date="11" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend"><div>11</div></td><td data-date="12" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week1 xdsoft_date"><div>12</div></td><td data-date="13" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week2 xdsoft_date"><div>13</div></td><td data-date="14" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week3 xdsoft_date xdsoft_current xdsoft_today"><div>14</div></td><td data-date="15" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week4 xdsoft_date"><div>15</div></td><td data-date="16" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week5 xdsoft_date"><div>16</div></td><td data-date="17" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend"><div>17</div></td></tr><tr><td data-date="18" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend"><div>18</div></td><td data-date="19" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week1 xdsoft_date"><div>19</div></td><td data-date="20" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week2 xdsoft_date"><div>20</div></td><td data-date="21" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week3 xdsoft_date"><div>21</div></td><td data-date="22" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week4 xdsoft_date"><div>22</div></td><td data-date="23" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week5 xdsoft_date"><div>23</div></td><td data-date="24" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend"><div>24</div></td></tr><tr><td data-date="25" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend"><div>25</div></td><td data-date="26" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week1 xdsoft_date"><div>26</div></td><td data-date="27" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week2 xdsoft_date"><div>27</div></td><td data-date="28" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week3 xdsoft_date"><div>28</div></td><td data-date="29" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week4 xdsoft_date"><div>29</div></td><td data-date="30" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week5 xdsoft_date"><div>30</div></td><td data-date="31" data-month="11" data-year="2016" class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend"><div>31</div></td></tr></tbody></table></div></div><div class="xdsoft_timepicker"><button type="button" class="xdsoft_prev"></button><div class="xdsoft_time_box xdsoft_scroller_box"><div class="xdsoft_time_variant" style="margin-top: 0px;"><div class="xdsoft_time " data-hour="0" data-minute="0">00:00</div><div class="xdsoft_time " data-hour="1" data-minute="0">01:00</div><div class="xdsoft_time " data-hour="2" data-minute="0">02:00</div><div class="xdsoft_time " data-hour="3" data-minute="0">03:00</div><div class="xdsoft_time " data-hour="4" data-minute="0">04:00</div><div class="xdsoft_time " data-hour="5" data-minute="0">05:00</div><div class="xdsoft_time " data-hour="6" data-minute="0">06:00</div><div class="xdsoft_time " data-hour="7" data-minute="0">07:00</div><div class="xdsoft_time " data-hour="8" data-minute="0">08:00</div><div class="xdsoft_time " data-hour="9" data-minute="0">09:00</div><div class="xdsoft_time " data-hour="10" data-minute="0">10:00</div><div class="xdsoft_time xdsoft_current" data-hour="11" data-minute="0">11:00</div><div class="xdsoft_time " data-hour="12" data-minute="0">12:00</div><div class="xdsoft_time " data-hour="13" data-minute="0">13:00</div><div class="xdsoft_time " data-hour="14" data-minute="0">14:00</div><div class="xdsoft_time " data-hour="15" data-minute="0">15:00</div><div class="xdsoft_time " data-hour="16" data-minute="0">16:00</div><div class="xdsoft_time " data-hour="17" data-minute="0">17:00</div><div class="xdsoft_time " data-hour="18" data-minute="0">18:00</div><div class="xdsoft_time " data-hour="19" data-minute="0">19:00</div><div class="xdsoft_time " data-hour="20" data-minute="0">20:00</div><div class="xdsoft_time " data-hour="21" data-minute="0">21:00</div><div class="xdsoft_time " data-hour="22" data-minute="0">22:00</div><div class="xdsoft_time " data-hour="23" data-minute="0">23:00</div></div><div class="xdsoft_scrollbar"><div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div></div></div><button type="button" class="xdsoft_next"></button></div></div>
+<script>
+
+    /**
+     * 用户设置
+     * */
+    var show_setup = function(){
+        $.sobox.alert('提示', '<center>设置功能敬请期待！<center>');
+    };
+
+    /**
+     * 个人密码修改
+     * */
+    var show_change_password = function(){
+        var show_change_box = $.sobox.pop({
+            type: 'iframe',
+            width: 400,
+            height: 200,
+            title: '修改密码(新旧密码不可相同)',
+            iframe: site_url + 'sys/welcome/change_password',
+            btn: [
+                {
+                    text: '确定',
+                    cls: 'button dark-button',
+                    removePop:false,
+                    callback: function(){
+                        var new_password    = $("#sopop-iframe").contents().find('#new_password').val();
+                        var re_new_password = $("#sopop-iframe").contents().find('#re_new_password').val();
+                        if(new_password == '' || new_password !=re_new_password){
+                            $.sobox.alert('提示', '<p align="center">新密码为必填，且新密码和确认密码必须一致！</p>');
+                            return false;
+                        }
+                        var verify = $("#sopop-iframe").contents().find('input[name="verify"]').val();
+                        if(verify == ''){
+                            $.sobox.alert('提示', '<p align="center">请输入验证码！</p>');
+                            return false;
+                        }
+                        $.ajax({
+                            url: site_url + "sys/employee/change_employee_password",
+                            data: {'new_password': new_password,'re_new_password': re_new_password,'verify':verify},
+                            type: 'POST',
+                            dataType:"json",
+                            success: function (msg) {
+                                if (msg.status == 1) {
+                                    show_change_box.removePop();
+                                    $.sobox.alert('提示', '<p align="center">' + msg.message + '</p>',function(){
+                                        window.location.href=site_url+"login/logout";
+                                    });
+                                } else {
+                                    $.sobox.alert('提示', '<p align="center">' + msg.message + '</p>');
+                                    return false;
+                                }
+                            },
+                            error: function (error) {
+                                if (window.console) {
+                                    console.log(error);
+                                }
+                            }
+                        });
+                    }
+                },
+                {
+                    text: '取消',
+                    cls: 'gray-button'
+                }
+            ]
+        });
+    };
+    /**
+     * 发送验证码
+     */
+    var person_send_verify = function(){
+        var count = 60;
+        var set_int = setInterval(function() {
+            if(count == 0){
+                window.clearInterval(set_int);
+                $("#send_verify").val("发送验证码");
+                $("#send_verify").removeClass("dark-button-disabled");
+                $("#send_verify").removeAttr("disabled");
+                count = 60;
+            } else {
+                count--;
+                $("#send_verify").addClass("dark-button-disabled");
+                $("#send_verify").attr("disabled",true);
+                $("#send_verify").val("重新发送(" + count + "秒)");
+            }
+        }, 1000);
+        var mobile = $("#mobile").val();
+        $.ajax({
+            url: site_url + 'sys/welcome/create_code',
+            type: "POST",
+            data: {'mobile':mobile,'type':1},
+            dataType:"json",
+            success: function (msg) {
+                if(msg.status == 0){
+                    $.sobox.alert("提示", "<center>" + msg.message + "</center>");
+                    return false;
+                }
+            }
+        });
+    }
+</script>
+
+
+</body>
