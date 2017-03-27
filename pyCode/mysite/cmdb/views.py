@@ -1,4 +1,7 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.shortcuts import render_to_response
+from django.db import *
 from cmdb import models
 # Create your views here.
 import os
@@ -8,6 +11,8 @@ def index(request):
     pass
 def Add(request,name):
     pass
+def test5(request):
+    return render(request, "test5.html", )
 def Delete(request,name):
     pass
 def Update(request,name):

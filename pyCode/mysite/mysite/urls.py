@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^select/', views.select),
     url(r'^metadata/', views.metadata),
     url(r'^alert/', views.alert),
+    url(r'^test5/', views.test5),
 ]

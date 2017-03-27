@@ -1,0 +1,57 @@
+/* www.divcss5.com css */
+
+.ddsmoothmenu {
+MARGIN: 0px auto; FONT: 12px Verdana; WIDTH: 730px
+}
+.ddsmoothmenu UL {
+PADDING-RIGHT: 0px; PADDING-LEFT: 0px;BACKGROUND: #2b9801;
+Z-INDEX: 100; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px;
+PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+.ddsmoothmenu UL LI {
+DISPLAY: block; FLOAT: left; WIDTH: 81px; LINE-HEIGHT: 31px;
+POSITION: relative; TEXT-ALIGN: center
+}
+HTML .ddsmoothmenu UL LI {
+FLOAT: left; WIDTH: 81px; LINE-HEIGHT: 31px; POSITION: relative; TEXT-ALIGN: center
+}
+.ddsmoothmenu UL LI A {
+DISPLAY: block; FONT-WEIGHT: bold; WIDTH: 81px; TEXT-DECORATION: none
+}
+.ddsmoothmenu UL LI A:link {
+COLOR: #fff
+}
+.ddsmoothmenu UL LI A:visited {
+COLOR: #fff
+}
+.ddsmoothmenu UL LI A:hover {
+COLOR: #ffff00
+}
+.ddsmoothmenu UL LI UL {
+LEFT: 0px; VISIBILITY: hidden; POSITION: absolute
+}
+.ddsmoothmenu UL LI UL LI {
+BACKGROUND: #2b9801; FLOAT: left; WIDTH: 81px; LINE-HEIGHT: 25px;
+ BORDER-BOTTOM: #96d47d 1px solid
+}
+.ddsmoothmenu UL LI UL LI A {
+DISPLAY: block; WIDTH: 81px; TEXT-DECORATION: none
+}
+.ddsmoothmenu UL LI UL LI A:hover {
+BACKGROUND: #51b228
+}
+.ddsmoothmenu UL LI UL LI UL {
+TOP: 0px
+}
+.downarrowclass {
+DISPLAY: none; POSITION: absolute
+}
+.rightarrowclass {
+DISPLAY: none; POSITION: absolute
+}
+.ddshadow {
+BACKGROUND: silver; LEFT: 0px; WIDTH: 0px; POSITION: absolute; TOP: 0px; HEIGHT: 0px
+}
+.toplevelshadow {
+opacity: 0.8
+}

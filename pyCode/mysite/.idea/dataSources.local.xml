@@ -2,12 +2,10 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="Sqlite (Xerial) - db.sqlite3" uuid="9a4127e9-486f-49c3-8ecc-b842f7b0d210">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <secret-storage>master_key</secret-storage>
       <auth-required>false</auth-required>
     </data-source>
     <data-source name="MySQL - xlh_ods@localhost" uuid="24a0e83e-85ac-4350-b377-57f52de0a812">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
     </data-source>

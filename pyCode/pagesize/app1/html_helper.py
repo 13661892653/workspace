@@ -5,7 +5,7 @@ class PageInfo:
     传入当前页、记录总数，每页显示记录数
     返回开始页、结束页、总页数
     """
-    def __init__(self,current_page,all_count,per_item=20):
+    def __init__(self,current_page,all_count,per_item=5):
         self.CurrentPage=current_page
         self.AllCount = all_count
         self.PerItem = per_item

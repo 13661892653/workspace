@@ -6,10 +6,23 @@
 </head>
 <body>
 <h1>信隆行数据平台</h1>
-<u1>
-    <li>作业配置</li>
-    <li>作业监控</li>
-    <li>元数据管理</li>
-<u1/>
+    <div>
+        <div>
+            <h3 style="color: red">当前登录用户：{{user}}</h3>
+            <h3>当前登录密码：{{pwd}}</h3>
+        </div>
+    </div>
+    <u1>
+        {% csrf_token %}
+        <a href="index.html"><li>作业配置</li></a>
+        <a href="index.html"><li>作业监控</li></a>
+        <a href="http://www.baidu.com"><li>元数据管理</li></a>
+        <a href="http://172.16.11.74:8080/caravel/dashboard/5/"><li>一融平台数据概览</li></a>
+    <u1/>
+        <ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
 </body>
 </html>

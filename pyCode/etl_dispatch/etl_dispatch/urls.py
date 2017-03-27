@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from dispdb import views
+from jobs import views as views1
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', views.index),
-    url(r'^dbinfo/', views.dbinfo),
+    url(r'^dbinfo/(\d*)', views.dbinfo),
+    url(r'^jobInfo/', views.jobquery),
+    url(r'^jobInfo/', views1.jobInfo),
 ]

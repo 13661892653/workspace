@@ -1,4 +1,5 @@
 #coding=utf-8
+#chenlun的第一个爬虫程序
 import re
 import urllib.request
 
@@ -13,8 +14,9 @@ def getImage(html):
     imageList=re.findall(img,html)
     j=0
     for i in imageList:
-        urllib.request.urlretrieve(i,"D:\\pc\\%s.jpg" % j)
-        j+=1
+        imgname=re.search(r'\d{4,5}',i).group(0)
+        print(imgname)
+        urllib.request.urlretrieve(i,imgname+".jpg")
     return imageList
-html=getHtml("http://www.mm131.com/")
+html=getHtml("http://bizhitest.quanjing.com/topic/930_13_bar-0105")
 print(getImage(html))

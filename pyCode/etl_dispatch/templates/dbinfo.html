@@ -4,45 +4,63 @@
     <meta charset="UTF-8">
     <title>数据库信息查询</title>
     <link rel="stylesheet" type="text/css" href="/static/plugin/jquery-easyui-1.5.1/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="/static/plugin/jquery-easyui-1.5.1/themes/icon.css">
-	<link rel="stylesheet" type="text/css" href="/static/plugin/jquery-easyui-1.5.1/demo/demo.css">
-	<script type="text/javascript" src="/static/plugin/jquery-easyui-1.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/static/plugin/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="/static/plugin/jquery-easyui-1.5.1/themes/icon.css">
+   <link rel="stylesheet" type="text/css" href="/static/plugin/jquery-easyui-1.5.1/demo/demo.css">
+   <script type="text/javascript" src="/static/plugin/jquery-easyui-1.5.1/jquery.min.js"></script>
+   <script type="text/javascript" src="/static/plugin/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'north',border:false" style="height:15%;">
+   <div data-options="region:'north',border:false" style="height:15%;">
             <div class="easyui-panel" title="查询条件" data-options="region:'north'" style="height:100%;">
-                <form>
+                <form id="myForm" action="/dbinfo/" method="POST">
                     <div style="margin:10px 10px 10px 10px;height:30%;width: 95%">
-                            <label>开始时间：</label><input class="easyui-textbox" data-options="prompt:'输入作业编号或者名称'" style="width:20%;height:35px">
-                            <label>结束时间：</label><input class="easyui-textbox" style="width:20%;height:35px">
-                            <label>作业名称/id：</label><input class="easyui-textbox" style="width:20%;height:35px">
+                            <span>&nbsp;&nbsp;域名称：</span><input id="areaid" name="areaname" value="{{re_areaname}}" class="easyui-textbox" data-options="prompt:'服务器IP关键字'" style="width:20%;height:35px">
+                            <span>&nbsp;&nbsp;数据库名称：</span><input id="databaseid" name="databasename" value="{{databasename}}" class="easyui-textbox"  data-options="prompt:'数据库名称关键字'" style="width:20%;height:35px">
+                            <span>&nbsp;&nbsp;表英文名称：</span><input id="tableid_en" name="tablename_en" value="{{tablename_en}}" class="easyui-textbox"  data-options="prompt:'表英文关键字'" style="width:20%;height:35px">
+                            <span>&nbsp;&nbsp;表中文名称：</span><input id="tableid_ch" name="tablename_ch" value="{{tablename_ch}}" class="easyui-textbox" data-options="prompt:'表中文关键字'" style="width:20%;height:35px">
                     </div>
                     <div style="margin:20px 10px 0px 10px;height:30%;width: 95%">
-                            <span>开发人：</span><input class="easyui-textbox" data-options="prompt:'输入作业编号或者名称'" style="width:20%;height:35px">
-                            <span>作业状态：</span><input class="easyui-textbox" style="width:20%;height:35px">
-                            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" style="width:20%;height:35px">查询</a>
+                            <span>&nbsp;&nbsp;字段英文名称：</span><input id="columnid_en" name="columnname_en" value="{{columnname_en}}" class="easyui-textbox"  data-options="prompt:'字段英文关键字'" style="width:20%;height:35px">
+                            <span>&nbsp;&nbsp;字段中文名称：</span><input id="columnid_ch" name="columnname_ch" value="{{columnname_ch}}" class="easyui-textbox"  data-options="prompt:'字段中文关键字'" style="width:20%;height:35px">
+                            <button type="button"  onclick="query();" class="easyui-linkbutton" iconCls="icon-ok" style="width:20%;height:35px">查询</button>
                     </div>
                 </form>
             </div>
     </div>
-	<div data-options="region:'center',title:'查询结果'" style="height: 85%">
-            <table class="easyui-datagrid"  style="width:100%;height:100%"
+   <div data-options="region:'center',title:'查询结果'" style="height: 85%">
+            <div>总记录数：【{{ count }}】总页数：【{{ pagecnt }}页】</div>
+            <div>
+                <span>{{ page }}</span>
+                <span>每页记录：</span>
+                <select id='ss' onchange="ChangePageItem(this);">
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                </select>
+            </div>
+
+            <table id="tablegrid" class="easyui-datagrid"  style="width:100%;height:100%"
                     data-options="singleSelect:true,collapsible:true,url:'datagrid_data1.json',method:'get'">
                     <thead>
                             <tr>
                                 <th data-options="field:'domainname',width:160">域名</th>
                                 <th data-options="field:'tableschema',width:160">数据库名称</th>
-                                <th data-options="field:'tablename',width:160">表英文名</th>
-                                <th data-options="field:'tabledesc',width:160">表中文名称/th>
-                                <th data-options="field:'columnname',width:160">字段英文名</th>
-                                <th data-options="field:'columndesc',width:160">字段中文名</th>
+                                <th data-options="field:'tablename',width:220">表英文名</th>
+                                <th data-options="field:'tabledesc',width:220">表中文名称</th>
+                                <th data-options="field:'columnname',width:220">字段英文名</th>
+                                <th data-options="field:'columndesc',width:220">字段中文名</th>
                                 <th data-options="field:'datatype',width:160">数据类型</th>
                                 <th data-options="field:'columntype',width:160">列类型</th>
+                                <th data-options="field:'createtime',width:160">创建日期</th>
                             </tr>
                     </thead>
                     {% for item in data %}
-                            <tr>
+                            <tr id="dbgrid">
                                 <td>{{item.domainname}}</td>
                                 <td>{{item.tableschema}}</td>
                                 <td>{{item.tablename}}</td>
@@ -51,9 +69,27 @@
                                 <td>{{item.columndesc}}</td>
                                 <td>{{item.datatype}}</td>
                                 <td>{{item.columntype}}</td>
+                                <td>{{item.createtime}}</td>
                             </tr>
                     {% endfor %}
             </table>
     </div>
+
+    <script type='text/javascript'>
+        $(function(){
+            var perItem=$.cookie('pager_num');
+            if (perItem) {
+                $('#ss').val(perItem);
+            }
+        })
+        function ChangePageItem(arg){
+            //创建cookies或者修改cookies的值
+            var aa=$(arg).val();
+            $.cookie("pager_num",aa,{ expires: 7, path: '/' });
+        }
+        function query() {
+            document.getElementById("myForm").submit();
+        }
+    </script>
 </body>
 </html>

@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>IP地址查询</title>
+    <script type="text/javascript" src='/static/javascript/jquery-1.8.3.js'></script>
+    <script type="text/javascript" src='/static/javascript/jquery.cookie.js'></script>
+
 </head>
 <body>
     <h1>IP地址查询</h1>
+
     <table border="1">
         {% for item in data %}
         <tr>
@@ -18,5 +22,32 @@
 <div>
     {{ page }}
 </div>
+    <div>
+        <select id='ss' onchange="ChangePageItem(this);">
+            <option value="1">1</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+        </select>
+        回显每页记录数：{{ per_item }}
+    </div>
+<script type='text/javascript'>
+    $(function(){
+        var perItem=$.cookie('pager_num');
+        if (perItem) {
+            $('#ss').val(perItem);
+        }
+    })
+    function ChangePageItem(arg){
+        //创建cookies或者修改cookies的值
+        var aa=$(arg).val();
+        $.cookie("pager_num",aa,{ expires: 7, path: '/' });
+    }
+
+
+</script>
+
 </body>
 </html>
