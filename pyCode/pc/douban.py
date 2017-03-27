@@ -7,4 +7,4 @@ class Douban(CrawlSpider):
 		print (response.body)
 if __name__=='__main__':
     spd=Douban()
-    spd.parse('dddddd')
+    spd.parse('dddddd!')
