@@ -21,6 +21,9 @@
     <orderEntry type="module" module-name="scrapyFrame" />
     <orderEntry type="module" module-name="olap" />
     <orderEntry type="module" module-name="oldboy" />
+    <orderEntry type="module" module-name="xlh_data" />
+    <orderEntry type="module" module-name="pagesize" />
+    <orderEntry type="module" module-name="mysite" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
