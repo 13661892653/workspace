@@ -1,0 +1,17 @@
+package com.easyrong.data.function;
+
+import java.util.Calendar;
+import java.util.Date;
+
+public class CurMonthLastDay {
+	public static void main(String args[]){
+		Date sDate1;
+		Calendar   cDay1   =   Calendar.getInstance();  
+        cDay1.setTime(sDate1);  
+        final   int   lastDay   =   cDay1.getActualMaximum(Calendar.DAY_OF_MONTH);  
+        Date   lastDate   =   cDay1.getTime();  
+        lastDate.setDate(lastDay);  
+        System.out.print(lastDate);
+	}
+	 
+}
