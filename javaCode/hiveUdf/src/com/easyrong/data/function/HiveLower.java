@@ -1,6 +1,5 @@
 package com.easyrong.data.function;
 import org.apache.hadoop.hive.ql.exec.UDF; 
-import org.apache.hadoop.io.Text;
 
 public class HiveLower extends UDF{	
     public String evaluate(String s){  

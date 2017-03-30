@@ -1,5 +1,6 @@
 package com.easyrong.data.function;
 import org.apache.hadoop.hive.ql.exec.UDF; 
+import org.apache.hadoop.io.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
