@@ -42,3 +42,13 @@ where c.flag='Y'
 group by d.member_id
 ,a.reg_no
 ,a.change_cur_date
+ddd
+asdfsd
+dsfasd
+asdfa
+sdfas
+asdfa
+asdfasd
+ggggggggggggggggggggggggggggggggg
+hhhhhhhhhhhhhhhhh
+jjjjjjjjjjjjjjjjjjjjjjjjjjjjj
