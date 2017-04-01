@@ -1,0 +1,44 @@
+ddd
+ddddddd
+dsgada
+我的名字教程轮
+你的名字教学很
+我今天很高兴能够认识你的哦
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create or replace view v_report_monitor_risk_grade_mid
+as
+SELECT max(b.monitor_point_risk_grade) as monitor_point_risk_grade
+,d.member_id
+,a.reg_no
+,a.change_cur_date
+FROM monitor_change_detail_info as a 
+inner join dim_monitor_point as b on a.monitor_point_id=b.monitor_point_id
+inner join monitor_plan_detail_info as c on a.reg_no=c.reg_no
+inner join monitor_plan_info as d on c.monitor_plan_id=d.monitor_plan_id
+inner join monitor_plan_points as e on e.monitor_plan_id=d.monitor_plan_id and e.monitor_point_id=b.monitor_point_id
+where c.flag='Y'
+group by d.member_id
+,a.reg_no
+,a.change_cur_date
