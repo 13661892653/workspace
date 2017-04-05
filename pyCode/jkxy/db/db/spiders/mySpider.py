@@ -2,7 +2,7 @@
 from scrapy.spiders import CrawlSpider
 from scrapy.http import Request
 from scrapy.selector import Selector
-from db.db.items import DbItem
+from db.items import *
 '''爬取准备
 *目标网站：豆瓣电影TOP250
 *目标网址：http://movie.douban.com/top250
@@ -26,10 +26,10 @@ class Douban(CrawlSpider):
             title=eachMoive.xpath('div[@class="hd"]/a/span/text()').extract()
             fullTitle=''
             for each in title:
-                fullTitle+=title
+                fullTitle+=each
             movieInfo=eachMoive.xpath('div[@class="bd"]/p/text()').extract()
-            star=eachMoive.xpath('div[@class="bd"]/div[@class="star"]/span/em/text()').exract()[0]
-            quote=eachMoive.xpath('div[@class="bd"]/p[@class="quote"]/span/text()').exract()
+            star=eachMoive.xpath('div[@class="bd"]/div[@class="star"]/span/em/text()').extract()
+            quote=eachMoive.xpath('div[@class="bd"]/p[@class="quote"]/span/text()').extract()
             if quote:
                 quote=quote[0]
             else:
