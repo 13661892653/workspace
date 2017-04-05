@@ -1,0 +1,17 @@
+package com.easyrong.data.function;
+import org.apache.hadoop.hive.ql.exec.UDF; 
+import org.apache.hadoop.io.Text;
+
+public class hiveLower extends UDF{	
+    public Text evaluate(String s){  
+        if (null == s){  
+            return null;  
+        }  
+        return new Text(s.toString().toLowerCase());  
+    }  
+    public static void main(String args[]){
+    	hiveLower ss= new hiveLower();
+    	ss.evaluate("ssss");
+    	
+    }
+}
