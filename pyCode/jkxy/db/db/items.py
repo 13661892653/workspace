@@ -5,10 +5,12 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item,Field
 
-
-class DbItem(scrapy.Item):
+class DbItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    title=Field()
+    movieInfo=Field()
+    star =Field()
+    quote =Field()

@@ -17,7 +17,8 @@ NEWSPIDER_MODULE = 'db.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'
-
+FEED_URI=u'doubanFile.csv'
+FEED_FORMT='CSV'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
