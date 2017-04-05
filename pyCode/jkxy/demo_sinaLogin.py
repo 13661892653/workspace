@@ -1,0 +1,13 @@
+#coding=utf-8
+'''通过提交表单模拟登陆新浪微博
+分析需要提交的数据
+Mobile用户名
+Password密码
+remember是否保持登录
+backUrl登录以后返回的地址
+backTitle登录以后返回的标题
+tryCount尝试次数
+vk一个简单的验证码
+submit登录
+'''
+data={"":"","":"",}
