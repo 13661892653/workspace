@@ -22,18 +22,26 @@ class Douban(CrawlSpider):
         item=doubanItem()
         selector=Selector(response)
         Movies=selector.xpath('//div[@class="info"]')
+        print('Movies',Movies)
         for eachMoive in Movies:
+            print('eachMoive',eachMoive)
             title=eachMoive.xpath('div[@class="hd"]/a/span/text()').extract()
             fullTitle=''
+            print('title',title)
             for each in title:
                 fullTitle+=each
+                print('eachtitle', each)
             movieInfo=eachMoive.xpath('div[@class="bd"]/p/text()').extract()
-            star=eachMoive.xpath('div[@class="bd"]/div[@class="star"]/span/em/text()').extract()[0]
+            star=eachMoive.xpath('div[@class="bd"]/div[@class="star"]/span[@class="rating_num"]/text()').extract()[0]
             quote=eachMoive.xpath('div[@class="bd"]/p[@class="quote"]/span/text()').extract()
             if quote:
                 quote=quote[0]
             else:
                 quote=''
+            print('fullTitle',fullTitle)
+            print('movieInfo', movieInfo)
+            print('star', star)
+            print('quote', quote)
             item['title']=fullTitle
             item['movieInfo'] = ';'.join(movieInfo)
             item['star'] = star
