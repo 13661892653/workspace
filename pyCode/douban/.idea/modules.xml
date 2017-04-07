@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/douban.iml" filepath="$PROJECT_DIR$/.idea/douban.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../logInputDatabase/.idea/logInputDatabase.iml" filepath="$PROJECT_DIR$/../logInputDatabase/.idea/logInputDatabase.iml" />
     </modules>
   </component>
 </project>
