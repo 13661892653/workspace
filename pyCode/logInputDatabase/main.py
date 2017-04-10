@@ -1,5 +1,9 @@
 #coding=utf-8
 #!/usr/bin/python
+'''
+Author:chenlun
+Date:2017-04-10
+'''
 import os
 import re
 import shutil
@@ -16,12 +20,15 @@ event_id int comment  '时间id',
 event_name varchar(255) comment  '事件名称',
 member_id int comment  '用户id',
 member_name varchar(255) comment  '用户名称',
+update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON
+    UPDATE
+        CURRENT_TIMESTAMP COMMENT '更新时间', 
 primary key (member_id,event_id,ds,ds_time)
 );
 '''
 def strRep(str):
     '''替换掉[]和换行符'''
-    return str.replace('[','').replace(']','').replace('\n','')
+    return str.replace('[','').replace(']','').replace('\n','').strip()
 def logAnalysis(line):
     reg = r'.*?INFO  EMBED - (.*?.+)'
     data = re.compile(reg)
@@ -54,23 +61,25 @@ def defineSql(type):
 #读取文件
 def loginput(inputPath,outputPath,cntCommit):
     fileList = scan_files(inputPath)
-    #清空表的所有数据据
-    sqlD = defineSql("D")
-    deldata(sqlD)
+    #如果目录不为空，先清空表的所有数据
+    if fileList.__len__()>0:
+        sqlD = defineSql("D")
+        deldata(sqlD)
     for file in fileList:
         dataList = []
         i=0
         '''计算每个文件行数'''
-        myfile = open(file,'r',encoding='gbk')
+        myfile = open(file,'r',encoding='utf-8')
         lines = len(myfile.readlines())
         print('文件记录数：',lines)
         myfile.close()
         print("正在加载文件：",file)
-        for line in open(file,'r',encoding='gbk'):
+        for line in open(file,'r',encoding='utf-8'):
             #解析日志
             print(line)
             i += 1
             data=logAnalysis(line)
+            print(data)
             dataList.append(tuple(data))
             '''数组长度等于设定的commit时，提交数据'''
             if len(dataList)==cntCommit:
@@ -86,8 +95,11 @@ def loginput(inputPath,outputPath,cntCommit):
         print(file,'已经移到到：',outputPath)
 '''读取完毕后将文件copy到outputFile'''
 def moveFile(file,outputPath):
-    #shutil.move(file, outputPath)
-    pass
+    path=os.path.join(outputPath,os.path.basename(file))
+    isExists = os.path.exists(path)
+    if isExists:
+        os.remove(path)
+    shutil.move(file, outputPath)
 
 def scan_files(directory, prefix=None, postfix=None):
     '''扫描inputFile文件夹所有文件进行加载'''

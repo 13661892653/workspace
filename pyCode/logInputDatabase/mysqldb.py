@@ -1,10 +1,14 @@
 #coding=utf-8
 #!/usr/bin/python
+'''
+Author:chenlun
+Date:2017-04-10
+'''
 import pymysql
 def connDB():
     # 连接数据库
     try:
-        conn = pymysql.connect(host='192.168.1.181', user='root', passwd='hadoop', db='test', charset='utf8')
+        conn = pymysql.connect(host='172.16.33.252', user='root', passwd='root', db='xlh_craw', charset='utf8')
         cur = conn.cursor()
         return (conn, cur)
     except Exception as e:
@@ -16,12 +20,12 @@ def exeUpdate(conn, cur, sql):
     return (sta)
 def exeBath(conn, cur, sql,data):
     '''批量插入数据'''
-    try:
-        sta = cur.executemany(sql,data)
-        conn.commit()
-        return (sta)
-    except Exception as e:
-        return pymysql.err.IntegrityError
+    #try:
+    sta = cur.executemany(sql,data)
+    conn.commit()
+    return sta
+    #except Exception as e:
+    #    return pymysql.err
 def exeQuery(cur, sql):
     # 查询语句
     cur.execute(sql)
