@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://E:\workspace\pyCode\logInputDatabase\.idea\logInputDatabase.iml" filepath="E:\workspace\pyCode\logInputDatabase\.idea\logInputDatabase.iml" />
+      <module fileurl="file://E:/workspace/pyCode/logInputDatabase/.idea/logInputDatabase.iml" filepath="E:/workspace/pyCode/logInputDatabase/.idea/logInputDatabase.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/novel.iml" filepath="$PROJECT_DIR$/.idea/novel.iml" />
     </modules>
   </component>

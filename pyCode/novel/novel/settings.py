@@ -20,10 +20,10 @@ NEWSPIDER_MODULE = 'novel.spiders'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
-MONGODB_HOST='127.0.0.1'
-MONGODB_PORT=27017
-MONGODB_DBNAME='Jikexueyuan'
-MONGODB_DOCNAME='Book'
+MONGODB_SERVER = 'localhost'
+MONGODB_PORT = 27017
+MONGODB_DB = 'Jikexueyuan'
+MONGODB_COLLECTION = 'Book'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -68,7 +68,7 @@ COOKIES_ENABLED = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'novel.pipelines.NovelPipeline': 300,
+    'novel.pipelines.MongoDBPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
