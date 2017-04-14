@@ -9,28 +9,31 @@ from scrapy.spiders import CrawlSpider
 from scrapy.selector import Selector
 from novel.items import NovelItem
 class novSpider(CrawlSpider):
-    name="novspider"
-    redis_key="novspider:start_urls"
+    name="novelspider"
+    redis_key="novelspider:start_urls"
     start_urls=['http://www.daomubiji.com']
     def parse(self,response):
-        print('response',response)
+        #print('response',response)
         selector=Selector(response)
-        print('selector',selector)
+        #print('selector',selector.extract())
         #table=selector.xpath('//table')
-        table = selector.xpath('//article[@class="article-content"]')
-        print('table',table)
-        for each in table:
-            bookName=each.xpath('a/div[@class="homebook"]/h2/text()').extract()
+        article = selector.xpath('//*[@class="article-content"]//a')
+        print('xxxxxxxxxxxxxxxxxxtable',article)
+        print('xxxxxxxxxxxxxxxxxxtable',article.extract())
+        for each in article:
+            print('each',each)
+            bookName=each.xpath('a/div/h2/text()').extract()
             print('bookName',bookName)
-            content=each.xpath('a/div[@class="homebook"]/p/text()').extract()
+            content=each.xpath('a/div/p/text()').extract()
             print('content',content)
             url=each.xpath('a/@href').extract()
             print('url',url)
             for i in range(len(url)):
+                print('i',i)
                 item=NovelItem()
                 item['bookName']=bookName
                 item['chapterURL']=url[i]
-                try:
+                '''try:
                     item['bookTitle']=content[i].split(' ')[0]
                     item['chapterNum'] = content[i].split(' ')[1]
                 except Exception as e:
@@ -38,6 +41,7 @@ class novSpider(CrawlSpider):
                 try:
                     item['chapterName'] = content[i].split(' ')[2]
                 except Exception as e:
-                    item['chapterName'] = content[i].split(' ')[1][-3:]
+                    item['chapterName'] = content[i].split(' ')[1][-3:]'''
+                print('item',item)
                 yield item
 

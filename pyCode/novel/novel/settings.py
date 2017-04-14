@@ -14,16 +14,18 @@ BOT_NAME = 'novel'
 SPIDER_MODULES = ['novel.spiders']
 NEWSPIDER_MODULE = 'novel.spiders'
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'novel (+http://www.yourdomain.com)'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
-MONGODB_SERVER = 'localhost'
+ITEM_PIPELINES = {
+   'novel.pipelines.MongoDBPipeline': 300,
+}
+MONGODB_HOST = "127.0.0.1"
 MONGODB_PORT = 27017
 MONGODB_DB = 'Jikexueyuan'
-MONGODB_COLLECTION = 'Book'
+MONGODB_COLL = 'novel'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -36,7 +38,6 @@ MONGODB_COLLECTION = 'Book'
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-COOKIES_ENABLED = True
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -67,9 +68,9 @@ COOKIES_ENABLED = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    'novel.pipelines.MongoDBPipeline': 300,
-}
+#ITEM_PIPELINES = {
+#    'novel.pipelines.MongoDBPipeline': 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
