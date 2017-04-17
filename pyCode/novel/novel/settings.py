@@ -22,10 +22,20 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
    'novel.pipelines.MongoDBPipeline': 300,
 }
+#MongoDB
 MONGODB_HOST = "127.0.0.1"
 MONGODB_PORT = 27017
 MONGODB_DB = 'Jikexueyuan'
-MONGODB_COLL = 'novel'
+MONGODB_COLL = 'novelRedis'
+
+#Redis
+SCHEDULER="scrapy_redis.scheduler.Scheduler"
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+SCHEDULER_PERSIST=True
+SCHEDULER_QUEUE_CLASS="scrapy_redis.queue.SpiderPriorityQueue"
+REDIS_URL = None
+REDIS_HOST='127.0.0.1'
+REDIS_PORT=6379
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
