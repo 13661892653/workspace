@@ -1,7 +1,5 @@
 # encoding: utf-8
-
 import os
-
 
 class dir(object):
     def __init__(self):
@@ -24,13 +22,23 @@ class dir(object):
         for file in files:
             myfile = url + "\\" + file
             size = os.path.getsize(myfile)
-
+            #b
+            if size>1024*1024*1024:
+                size = str(round(size/(1024*1024*1024),2)) + "GB"
+            #Kb
+            elif size>1024*1024:
+                size = str(round(size/(1024*1024),2)) + "MB"
+            #Mb
+            elif size>1024:
+                size = str(round(size/1024,2)) + "KB"
+            else:
+                size=str(round(size,2)) +"B"
             if os.path.isfile(myfile):
                 tmpNum = tmpNum + 1
                 if (tmpNum != fileNum):
-                    self.list.append(str(self.SPACE) + "├─" + file + "    " + str(size/(1024*1024))+ "M" + "\n")
+                    self.list.append(str(self.SPACE) + "├─" + file + "    " + str(size)+ "\n")
                 else:  # www.iplaypy.com
-                    self.list.append(str(self.SPACE) + "└─" + file + "    " + str(size/(1024*1024))+ "M" + "\n")
+                    self.list.append(str(self.SPACE) + "└─" + file + "    " + str(size)+ "\n")
 
             if os.path.isdir(myfile):
                 self.list.append(str(self.SPACE) + "├─" + file + "\n")
