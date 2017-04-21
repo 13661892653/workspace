@@ -9,7 +9,8 @@ from scrapy.conf import settings
 class MongoDBPipeline(object):
     def __init__(self):
         # 链接数据库
-        self.client = pymongo.MongoClient(host=settings['MONGODB_HOST'], port=settings['MONGODB_PORT'])
+        self.client = pymongo.MongoClient(host=settings['MONGODB_HOST'],
+                                          port=settings['MONGODB_PORT'])
         # 数据库登录需要帐号密码的话
         # self.client.admin.authenticate(settings['MINGO_USER'], settings['MONGO_PSW'])
         self.db = self.client[settings['MONGODB_DB']]  # 获得数据库的句柄

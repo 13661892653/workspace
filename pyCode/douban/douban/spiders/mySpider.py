@@ -32,8 +32,10 @@ class Douban(CrawlSpider):
                 fullTitle+=each
                 print('eachtitle', each)
             movieInfo=eachMoive.xpath('div[@class="bd"]/p/text()').extract()
-            star=eachMoive.xpath('div[@class="bd"]/div[@class="star"]/span[@class="rating_num"]/text()').extract()[0]
-            quote=eachMoive.xpath('div[@class="bd"]/p[@class="quote"]/span/text()').extract()
+            star=eachMoive.xpath('div[@class="bd"]/div[@class="star"]/span'
+                                 '[@class="rating_num"]/text()').extract()[0]
+            quote=eachMoive.xpath('div[@class="bd"]/p[@class="quote"]'
+                                  '/span/text()').extract()
             if quote:
                 quote=quote[0]
             else:

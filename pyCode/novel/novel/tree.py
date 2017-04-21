@@ -1,4 +1,5 @@
 # encoding: utf-8
+from PIL import Image,ImageFont,ImageDraw
 import os
 
 class dir(object):
@@ -55,6 +56,7 @@ class dir(object):
         f.writelines(self.list)
         print("ok")
         f.close()
+        im.save("1.1.jpg")
 
 
 if __name__ == '__main__':
