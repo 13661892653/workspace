@@ -25,7 +25,7 @@ ITEM_PIPELINES = {
 #MongoDB
 MONGODB_HOST = "127.0.0.1"
 MONGODB_PORT = 27017
-MONGODB_DB = 'Jikexueyuan'
+MONGODB_DB = 'redis'
 MONGODB_COLL = 'novelRedis'
 
 #Redis

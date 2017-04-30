@@ -13,7 +13,6 @@ class novSpider(RedisSpider):
     name="novelspider"
     redis_key="novelspider:start_urls"
     start_urls=['http://www.daomubiji.com']
-
     def parse_item_content(self, response):
         sell = Selector(response)
         #从上一层URL获取字典
