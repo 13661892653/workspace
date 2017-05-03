@@ -62,6 +62,6 @@ class dir(object):
 if __name__ == '__main__':
     d = dir()
     #树状显示目录结构以及文件的大小，更改以下路径即可
-    HomeDir="K:\内部资料勿泄露"#更改这个地方即可
+    HomeDir="E:\\svn"#更改这个地方即可
     d.getDirList(HomeDir)  # input directory
     d.writeList("1.txt")  # write to file
