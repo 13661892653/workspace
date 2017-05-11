@@ -1,9 +1,9 @@
 #!/usr/bin/python
 #coding=utf-8
 #DevTools:Pycharm 2017.1.2
-#Env:Python 3.5
+#Env:Python 3.6
 #Author:lun.chen
-# -*- coding: UTF-8 -*-
+#Date:2017-05-09
 import urllib
 import urllib.parse
 import urllib.request
@@ -22,10 +22,8 @@ def youdao(word):
         return trans
     else:
         return u'对不起，您输入的单词%s无法翻译' % word
-
-
 while True:
-    Neword = input('输入单词或词语：')
+    Neword = input('《有道翻译》，请输入关键字：')
     if Neword == '.':
         break
     else:
