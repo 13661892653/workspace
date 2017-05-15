@@ -1,3 +1,2 @@
-colby,colby,y
-guoj,guoj,n
-admin,admin,y
+colby,colby,n
+gj,gj,y,
