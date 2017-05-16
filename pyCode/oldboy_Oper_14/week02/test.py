@@ -1,5 +1,5 @@
-#/usr/bin/python
+#!/usr/bin/python
 #coding=utf-8
 #Author:Lun.Chen
-#Python:version3.5
-#Tools :Pycharm 2017.01
+#Version:Python3.6
+#Tools :Pycharm 2017.1.2
