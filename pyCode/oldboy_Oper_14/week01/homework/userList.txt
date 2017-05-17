@@ -1,2 +1,2 @@
 colby,colby,n
-gj,gj,y,
+gj,gj,n
