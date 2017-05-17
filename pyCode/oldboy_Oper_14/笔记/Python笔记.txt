@@ -1,0 +1,54 @@
+课堂笔记
+	标准库无需安装，直接import就可用的库，Python自带
+	第三方库，需要下载并且安装才能使用
+模块初识
+	1、sys模块
+		import sys
+		print(sys.path)#打印环境变量
+		导入模块时，先在当前目录进行查找，再到site-package查找，
+		再去全局环境变量查找，如果都没有导入的模块名称，则报错
+		print(sys.argv)#打印脚本相对路径
+		print(sys.argv[2])#获取用户传入的第三个参数
+		
+	2、os模块
+		import os
+		os.system("dir")#执行命令不保存结果
+		cmd_res=os.popen("dir").read()#执行命令后可以保存结果
+		os.mkdir("test_dir")#创建目录
+	3、.pyc是个什么东东
+		Python是一门先编译后解释的语言，执行时先查找pyc文件，存在直接调用，
+		不存在则将编译结果保存到内存中，程序运行结束后，保存到pyc文件中
+	4、数据类型
+		4-1数字
+			整型、长整型、浮点型、complex复数
+			长整型:Python的长整型没有指定位宽，但也不是无限大
+			科学计数法:50000=5E4=5*10**4
+		4-2布尔值
+			1或者0
+			True或者False
+		4-3字符串
+		4-4bytes数据类型
+			编码转换(string<-->bytes)
+			encode('utf-8')编码成2进制，编码之前为utf-8
+			decode('utf-8')用utf-8解码
+			for example:
+				编码：'aa'.encode('utf-8')
+					b'\xe2\....'
+				解码：b'\xe2\....'.decode('utf-8')
+					'aa'
+	5、三元运算符
+	6、进制
+		16进制表示方法，后缀H或者前缀ox
+	7、列表
+		name=['aa','bb','cc','dd']
+		name[-2:]#从倒数第二个取出所有
+		name[:2]#从第一个取到下标为2所有元素
+		name.append("ee") #追加
+		name.insert(2,"ff") #将ff插入到下标为1的后面
+			
+			
+			
+			
+			
+			
+		
