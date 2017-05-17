@@ -43,8 +43,25 @@
 		name=['aa','bb','cc','dd']
 		name[-2:]#从倒数第二个取出所有
 		name[:2]#从第一个取到下标为2所有元素
-		name.append("ee") #追加
-		name.insert(2,"ff") #将ff插入到下标为1的后面
+		增加
+			name.append("ee") #追加
+			name.insert(2,"ff") #将ff插入到下标为1的后面
+		修改
+			name[2]='gg'
+		删除
+			name.remove('gg')#直接删除指定元素
+			del name[1]#按下标删除
+			name.pop()#不指定参数弹出最后一个
+			name.pop(1)#弹出下标为1的元素
+		查找元素位置
+			name.index('aa')
+		清空列表
+			name.clear()
+		排序
+			name.sort()#默认ASCII排序
+			name.extend(列表)#合并列表
+		
+		
 			
 			
 			
