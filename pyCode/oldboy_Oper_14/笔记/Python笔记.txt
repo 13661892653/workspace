@@ -60,6 +60,14 @@
 		排序
 			name.sort()#默认ASCII排序
 			name.extend(列表)#合并列表
+		import copy
+			浅copy(copy内存地址)与深copy(完全独立copy一份)
+			copy.copy()与copy.deepcopy()
+		列表循环
+			for i in list:
+				print(i)
+		步长切片		
+			print(name[0:-1:2])#跳着切片，步长2
 		
 		
 			
