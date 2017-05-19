@@ -18,8 +18,32 @@ if __name__=="__main__":
             ]
     shoppingCart=[]
     while True:
+        print("=================================")
         for i in product:
-            print('>>',product.index(i)+1,':',i[0],i[1])
-        goodsNum=input("请选择商品,输入序号即可：")
-        selectGoods=product[int(goodsNum)-1]
-        print(selectGoods)
+            print('商品列表>>',product.index(i)+1,':',i[0],i[1])
+        print("=================================")
+        try:
+            goodsNum=input("请选择要购买的商品,输入序号即可：")
+            selectGoods = product[int(goodsNum) - 1]
+        except IndexError as e:
+            print('不存在此商品！')
+            continue
+        if int(selectGoods[1])>int(salary):
+            print('当前余额:',salary,'无法购买',selectGoods[0])
+            print('-------------')
+            cnt = 1
+            for i in shoppingCart:
+                print(cnt, i)
+                cnt += 1
+            print('-------------')
+        else:
+            salary=int(salary)-int(selectGoods[1])
+            print(selectGoods[0],'已经添加到购物车','当前余额：',salary)
+            print('购物清单如下：')
+            print('-------------')
+            shoppingCart.append(selectGoods[0])
+            cnt=1
+            for i in shoppingCart:
+                print(cnt,i)
+                cnt+=1
+            print('-------------')
