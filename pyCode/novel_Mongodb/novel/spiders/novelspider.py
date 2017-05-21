@@ -9,6 +9,7 @@ from scrapy import Request
 from scrapy.spiders import CrawlSpider
 from scrapy.selector import Selector, HtmlXPathSelector
 from novel.items import NovelItem
+
 class novSpider(CrawlSpider):
     name="novelspider"
     redis_key="novelspider:start_urls"
