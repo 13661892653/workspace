@@ -19,12 +19,16 @@ def url_open(url):
     proxy_support = urllib.request.ProxyHandler({'http': proxy})
     opener = urllib.request.build_opener(proxy_support)
     urllib.request.install_opener(opener)'''
-    response = urllib.request.urlopen(url)
-    html = response.read()
-    return html
+    try:
+        response = urllib.request.urlopen(url)
+        html = response.read()
+        return html
+    except Exception as e:
+        return 1
 def get_page(url):
-    html = url_open(url)
+    html = url_open(url).decode('utf-8')
     print(html)
+    #print('ddddd',html.find('current-comment-page'))
     a = html.find('current-comment-page') + 23
     print(a)
     b = html.find(']', a)
@@ -38,15 +42,16 @@ def find_imgs(url):
 
 def save_imgs(folder, img_addrs):
     for each in img_addrs:
-        img = b'http:' + each
+        img = 'http:' + each
         filename = img.split('/')[-1]
         with open(filename, 'wb') as f:
             print(img)
             pic = url_open(img)
             print(pic)
-            f.write(pic)
-
-
+            try:
+                f.write(pic)
+            except Exception as e:
+                print("文件保存错误：",pic)
 def download_mm(folder='OOXX'):
     #os.mkdir(folder)
     os.chdir(folder)
@@ -55,7 +60,7 @@ def download_mm(folder='OOXX'):
     for i in range(page_num):
         print(page_num)
         print(i)
-        page_url = url + 'page-' + str(i) + b'#comments'
+        page_url = url + 'page-' + str(i) + '#comments'
         print(page_url)
         img_addrs = find_imgs(page_url)
         save_imgs(folder, img_addrs)
