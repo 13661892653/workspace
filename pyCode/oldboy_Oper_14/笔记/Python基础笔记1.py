@@ -150,9 +150,20 @@
 			#效率低，不建议使用
 			for k,v in info.items():
 				print(k,v)
-			
+	11、集合set
+		交集 & intersection 返回集合
+		并集 | union 返回集合
+		差集 - difference 返回集合
+		对称差集 ^ symmetric_difference 不同时存在两个集合中
+		子集issubset True或者False
+		父集isupperset True或者False
+		集合添加一个元素 add
+		集合添加多个元素 update
+		集合删除元素 remove
+			字符串、列表、字典、集合判断字符是否存在里边
+			for in str/list/set/dict:
+				print(i)
 		
-			
 			
 			
 			
