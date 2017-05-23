@@ -56,6 +56,29 @@
 		f.truncate()#清空所有文件，截断所有内容
 		f.truncate(10)#从第10个字符开始截断
 	
+	#文件修改操作：
+		f1=open("yesterday","r",encoding="utf-8")
+		f2=open("yesterday","w",encoding="utf-8")
+		for line in f1:
+			if "ddd" in line:
+				line=line.replace("ddd","ccc")
+			f2.write(line)
+	#系统参数替换,两个参数赋值
+		str1=sys.argv[1]
+		str2=sys.argv[2]
+	#with语句操作文件,自动关闭文件
+		with open('logfile','r') as f:
+			for line in f:
+				print(line)
+	
+2、字符编码与转码
+	Unicode 万国码，显示全球各个国家的字符，每个字符均占位2个字节16bit
+		为了解决浪费空间的问题出现了utf-8
+		utf-8:所有英文字符占一个字节，所有中文占三个字节
+	日本机器显示中文字符：
+		
+			
+	
 	
 	
 	
