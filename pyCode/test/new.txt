@@ -1,0 +1,345 @@
+第一天课程内容介绍：
+1、上课环境介绍以及学习过程中所需要的程序、文档的获取方式等；
+2、VMware Workstation的详细使用讲解；
+3、计算机基础知识（计算机的组成部分、CPU架构类型、其他外围设备）；
+4、操作系统基础知识（进程管理、内存管理、网络管理、驱动管理、安全管理等）及操作系统（windows、linux、unix）的发展。
+
+第2天课程内容介绍：
+1 、Osey Linux发行版介绍；
+2、Linux输入命令、运行命令、文件系统、命令总结等；
+3、Linux命令帮助的获取：外部命令及其格式、内部命令及其格式、外部命令帮助获取、内部命令帮助；
+4、Linux基础命令：日期时间命令、目录相关命令、文件查看命令、文件内容类型查看命令、回显命令、系统管理类命令。
+第3天课程内容介绍：
+1、Linux的文件系统：根文件系统(rootfs)、Linux上的应用程序的组成部分、Linux下的文件类型；
+2、系统管理类命令、用户登录信息查看命令；
+3、bash的基础特性(1)：命令历史、命令补全、路径补全、命令行展开、命令的执行结果状态。
+第4天课程内容介绍：
+1、目录管理类命令、文本文件查看类命令、文件的时间戳管理工具、文件管理类命令
+2、bash的基础特性(2)：命令别名(alias)、glob (globbing)、bash的快捷键、bash的的I/O重定向及管道
+3、文本处理工具：wc, cut, sort, uniq
+4、用户和组管理：资源分派、Linux用户、Linux组、Linux安全上下文、Linux组的类别、Linux用户和组相关的配置文件
+5、权限管理
+第5天课程内容介绍：
+1、bash的基础特性(3)：编程环境、shell脚本、文本文件、变量类型等；
+2、grep的作用；
+3、基本正则表达式元字符：字符匹配、匹配次数、位置锚定等；
+第6天课程内容介绍：
+1、egrep及扩展的正则表达式、fgrep；
+2、bash的基础特性(4)：变量类型、bash的配置文件、bash中的算术运算、条件测试
+3、vim编辑器：简介、使用、编辑命令、末行模式、多文件模式、窗口分隔模式、单文件窗口分割、定制vim的工作特性；
+4、bash条件测试：测试方式、测试表达式的类别、组合测试条件
+第7天课程内容介绍：
+1、文件查找：locate、find命令介绍；
+2、Linux文件系统上的特殊权限：SUID, SGID, Sticky；
+3、bash脚本编程：过程式编程语言、if语句；
+第8天课程内容：
+1、Linux系统管理：Linux磁盘管理、Linux文件系统管理
+2、ext文件系统、文件挂载的配置文件、文件系统上的其它概念
+3、bash脚本编程之用户交互：read命令
+4、Linux RAID：常用级别、实现方式
+5、LVM：pv管理工具、vg管理工具、lv管理工具、扩展逻辑卷、缩减逻辑卷、快照
+第9天课程内容：
+1、btrfs文件系统：核心特性、文件系统创建；
+2、压缩、解压缩及归档工具：compress/uncompress、gzip/gunzip、bzip2/bunzip2、xz/unxz、zip/unzip、tar, cpio
+3、bash脚本编程：if语句、循环语句（for, while, until）；
+4、Linux程序包管理：CentOS系统上rpm命令管理程序包、Linux程序包管理的实现、rpm包管理器；
+第10天课程内容：
+1、Linux程序包管理(2)：YUM（yellow dog）
+2、YUM客户端配置、yum命令用法、创建yum仓库、程序包编译安装、安装后的配置；
+第11天课程内容：
+1、Linux网络属性管理：局域网、OSI、路由、默认网关、DNS服务器、配置方式、配置网络接口、route命令
+2、ifcfg家庭命令配置；
+3、Linux网络配置(2)：ip命令、ss命令
+4、Linux网络属性配置(3): 修改配置文件、CentOS 7网络属性配置
+第12天课程内容：
+1、Linux进程及作业管理
+2、Linux进程查看及管理的工具：pstree, ps, pgrep, pidof, top, htop
+3、Linux的作业控制、进程优先级调整
+4、Linux任务计划、周期性任务执行
+第13天课程内容：
+1、CentOS 5的启动流程、配置文件等
+2、CentOS 6的启动流程、配置文件等
+3、CentOS 7的启动流程、配置文件等
+3、GRUB：配置文件、命令行接口、安装grub等
+4、Linux Kernel：内核组成部分、内核编译等
+
+第14天课程内容：
+1、Linux内核编译(2)：编译内核的步骤、重新编译
+2、CentOS系统安装：创建工具、语法检查、安装过程如何获取kickstart文件
+3、anaconda应用的工作过程、anaconda应用的配置方式、kickstart文件的格式
+4、SELinux（Secure Enhanced Linux）：工作级别、配置SELinux
+5、bash脚本编程之while循环语句
+第15天课程内容：
+1、sed：用法、常用选项、地址定界、编辑命令
+2、bash脚本编程：while循环的特殊用法、for循环的特殊格式、case语句、until
+第16天课程内容：
+1、CentOS 7 Systemd：新特性、核心概念、关键特性、管理系统服务、其它常用命令
+2、bash脚本编程：数组、字符串处理（字符串切片、基于模式取子串、查找替换、查找并删除、字符大小写转换、变量赋值）
+
+第17天课程内容：
+1、GNU awk基本用法：print、变量、printf命令、操作符
+2、GNU awk进阶：PATTERN、常用的action、控制语句、关联数组、函数
+3、OpenSSL：NIST、安全攻击、安全机制、安全服务、密码算法和协议
+4、PKI: Public Key Infrastructure介绍
+第18天课程内容：
+1、DNS（Domain Name Service）：DNS查询类型、名称服务器、解析类型、DNS服务器的类型；
+2、DNS资源记录定义的格式：语法、注意
+3、BIND9安装配置：程序包、主配置文件、缓存名称服务器的配置
+4、BIND9反向区域及主从同步：主DNS名称服务器、测试命令、反向区域、主从复制
+
+第19天课程内容：
+1、DNS and BIND(3)：子域授权、正向解析区域子域方法、定义转发服务器、基础的安全相关的配置
+2、bind view以及编译安装bind
+第20天课程内容：
+1、OpenSSH：SSH协议版本、客户端组件、服务器端、ssh服务的最佳实践、ssh协议的另一个实现等；
+2、OpenSSL（2）：三个组件、PKI、证书申请及签署步骤、创建私有CA等；
+3、Web Service：Socket、TCP协议的特性、套接字相关的系统调用等；
+4、http基础:工作机制、Web资源、URI、http协议版本、http请求处理过程、http服务器程序等。
+第21天课程内容：
+1、httpd(2)：安装方式、CentOS 6程序环境、常用配置等；
+2、http协议、http事务
+3、httpd-2.2：curl命令、mod_deflate模块、https介绍、httpd自带的工具程序、http压力测试工具
+4、httpd的基本配置：curl, https(ssl), ab
+第22天课程内容：
+1、http的应用：httpd-2.4新特性、安装httpd-2.4、CentOS 7配置等；
+2、LAMP基础：请求流程、CentOS 7与CentOS 6比较、测试等；
+3、PHP：简介、PHP Zend Engine、PHP的Opcode、php的加速器、PHP源码目录结构等；
+4、mysql使用基础：数据结构模型、RDMBS设计范式基础概念、RDBMS、事务等；
+5、mysql基础应用：CentOS 7与CentOS 6下的安装和使用
+
+第23天课程内容：
+1、MariaDB SQL语句：数据基础应用、用户账号及权限管理等；
+2、LAMP组合的编译安装
+3、sudo的简单使用：配置文件及配置项等；
+4、vsftpd简介
+第24天课程内容：
+1、配置vsftpd：建立pam认证所需文件、修改vsftpd的配置文件、启动vsftpd服务等；
+2、vsftpd高级应用：配置虚拟用户具有不同的访问权限
+3、rpc概念及nfs的基本应用；
+4、samba及其基本应用；
+第25天课程内容：
+1、Mini Linux：CentOS 7与CentOS 6启动流程比较、内核编译、步骤、复制程序及其依赖的库文件脚本示例等；
+2、日志、系统日志服务、日志收集方、程序环境、rsyslog服务器等；
+3、nsswitch & pam：名称解析、认证服务等；
+第26天课程内容：
+1、iptables: 包过滤型防火墙功能、四表五链
+2、iptables规则、规则管理工具、iptables命令
+3、iptables链管理、规则管理、查看等
+4、iptables匹配条件、目标、显式扩展、保存及重载规则
+第27天课程内容：
+1、iptables之nat：nat表、源地址转换、目标地址转换等；
+2、iptables实现七层访问过滤：模块、文本操作工具、编译内核、清理内核源码树等；
+3、tcp_wrapper：介绍及应用、配置文件语法等。
+
+第28天课程内容：
+1、http协议基础及IO模型介绍；
+2、nginx功能、配置选项说明等；
+3、nginx web服务配置详解：开启Nginx状态监控、启用基于用户的认证、整合nginx和php5、编译php跟apache等
+
+第28天补充课程内容：
+1、nginx介绍
+2、nginx安装与配置详解；
+第29天课程内容：
+1、Linux Cluster基础：集群类型、系统、实现等；
+2、lvs集群基础：lvs arch、lvs type等；
+3、lvs调度方法详解：静态方法、动态方法等；
+4、ipvs的集群服务、ipvsadm的用法、lvs-nat、lvs-dr
+第30天课程内容：
+1、lvs使用进阶：通过FWM定义集群的方式、session保持、lvs的持久连接等；
+2、HA示例脚本、director和rs的示例脚本等。
+
+第31天课程内容：
+1、web站点架构模式简介及Nginx；
+2、nginx反向代理：设定反向代理、启用缓存功能、实现负载均衡等；
+3、安装配置第三方模块，实现upstream中对后端http server的健康状态检测；
+4、nginx和tengine简介；
+第32天课程内容：
+1、keepalived简介；
+2、keepalived组件、配置文件的组成部分、vrrp协议的实现等；
+3、keepalived配置示例、通知脚本等；
+第33天课程内容：
+1、dhcp、tftp及pxe简介；
+2、Ansible简介、安装（编译安装、rpm包安装）等；
+3、Ansible简单应用、常用模块详解等；
+4、ansible playbooks基础组件：Hosts和Users、任务列表和action、handlers、案例等；
+5、roles：创建role的步骤、role内各目录中可用的文件等；
+6、Jinja2相关：字面量、算术运算、比较操作符、逻辑运算符等。
+第34天（补充-第1天）课程内容：
+1、HA Cluster基础概念精讲；
+2、HA Cluster概念扩展及heartbeat的操作与实现；
+3、高可用MySQL集群的实现；
+4、heartbeat高可用ipvs；
+
+第34天（补充-第2天）课程内容：
+1、HA Cluster及Corosync详解；
+2、使用crmsh配置pacemaker；
+3、drbd基础及应用实现；
+4、CentOS7上Corosync+pacemaker高可用集群的配置与实现；
+5、Corosync+pacemaker高可用MySQL的实现；
+6、Corosync+pacemaker高可用web服务器的实现；
+第34天（补充-第3天）课程内容：
+1、小型计算机系统接口SCSI和iSCSI协议讲解；
+2、Linux系统上IP SAN的实现；
+3、GFS2集群文件系统的原理讲解；
+4、RHCS集群套件工作原理精讲；
+
+第34天课程内容：
+1、HA Cluster基础原理详解；
+2、corosync集群精讲与配置；
+3、openais/corosync等解决方案原理精讲；
+4、LVS和corosync集成实现高可用director；
+第34天课程内容：
+1、web服务器、http协议、http事务、页面、认证、I/O类型等；
+2、常见的缓存服务开源解决方案、varnish如何存储缓存对象、配置varnish的三种应用、命令行工具等；
+3、varnish状态引擎及vcl；
+4、varnish中的内置变量、后端主机的健康状态检测方式等；
+第35天课程内容：
+1、Web站点架构基础与扩展；
+2、http反向代理之haproxy基础详解；
+3、haproxy配置参数详解；
+4、haproxy配置与实现；
+
+第36天课程内容：
+1、web系统架构及cache基础详解；
+2、全面介绍王牌加速应用Varnish和大型网站架构；
+3、Http协议缓存实战Varnish详解；
+4、varnish状态引擎及VCL编程详解；
+第37天课程内容：
+1、Java技术体系结构详解；
+2、Tomcat系列之服务器的安装与配置以及各组件详解；
+3、Tomcat系列之服务器的基本配置及Nginx反向代理tomcat服务；
+4、Tomcat系列之Apache负载均衡请求至Tomcat及DeltaManager的使用；
+5、Tomcat系列之Apache使用mod_proxy和mod_jk反向代理Tomcat；
+
+第38天课程内容：
+1、tomcat lb cluster精讲；
+2、Memcached服务及其在web服务体系中的应用；
+3、分布式内存对象缓存系统memcached和msm详解；
+第39天课程内容：
+1、MySQL配置文件格式详细说明；
+2、MySQL服务器变量、状态变量的作用；
+3、管理MySQL数据库、表、视图；
+4、服务器变量值的调整方式；
+4、MySQL操作查询语句精讲；
+第40天课程内容：
+1、MySQL用户管理：创建和删除、权限的授予；
+2、索引（DDL语句）、多表查询、联合查询及子查询；
+3、关系数据库的事务、在MySQL中使用事务；
+4、MariaDB存储引擎详解、编译安装；
+5、MySQL日志文件管理全面介绍和分析
+第41天课程内容：
+1、mariadb日志文件参数详解；
+2、mariadb备份和恢复基础；
+
+
+第42天课程内容：
+1、存储引擎及其属性配置、MySQL表维护；
+2、LVM快照等备份工具在MySQL数据库备份；
+3、MySQL企业级数据库数据恢复实战；
+第43天课程内容：
+1、MySQL复制精讲，包括主-从、主-主等架构及基于SSL加密传输的实现；
+2、MySQL读写分离、连接池及sharding技术；
+3、MySQL 5.6基于GTID的复制技术及多线程复制技术；
+4、MySQL复制及MHA；
+5、分布式系统理论基础及大型网络架构演化精讲；
+6、大型网站架构演化及分布式理论基础详解；
+第44天（半天）课程内容：
+1、mogiles使用进阶；
+2、MogileFS原理、安装配置及其应用案例；
+
+第45天课程内容：
+1、puppet基本原理和入门学习；
+2、puppet高级用法和企业级案例；
+3、puppet运维实战和企业级自动化进阶；
+第46天课程内容：无
+1、puppet master-agent模型介绍及配置；
+2、cobbler介绍及操作实现；
+第47天课程内容：
+1、监控系统基础、Zabbix监控工具精讲；
+2、zabbix工作原理及安装配置介绍；
+3、zabbix on CentOS 7；
+4、zabbix基本配置及进阶；
+第48天课程内容：
+1、zabbix使用进阶精讲；
+2、zabbix监控方式及分布式监控；
+第49天课程内容：
+1、Linux操作系统原理介绍；
+2、虚拟化技术基础及原理详解；
+第50天课程内容：
+1、虚拟化技术难点及相关解决方案原理详解；
+2、Xen虚拟化技术精讲；
+3、Xen虚拟化技术中调度、中断、内存、IO、网络；
+4、Xen在RHEL6或CentOS6上的安装、配置及简单应用；
+5、Xen环境中虚拟存储和虚拟网络设备的配置及管理详解；
+6、Xen管理工具栈xm及xl从入门到精通；
+第51天课程内容：
+1、KVM虚拟化技术精讲；
+2、KVM虚拟化基础、KVM虚拟化技术实现原理；
+3、构建KVM环境：KVM的安装、配置及应用；
+4、基于qemu-kvm命令行工具栈管理kvm；
+5、生产环境中虚拟化技术的应用方案及常用管理工具说明；
+第52天课程内容：
+1、基于libvirt和virt-manager工具栈管理kvm；
+2、virsh管理kvm虚拟机的操作与实现；
+3、网络名称空间netns用法详解；
+4、网络虚拟化技术基础详解；
+第53天（半天）课程内容：
+1、网络虚拟化技术进阶精讲；
+2、半虚拟化技术、实时迁移、IO透传技术及KSM；
+3、docker虚拟化网络及应用
+第54天课程内容：
+1、elasticsearch基础原理及集群构建；
+2、elastichsearch分布式搜索和shard
+3、logstash基础原理深入讲解
+4、logstash agent/server应用；
+5、elasticsearch cluster应用整合详解
+7、实战:分布式收集nginx日志于elk集群，并通过kibana展示
+第55天课程内容：
+1、logstash插件体系介绍及应用精讲；
+2、logstash agent、redis、logstash server组合；
+3、ELK Stack操作与实现；
+4、Hadoop生态系统及常用组件说明；
+5、Hadoop调度算法及其选用；
+第56天课程内容：
+1、Hadoop伪分布式及完全分布式模型；
+2、生产环境中Hadoop多种常用属性的调优；
+3、hadoop2.0实现Namenode高可用；
+4、使用工具完成Hadoop自动化部署；
+5、面试技巧与注意事项；
+6、实战培训演练；
+
+第57天课程内容：
+1、 MongoDB的核心特性
+2、MongoDB的CRUD操作
+3、mongodb复制集群详解
+
+第58天课程内容：
+1、OpenStack云栈全方位详解；
+2、Keystone、Glance、Nova核心组件讲解；
+3、Swift、Horizon等组件的功能和特性详解；
+4、具有独立控制节点、多计算节点实施方案;
+5、面试漫谈；
+第59天课程内容：
+1、OpenStack的网络模型及Neutron服务详解；
+2、OpenStack的块存储服务及Cinder服务精讲；
+3、Ceilometer及Heat全面介绍；
+4、独立对象存储节点实战案例演示；
+5、实战：全功能OpenStack环境部署案例；
+第60天课程内容：
+1、Linux系统进程相关理论、进程调度方法、抢占、优先级、调度类别；
+2、进程性能监控、分析及调优方案；
+3、CPU及缓存架构、缓存一致性算法及内存访问模型；
+4、Linux内存架构体系、内存使用率实时监控、性能分析及调优方案；
+5、Linux系统IO体系架构及设备驱动；
+6、常见文件系统类型及使用iozone等工具；
+7、网络子系统性能的监控、分析及调优方案的设计及实现；
+8、MySQL服务器基于实战调优案例；
+9、系统性能评估方法、指标；
+
+第61天课程内容：
+1、Redis的组件（redis.io）、守护进程、监听端口；
+2、Redis认证实现方法、清空数据库、事务；
+3、Connection相关的命令、Server相关的命令、发布与订阅；
+4、Redis的持久化
+5、Redis的复制：特点、slave、注意；
+6、用于管理多个redis服务实现HA的sentinel：程序、专用配置文件、专用命令；

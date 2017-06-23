@@ -2,8 +2,7 @@
 '''
 Tools:PyCharm 2017.1
 Py:Python3.5
-Author:colby_chen
-Date:2017-04-13
+Author:colby_che
 '''
 from scrapy import Request
 from scrapy.spiders import CrawlSpider
