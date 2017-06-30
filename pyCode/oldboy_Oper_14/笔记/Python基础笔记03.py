@@ -11,4 +11,35 @@ Python装饰器：
 2、高阶函数
 3、嵌套函数
 高阶函数+嵌套函数-->装饰器
+嵌套函数实例：
+	x=0
+	def grandpa():
+		x=1
+		def dad():
+			x=2
+			def son():
+				x=3
+				print(x)
+			son()
+		dad()
+	grandpa()
+	#最终的输出结果是3
+装饰器实例：
+	import time
+	def timer(fun):
+		def col():
+		    print('in the col1')
+		    fun()
+		    print('in the col2')
+		return col
+	
+	@timer
+	def test1():
+	time.sleep(1)
+	print("in the test1")
+	test1()
+	运行结果：
+		in the col1
+		in the test1
+		in the col2
 	
