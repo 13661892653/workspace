@@ -80,12 +80,13 @@ example2:
 	2、只记录当前位置
 	3、只有一个__next__()方法，2.7是next()方法
 	二、带yield的生成器
-迭代器
-	有__next__()方法就是迭代器，没有就不是
+迭代器Iterator
+	凡是可作用于for循环的对象都是Iterable类型
+	凡是可作用于__next__()方法就是迭代器
 	生成器一定是迭代器，迭代器不一定是生成器
 	list、dict、str等Iterator属于迭代对象，通过iter()方法
 	可以变成迭代器
-	12.27
+	range(10)，xrange(10)也是迭代器
 
 	
 	
