@@ -14,6 +14,7 @@ zip拉链
 		(4,d)
 2、Json序列化,不同语言数据交互
 	序列化与反序列化
+	可以多次dumps
 	import json
 	info={
 		'name':colby,
@@ -25,19 +26,20 @@ zip拉链
 	#反序列化
 	f=open("test.txt",'r')
 	data=json.loads(f.read()
-3、pickle同json，能处理复杂的数据类型	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+3、pickle同json，能处理复杂的数据类型
+4、程序目录规范
+	Foo
+		bin/
+			Foo.sh
+		foo
+			*.py各种核心代码
+		conf/
+			config.ini
+		docs/
+			txt文档
+		setup.py
+		readme.txt
+		
 	
 	
 	
