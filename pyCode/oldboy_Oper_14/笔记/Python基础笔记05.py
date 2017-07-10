@@ -42,6 +42,52 @@ from xx import * 慎用，可能覆盖当前函数或者方法
 		
 	shutil模块
 		高级的文件、文件夹、压缩包处理模块
+	xml模块
+		交换数据的标签语言
+	PyYAML
+		做配置文件的，有自己的语法，简单
+	ConfigParser模块
+		用于配置文件
+		Mysql配置文件就用的ConfigParser
+	hashlib模块
+		加密算法，md5都是基于hash的
+		md5()
+		sha1()
+		sha256()
+	re正则模块
+		match()
+		search()
+		findall()
+		'''
+		. 匹配除了换行之外的任意个字符
+		+ 1次或者多次
+		？ 匹配前面的字符0次或者1次
+		* 0次或者多次
+		match()从字符串开头开始匹配
+		search()从整个文本匹配，如果有多个，只匹配显示第一个
+		findall()没有group()方法
+		'\'左斜杠转义
+		'''
+		import re
+		res=re.match('^colby\d+','colby123chenlun')
+		print(res.group())
+		#动态匹配省份日期格式
+		res=re.search("(?P<province>[0-9]{4})(?P<city>[0-9]{2})(?P<birthday>[0-9]{8})","511303199704200240").groupdict()
+		print(res)
+		'''
+		re.split()用正则分割字符串
+		re.sub()将正则匹配上的字符用指定字符串替换掉
+		'''
+		print('split的用法:',re.split('[0-9]+','aa22bb55cc66'))
+		print('sub的用法:',re.sub('[0-9]+','|','aa22bb55cc66'))
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	
 	

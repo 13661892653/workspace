@@ -12,5 +12,5 @@ for i in range(0,5):
         changeCode+=chr(random.randint(65,90))
     else:
         changeCode+=str(random.randint(1,9))
-print(changeCode)
+print('随机6位验证码：',changeCode)
 
