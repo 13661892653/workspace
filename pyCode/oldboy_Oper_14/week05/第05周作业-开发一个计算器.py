@@ -84,7 +84,6 @@ def compute_mul_div(arg):
     :param expression:表达式
     :return:计算结果
     """
-
     val = arg[0]
     pattern = re.compile(r'\d+\.?\d*[\*\/\%\/\/]+[\+\-]?\d+\.*\d*')
     mch = pattern.search(val)
