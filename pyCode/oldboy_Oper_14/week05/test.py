@@ -1,14 +1,5 @@
-#coding=utf-8
-#Version:python3.5.2
-#Tools:Pycharm
 import re
-__author__ = "Colby"
-def calc(p1):
-    res=p1+1
-    if res>=5:
-        return res
-    else:
-        pass
-    calc(res)
-aa=calc(1)
-print(aa)
+#print(re.search(r"\d+\.?\d*[\/\*]\d+\.?\d*",'2.0/22'))
+print(2*(1-2*( ( 60 -30+(-40.0/5)*(9-2*5/3+7/3*99/4*2998+10*568/14))-(-4*3)/(16-3*2))*100))
+#555334341.0476191
+#555334341.0476191
