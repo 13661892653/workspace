@@ -75,8 +75,51 @@
 		__name
 		def __age():
 			pass
+	#封装
+	
+	
+	
+	
+	#继承
+	节省代码，小类继承大类，儿子继承父亲
+	#class People(object)#新式类的写法
+	class People():
+		def __init__(self,name,age)
+			self.name=name
+			self.age=age
+		def eat(self):
+			print("%s is eating..."%self.name)
+		def talk(self):
+			pass
+		def talk(self):
+			pass
+	class Man(People):
+		def sleep(self):#重构父类的方法
+			People.sleep(self)#调用父类的方法，不这样写等于重写父类方法了
+			print("man is sleeping")
+	m1=Man('Colby',22)
+	#兄弟类之间无法相互调用,Man无法调用Woman'
+	
+	class Man(People):
+		def __init__(self,name,age,money):
+			People.__init__(self,name,age)
+			#另外一种调用方法，功能跟上面一模一样
+			#super(Man,self).__init__(name,age)#新式类的写法
+			self.money=money
+		def sleep(self):#重构父类的方法
+			People.sleep(self)#调用父类的方法，不这样写等于重写父类方法了
+			print("man is sleeping")
+	#类可以多继承深度优先与广度优先
+	Python2的经典类的多继承是深度优先继承（纵向查找），新式类广度优先。
+	Python3经典类、新式类统一是广度优先继承（横向查找）
+	
+
+	#多态
+	一种接口多种实现，多种形态
+ 	实现
 		
 		
-		
-		
+	
+	
+	
 	

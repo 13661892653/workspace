@@ -16,17 +16,18 @@ class People(object): #新式类
         print("%s is sleeping..." % self.name)
 
 class Relation(object):
-    def __init__(self,n1,n2):
-        print("init in relation")
+    #def __init__(self,n1,n2):
+    #    print("init in relation")
     def make_friends(self,obj): #w1
         print("%s is making friends with %s" % (self.name,obj.name))
         self.friends.append(obj.name)
+
 class Man(Relation,People):
-    # def __init__(self,name,age,money):
-    #     #People.__init__(self,name,age)
-    #     super(Man,self).__init__(name,age) #新式类写法
-    #     self.money  = money
-    #     print("%s 一出生就有%s money" %(self.name,self.money))
+    def __init__(self,name,age,money):
+        #People.__init__(self,name,age)
+        super(Man,self).__init__(name,age) #新式类写法
+        self.money  = money
+        print("%s 一出生就有%s money" %(self.name,self.money))
     def piao(self):
         print("%s is piaoing ..... 20s....done." % self.name)
     def sleep(self):
@@ -36,7 +37,9 @@ class Woman(People,Relation):
     def get_birth(self):
         print("%s is born a baby...." % self.name)
 
-m1 = Man("NiuHanYang",22)
+m1 = Man("NiuHanYang",22,10)
+m1.sleep()
+m1.eat()
 # w1 = Woman("ChenRonghua",26)
 #
 # m1.make_friends(w1)
