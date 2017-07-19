@@ -7,14 +7,15 @@ import json
 import sys,os
 __author__ = "Colby"
 homeDir=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print(homeDir)
 class admin(object):
     def __init__(self,schoolName):
         self.schoolName=schoolName
     def createSchool(self):
-        lst=[]
-        lst.append(self.schoolName)
-        f = open("school.txt", 'r+')
-        f.write(json.dumps(lst))
+        s=(self.schoolName+'\n').encode('utf-8')
+        print(type(s))
+        f = open("../db/school.txt", 'a')
+        f.write(pickle.dumps(s))
 class school(object):
     def __init__(self,name):
         self.name=name
@@ -34,4 +35,4 @@ class student(object):
 class course(object):
     pass
 
-#a1=admin('北京').createSchool()
+a1=admin('北京').createSchool()
