@@ -57,5 +57,5 @@ def getImageName(dir):
             file3=startFormatDate(file2)
         rm(dir,fileNameSource_file,file3,fileNameSource_houzui)
 if __name__=="__main__":
-    dir="F:\BaiduNetdiskDownload\WeiXin"
+    dir="F:\\照片\\20170526_儿子照片\\照片"
     getImageName(dir)
