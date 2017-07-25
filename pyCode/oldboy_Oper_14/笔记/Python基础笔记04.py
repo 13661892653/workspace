@@ -25,7 +25,7 @@ zip拉链
 	f.write(json.dumps(info)
 	#反序列化
 	f=open("test.txt",'r')
-	data=json.loads(f.read()
+	data=json.loads(f.read())
 3、pickle同json，能处理复杂的数据类型
 4、程序目录规范
 	Foo
