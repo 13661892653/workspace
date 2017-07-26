@@ -18,11 +18,14 @@ def loginF(role):
         print('用户数据：',data)
         for i in data:
             i=i.replace('\n','').split(' ')
-            print('校验密码',i[0],i[1],i[2])
-            print('校验密码', user, password, role)
+            #print('校验密码',i[0],i[1],i[2])
+            #print('校验密码', user, password, role)
             if i[0]==user and i[1]==password and i[2]==role:
                 exits=1
         if exits==1:
             print('用户校验成功！')
             r=Role(role,user)
             r.selectType()
+        else:
+            print('用户名或密码错误！')
+
