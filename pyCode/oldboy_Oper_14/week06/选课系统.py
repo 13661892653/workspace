@@ -11,6 +11,10 @@ __author__ = "Colby"
 homeDir=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print(homeDir)
 
+
+class selectView(object):
+    def __init__(self):
+        pass
 class admin(object):
     def __init__(self,roleName):
         self.roleName=roleName
