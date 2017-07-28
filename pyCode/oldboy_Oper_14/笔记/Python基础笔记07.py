@@ -56,7 +56,100 @@ __getitem__、__setitem__、__delitem__
 		
 __new__ \ __metaclass__
 	
-反射	
+反射
+	通过字符串映射或修改程序运行时的
+	状态、属性、方法, 有以下4个方法	
+	hasattr(obj,name_str) 判断一个对象里是否有对应字符串的方法
+	getattr	根据字符串去获取obj对象里的对应的方法的内存地址
+	setattr 设置新的属性
+	delattr 删除用户自定义输入字符串对应的属性
+	class Dog(object):
+    def __init__(self,name):
+        self.name = name
+    def eat(self,food):
+        print("%s is eating..."%self.name,food)
+
+	d = Dog("NiuHanYang")
+	choice = input(">>:").strip()
+	
+	#判断用户输入的字符串是否为实例的属性或者方法
+	if hasattr(d,choice):
+		getattr(d,choice)
+	else:
+		setattr(d,choice,bulk) #d.talk = bulk
+		func = getattr(d, choice)
+		func(d)
+	# #### 检查是否含有成员 ####
+	hasattr(obj, 'name')
+	hasattr(obj, 'func')
+	 
+	# #### 获取成员 ####
+	getattr(obj, 'name')
+	getattr(obj, 'func')
+	 
+	# #### 设置成员，为对象添加新的属性####
+	setattr(obj, 'age', 18)
+	setattr(obj, 'show', lambda num: num + 1)
+	 
+	# #### 删除成员 ####
+	delattr(obj, 'name')
+	delattr(obj, 'func')	
+异常处理
+	try:
+		data['name']
+	except KeyError as e :
+		print("没有这个Key",e)
+	except IndexError as e :
+		print("列表操作错误",e)
+	except Exception as e:
+		print("未知错误")
+	else:
+		print("一切正常执行这个")
+	finally：
+		print("不管有错没错都执行的！")
+	#不建议使用以下方法
+	try:
+		data['name']
+	except (KeyError,IndexError) as e :
+		print("没有这个Key",e)
+	
+自定义异常
+	class ColbyException(Exception):
+    def __init__(self,msg):
+        self.msg=msg
+    #def __str__(self):
+    #    return
+	try:
+		raise ColbyException('数据库链接异常！')
+	except Exception as e:
+		print(e)
+
+
+Socket网络编程
+	OSI七层模型
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 	
