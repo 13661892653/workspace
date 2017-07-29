@@ -127,6 +127,28 @@ __new__ \ __metaclass__
 
 Socket网络编程
 	OSI七层模型
+socket
+	#数据传输要用bytes
+	#Server
+	import socket
+	server=socket.socket()
+	server.bind(('localhost',9000))#绑定监听端口
+	server.listen()#监听
+	print('我要开始等电话了')
+	conn,addr=server.accept()#等电话打进来
+	print(conn,addr)
+	print('电话来啦')
+	data=conn.recv(1024)
+	print('recv:',data)
+	conn.send(data.upper())
+	#Client
+	import socket
+	client=socket.socket()#声明socket类型。同时生成socket链接对象
+	client.connect(('localhost',9000))
+	client.send(b"hello world")
+	data=client.recv(1024)
+	print('receive',data)
+	client.close()
 		
 		
 		
