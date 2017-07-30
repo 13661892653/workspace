@@ -14,3 +14,24 @@ ftp server
 6、等客户端确认
 7、开始边读边发数据
 8、发送md5 
+
+socketServer
+	#简化网络
+	BaseServer
+	创建SocketServer步骤
+	server.serve_forever()#处理多个一个请求
+	# for example:跟客户端交互都在handler里处理的
+#ftp规范
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
