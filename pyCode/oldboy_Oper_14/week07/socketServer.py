@@ -1,15 +1,20 @@
 #coding=utf-8
 #Version:python3.5.2
 #Tools:Pycharm
-#Server
+#Date:
+__author__ = "Colby"
 import socket
 server=socket.socket()
-server.bind(('localhost',9000))#绑定监听端口
-server.listen(5)#监听5个
-print('我要开始等电话了')
-conn,addr=server.accept()#等电话打进来
-print(conn,addr)
-print('电话来啦')
-data=conn.recv(1024)
-print('recv:',data)
-conn.send(data.upper())
+server.bind(('localhost',5000))
+server.listen(5)
+
+print('我开始等待接受数据了！')
+while True:
+    conn,addr=server.accept()
+    while True:
+        data=conn.recv(1024)
+        print('收到如下数据',data)
+        conn.send(data.upper())
+        print('发送如下数据',data.upper())
+server.close()
+
