@@ -1,4 +1,5 @@
 #coding=utf-8
 #Version:python3.5.2
 #Tools:Pycharm
-print("hello world")
+for i in range(1,100):
+    print('|'*i,i,'%')
