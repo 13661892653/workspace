@@ -21,12 +21,12 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         # print('received_size,filesize',received_size,filesize)
         while received_size < filesize:
             data = self.request.recv(1024)
-            process=int(float(received_size) / float(filesize)*100)
-            print('|'*process,process,'%')
+            self.request.send(str(int(float(received_size) / float(filesize)*100)).encode('utf-8'))
             f.write(data)
             received_size += len(data)
         else:
             print("file [%s] has uploaded..." % filename)
+            self.request.send(str(100).encode('utf-8'))
     def get(self,*args):
         pass
     def ls(self,*args):
