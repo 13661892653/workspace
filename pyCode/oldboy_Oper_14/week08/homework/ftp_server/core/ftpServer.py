@@ -20,9 +20,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         # print('received_size,filesize',received_size,filesize)
         while received_size < filesize:
             data = self.request.recv(1024)
-            process=str(int(float(received_size) / float(filesize)*100)).encode('utf-8')
-            self.request.send(str(len(process)).encode())
-            self.request.send(process)
             f.write(data)
             received_size += len(data)
         else:
@@ -51,7 +48,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         while True:
             try:
                 self.data = self.request.recv(1024).strip()
-                self.request.send(b"10002 port ok")
+                self.request.send(b'ok')
                 cmd_dic = json.loads(self.data.decode())
                 actionStr=cmd_dic['action']
                 if hasattr(self,actionStr):

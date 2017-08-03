@@ -51,26 +51,14 @@ class ftpClient(object):
                 server_response=self.client.recv(1024)
                 print('server_response:',server_response)
                 f=open(filename,'rb')
+                send_size=0
                 for line in f:
                     self.client.send(line)
-                    try:
-                        total_size=self.client.recv(1024)
-                        receive_size=0
-                        received_data=b''
-                        while receive_size < int(total_size.decode()):
-                            data = self.client.recv(1024)
-                            receive_size += len(data)  # 每次收到的有可能小于1024，所以必须用len判断
-                            # print(data.decode())
-                            received_data += data
-                        else:
-                            print('receive:', receive_size)
-                            received_data=int(received_data.decode())
-                            print('=' * received_data, received_data, '%')
-
-                    except ValueError as e:
-                        print(e)
-                        continue
+                    send_size+=len(line)
+                    process=int(float(send_size)/float(filesize)*100)
+                    print('='*(int(process/5)),process,'%')
                 else:
+                    print('文件%s发送ok' % filename )
                     f.close()
             else:
                 print('%s文件不存在' %filename)
