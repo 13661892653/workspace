@@ -8,6 +8,7 @@ import os
 import socketserver
 class MyTCPHandler(socketserver.BaseRequestHandler):
     def put(self,*args):
+        self.request.send(b'ok')
         # print('receive,filename,filesize:',filename,filesize)
         cmdDict=args[0]
         filename = cmdDict['filename']
@@ -26,7 +27,15 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             print("file [%s] has uploaded..." % filename)
             self.request.send(str(100).encode('utf-8'))
     def get(self,*args):
-        pass
+        print('server get command!')
+        getmydict=args[0]
+        filename=getmydict['filename']
+        if os.path.isfile(filename):
+            print('存在此文件%s' %filename)
+            self.request.send(('存在此文件%s' %filename).encode('utf-8'))
+        else:
+            print('不存在此文件%s' %filename)
+            self.request.send(('不存在此文件%s' %filename).encode('utf-8'))
     def ls(self,*args):
         pass
     def cd(self,*args):
@@ -48,7 +57,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         while True:
             try:
                 self.data = self.request.recv(1024).strip()
-                self.request.send(b'ok')
+                print(self.data)
                 cmd_dic = json.loads(self.data.decode())
                 actionStr=cmd_dic['action']
                 if hasattr(self,actionStr):

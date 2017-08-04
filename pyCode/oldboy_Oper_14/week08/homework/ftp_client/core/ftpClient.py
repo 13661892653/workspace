@@ -12,18 +12,18 @@ class ftpClient(object):
         self.client=socket.socket()
     def help(self):
         msg = '''
-        ls
-        pwd
-        cd ../..
-        get filename
-        put filename
+            ls
+            pwd
+            cd ../..
+            get filename
+            put filename
         '''
         print(msg)
     def connect(self,ip,port):
         self.client.connect((ip,port))
     def start(self):
         while True:
-            cmd = input("发送数据#")
+            cmd = input("ftp>>")
             if len(cmd) == 0: continue
             cmdStr=cmd.split()[0]
             if hasattr(self,'client%s' %cmdStr):
@@ -61,9 +61,22 @@ class ftpClient(object):
                     print('文件%s发送ok' % filename )
                     f.close()
             else:
-                print('%s文件不存在' %filename)
-    def clientget(self):
-        pass
+                print('%s文件不存在' % filename)
+    def clientget(self,*args):
+        print('get command!')
+        cmdSplit = args[0].split()
+        if len(cmdSplit) > 1:
+            filename=cmdSplit[1]
+            mydict={
+                'action':'get',
+                'filename':filename
+            }
+            self.client.send(json.dumps(mydict).encode('utf-8'))
+            sever_response=self.client.recv(1024)
+            print(sever_response.decode('utf-8'))
+        else:
+            pass
+
     def clientls(self):
         pass
     def clientcd(self):

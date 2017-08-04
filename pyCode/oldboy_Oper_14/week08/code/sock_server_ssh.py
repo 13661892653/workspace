@@ -20,7 +20,6 @@ while True:
         print("before send",len(cmd_res))
         if len(cmd_res) ==0:
             cmd_res = "cmd has no output..."
-
         conn.send( str(len(cmd_res.encode())).encode("utf-8")    )     #先发大小给客户端
         time.sleep(0.5)
         conn.send(cmd_res.encode("utf-8"))
