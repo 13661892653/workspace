@@ -32,10 +32,25 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         filename=getmydict['filename']
         if os.path.isfile(filename):
             print('存在此文件%s' %filename)
-            self.request.send(('存在此文件%s' %filename).encode('utf-8'))
+            filesize=os.stat(filename).st_size
+            mydict={
+                'flag':'Y',
+                'filesize':filesize
+            }
+            self.request.send(json.dumps(mydict).encode('utf-8'))
+            self.request.recv(1024)
+            f=open(filename,'rb')
+            for line in f:
+                self.request.send(line)
+            else:
+                f.close()
         else:
+            mydict = {
+                'flag': 'N',
+                'filesize': None
+            }
             print('不存在此文件%s' %filename)
-            self.request.send(('不存在此文件%s' %filename).encode('utf-8'))
+            self.request.send(json.dumps(mydict).encode('utf-8'))
     def ls(self,*args):
         pass
     def cd(self,*args):

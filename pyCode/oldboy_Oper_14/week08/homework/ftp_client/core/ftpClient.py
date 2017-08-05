@@ -72,8 +72,27 @@ class ftpClient(object):
                 'filename':filename
             }
             self.client.send(json.dumps(mydict).encode('utf-8'))
-            sever_response=self.client.recv(1024)
-            print(sever_response.decode('utf-8'))
+            self.data = self.client.recv(1024).strip()
+            print('self.data',self.data.decode('utf-8'))
+            cmd_dic = json.loads(self.data.decode('utf-8'))
+            flag=cmd_dic['flag']
+            filesize=cmd_dic['filesize']
+            if flag=='Y':
+                self.client.send('服务器你开始发送数据吧'.encode('utf-8'))
+                if os.path.isfile(filename):
+                    f = open(filename + ".new", "wb")
+                else:
+                    f = open(filename, "wb")
+                recv_size = 0
+                while recv_size < filesize:
+                    data = self.client.recv(1024)
+                    f.write(data)
+                    recv_size += len(data)
+                else:
+                    print("file [%s] has downloaded..." % filename)
+                    self.client.send(str(100).encode('utf-8'))
+            else:
+                print('不存在此文件%s' %filename)
         else:
             pass
 
