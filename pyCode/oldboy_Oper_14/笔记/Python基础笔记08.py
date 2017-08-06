@@ -22,7 +22,7 @@ socketServer
 	server.serve_forever()#处理多个一个请求
 	# for example:跟客户端交互都在handler里处理的
 #ftp规范
-	
+	 
 	
 	
 	
