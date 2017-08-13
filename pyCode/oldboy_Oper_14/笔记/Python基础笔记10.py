@@ -4,7 +4,7 @@
 	from multiprocessing import Process,Queue 
 管道Pipes
 	parent,son=Pipe()
-	parent.se nd('')#父亲发送
+	parent.send('')#父亲发送
 	son.rece()#儿子接收
 进程同步
 	lock=Lock()
