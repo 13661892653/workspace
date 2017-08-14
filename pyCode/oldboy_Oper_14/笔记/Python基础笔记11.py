@@ -30,7 +30,8 @@ Redis
 	统计在线用户数，不关心那些用户在线
 	incr login_users #计数加1
 	decr login_users #计数减1
-	
+	RPC remote procedure call 远程函数调用
+		
 Mysql
 
 
