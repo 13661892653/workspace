@@ -8,16 +8,20 @@ conn=pymysql.connect(
     port=3306,
     user='root',
     passwd='root',
-    db='world'
+    db='ob'
 )
-cursor=conn.cursor(cursor=pymysql.cursors.DictCursor)
-cursor.execute("select * from city limit 10")
-result=cursor.fetchall()
-print(result)
+#cursor=conn.cursor(cursor=pymysql.cursors.DictCursor)
+cursor=conn.cursor()
+cursor.execute("select id,gradename,ds from grade limit 10")
+result=cursor.fetchmany(5)
+#result=cursor.fetchall()
+#result=cursor.fetchone()
+num=1
 for i in result:
-    print(i)
+    print('%s' % num,i)
+    num+=1
+conn.commit()
+cursor.execute("insert into grade(id,gradename,ds) values(106,'num006','2017-08-15')")
 conn.commit()
 cursor.close()
 conn.close()
-new_id = cursor.lastrowid
-print('new_id%s' %new_id)
