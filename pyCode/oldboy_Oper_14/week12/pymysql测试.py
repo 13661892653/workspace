@@ -25,3 +25,9 @@ cursor.execute("insert into grade(id,gradename,ds) values(106,'num006','2017-08-
 conn.commit()
 cursor.close()
 conn.close()
+#data=[
+#		('001','name1')
+#		('002','name2')
+#	]
+#	cursor.executemany('insert into student(id,name)
+#	values(%s,%s)',data)
