@@ -31,9 +31,3 @@ Redis
 	incr login_users #计数加1
 	decr login_users #计数减1
 	RPC remote procedure call 远程函数调用
-		
-Mysql
-
-
-
-
