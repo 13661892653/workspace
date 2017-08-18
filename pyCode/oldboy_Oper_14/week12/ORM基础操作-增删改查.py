@@ -30,19 +30,22 @@ Session=Session_class()#生成session实例，跟cursor一样
 #Session.add(user_obj)#把要创建的数据对象，添加到这个session里
 #Session.commit()#统一提交，创建数据
 #查询数据
-#data=Session.query(User).filter_by(password='123456').filter_by(name='colby').first()#查询不需要commit
+data=Session.query(User).filter_by(password='123456').filter_by(name='Guo1').first()#查询不需要commit
 #print(data)
 #修改数据
 #data.name='Guo'
 #data.password='Guo'
+# print(author_obj.name , author_obj.books)
+#删除
+Session.delete(data)
 Session.commit()
 #数据回滚
-Session.rollback()
+#Session.rollback()
 #filter(User.name.in_(['name1','name2']))
 #统计
-data=Session.query(User).filter_by(password='Guo').\
-    filter_by(name='Guo').count()#查询不需要commit
-print(data)
+#data=Session.query(User).filter_by(password='Guo').\
+#    filter_by(name='Guo').count()#查询不需要commit
+#print(data)
 #分组
-data=Session.query(User.name,func.count(User.name)).group_by(User.name).all()
-print(data)
+#data=Session.query(User.name,func.count(User.name)).group_by(User.name).all()
+#print(data)
