@@ -88,4 +88,5 @@ class User(Base):
     email = Column(String(50))
     insert_time = Column(DateTime)
     update_time = Column(DateTime)
-Base.metadata.create_all(engine,)
+#Base.metadata.create_all(engine)
+print('表结构无需初始化化')
