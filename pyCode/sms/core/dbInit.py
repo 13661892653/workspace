@@ -44,8 +44,6 @@ class Course_Record(Base):
 class Grade(Base):
     __tablename__ = 'grade'
     grade_id = Column(Integer, primary_key=True)
-    course_id = Column(Integer)
-    user_id = Column(Integer)
     grade_name= Column(String(50))
     insert_time = Column(DateTime)
     update_time = Column(DateTime)
@@ -88,5 +86,6 @@ class User(Base):
     email = Column(String(50))
     insert_time = Column(DateTime)
     update_time = Column(DateTime)
-#Base.metadata.create_all(engine)
-print('表结构无需初始化化')
+#第一次初始化解开注释
+Base.metadata.create_all(engine)
+print('表结构已经完成初始化！')

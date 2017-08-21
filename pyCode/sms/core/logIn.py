@@ -40,11 +40,24 @@ def roleView(roleid):
         role_teacher = ['班级管理','学员管理','创建上课记录','批改作业']
         funNum = int(promtInfo(role_teacher))
         if funNum==1:
-            role_21 = ['创建班级', '删除班级']
-            funNum = promtInfo(role_21)
+            role_21 = ['创建班级', '删除班级','班级列表']
+            funNum = int(promtInfo(role_21))
+            if funNum==1:
+                creategrade=DML()
+                res=creategrade.CreateGrade()
+                funNum=promtInfo(role_21)
+            elif funNum==2:
+                deletegrade = DML()
+                deletegrade.DeleteGrade()
+            elif funNum==3:
+                querygrade = DML()
+                querygrade.QueryGrade()
+            else:
+                print('功能编号错误，请重新选择!')
+                funNum = promtInfo(role_21)
         elif funNum==2:
             role_22 = ['增加学员', '删除学员', '修改学员信息']
-            funNum = promtInfo(role_22)
+            funNum = int(promtInfo(role_22))
         elif funNum==3:
             pass
         elif funNum==4:
@@ -52,5 +65,4 @@ def roleView(roleid):
         else:
             print('编号错误，请重新输入！')
     else:
-        print('角色错误！')
-        pass
+        print('角色错误，请重新登录！')
