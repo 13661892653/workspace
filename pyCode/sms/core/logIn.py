@@ -44,8 +44,7 @@ def roleView(roleid):
             funNum = int(promtInfo(role_21))
             if funNum==1:
                 creategrade=DML()
-                res=creategrade.CreateGrade()
-                funNum=promtInfo(role_21)
+                creategrade.CreateGrade()
             elif funNum==2:
                 deletegrade = DML()
                 deletegrade.DeleteGrade()
@@ -54,7 +53,7 @@ def roleView(roleid):
                 querygrade.QueryGrade()
             else:
                 print('功能编号错误，请重新选择!')
-                funNum = promtInfo(role_21)
+            roleView(2)
         elif funNum==2:
             role_22 = ['增加学员', '删除学员', '修改学员信息']
             funNum = int(promtInfo(role_22))

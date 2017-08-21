@@ -5,12 +5,13 @@ __author__ = 'colby'
 from sqlalchemy.orm import sessionmaker
 from core.dbInit import *
 from sqlalchemy import create_engine
+from conf.setting import MysqlLink
 import time
 class DML(object):
     def __init__(self):
         self.engine = create_engine(
-            "mysql+pymysql://root:root@localhost/sms",
-            encoding='utf-8', echo=False
+            #MysqlLink()
+        "mysql+pymysql://root:root@localhost/sms", encoding = 'utf-8', echo = False
         )
         self.Session_class = sessionmaker(bind=self.engine)  # 创建与数据库的会话class
         self.Session = self.Session_class()  # 生成session实例，跟cursor一样
@@ -38,7 +39,7 @@ class DML(object):
             .filter_by(grade_name=gradeName) \
             .first()
         if data!=None:
-            print('班级名称[%s]已经存在，请重新输入!' %gradeName)
+            print('班级名称[%s]已经存在，请重新输入...' %gradeName)
             self.CreateGrade()
         else:
             now=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
@@ -51,6 +52,25 @@ class DML(object):
             except Exception as e:
                 print('数据库异常！')
     def DeleteGrade(self):
-        return
+        print('当前功能【删除班级】>>')
+        gradeName = input('删除班级，输入名称>>')
+        data = self.Session.query(Grade) \
+            .filter_by(grade_name=gradeName) \
+            .first()
+        if data!=None:
+            print('班级名称[%s]已经不存在，未执行任何操作...' %gradeName)
+            self.DeleteGrade()
+        else:
+            self.Session.delete(data)
+            self.Session.commit()
+            print('删除成功...')
+            return 1
     def QueryGrade(self):
-        return
+        print('当前功能【班级列表】>>')
+        data=10
+        data=input('显示多少条数据，不输入默认10条：')
+        #query后面可以指定字段的名称
+        res = self.Session.query(Grade.grade_id,Grade.grade_name).all()
+        for i in res:
+            print(i[0],i[1])
+        return 1
