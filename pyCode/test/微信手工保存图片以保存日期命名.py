@@ -49,13 +49,14 @@ def getImageName(dir):
         fileNameSource_houzui = fileName.split(".")[1]
         res=re.compile(r'\d+')
         file1=str(res.search(str(fileNameSource_file)).group())
+        print(file1)
         #截取左边10位
         file2=file1[0:10]
-        if fileNameSource_houzui=='jpg':
+        if fileNameSource_houzui=='jpg' or fileNameSource_houzui=='jpeg':
             file3='IMG_'+startFormatDate(file2)
         elif fileNameSource_houzui=='mp4':
             file3=startFormatDate(file2)
         rm(dir,fileNameSource_file,file3,fileNameSource_houzui)
 if __name__=="__main__":
-    dir="E:\BaiduNetdiskDownload\WeiXin"
+    dir="C:\\Users\\Administrator\\Desktop\\新建文件夹"
     getImageName(dir)
