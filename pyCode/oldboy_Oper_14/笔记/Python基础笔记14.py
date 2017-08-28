@@ -44,6 +44,7 @@ HTML
                 - 查看样式
         - h系列
         - div
+            margin:0 auto整个div标签居中，文本居中用text-align:center
         - span
         - input系列 + form标签
 		action:表单到哪个url
@@ -183,22 +184,4 @@ CSS
             
             
         8、padding  margin(0,auto)
-            
-            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
