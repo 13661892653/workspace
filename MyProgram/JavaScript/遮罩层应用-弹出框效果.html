@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>遮罩层应用-弹出框效果</title>
+    <style>
+        .hide{
+            display: none;
+        }
+        .c1{
+            position: fixed;
+            left:0;
+            right:0;
+            top:0;
+            bottom: 0;
+            background-color: black;
+            opacity:0.5;
+            z-index:2
+        }
+        .c2{
+            width:500px;
+            height:400px;
+            position: fixed;
+            left:50%;
+            top:50%;
+            background-color: white;
+            margin-left: -250px;
+            margin-top: -200px;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="button" id='btn_add_user' onclick="show()" value="添加用户" />
+    </div>
+    <!--遮罩层-->
+    <div id='i1' class="c1 hide">
+
+    </div>
+    <!--弹出框展示-->
+    <div id='i2' class="c2 hide">
+        <p><input type="text" id='txt_user'/></p>
+        <p><input type="text" id='txt_pwd'/></p>
+        <input type="button" id='btn_ok' value="确定" />
+        <input type="button" id='btn_cancel' value="取消" onclick="hd()"/>
+    </div>
+    <script>
+        function show() {
+            document.getElementById('i1').classList.remove('hide');
+            document.getElementById('i2').classList.remove('hide');
+        }
+
+        function hd() {
+            document.getElementById('i1').classList.add('hide');
+            document.getElementById('i2').classList.add('hide');
+        }
+
+    </script>
+</body>
+</html>
