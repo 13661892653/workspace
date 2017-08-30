@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页布局-左侧菜单固定-菜单下拉实现</title>
+    <link rel="stylesheet" href="css/scroll.css" />
+</head>
+<body class="body">
+    <div class="header">
+        <div class="head-logo left">信隆行数据调度平台</div>
+        <div class="head-user right">
+            <a href="#">
+                <img class='img' src="image/user.jpg">
+            </a>
+            <div class="user_down">
+                <a href="#">用户资料</a>
+                <a href="#">修改密码</a>
+                <a href="#">注销用户</a>
+            </div>
+        </div>
+    </div>
+    <div class="pg-content">
+        <div id='id_menu' class="content_left left">
+            <div class="item">
+                <div id='1' class="head" onclick="fold('1')">作业管理</div>
+                <ul class="content hide">
+                    <li class="menu_fun">新增作业</li>
+                    <li class="menu_fun">修改作业</li>
+                    <li class="menu_fun">作业查询</li>
+                </ul>
+            </div>
+            <div class="item">
+                <div id='2' class="head" onclick="fold('2')">监控管理</div>
+                <ul class="content hide">
+                    <li class="menu_fun">新增监控</li>
+                    <li class="menu_fun">作业预警</li>
+                    <li class="menu_fun">修改监控</li>
+                </ul>
+            </div>
+            <div class="item">
+                <div id='3' class="head" onclick="fold('3')">元数据管理</div>
+                <ul class="content hide">
+                    <li class="menu_fun">元数据查询</li>
+                </ul>
+            </div>
+            <div class="item">
+                <div id='4' class="head" onclick="fold('4')">数据源管理</div>
+                <ul class="content hide">
+                    <li class="menu_fun">新增数据源</li>
+                    <li class="menu_fun">修改数据源</li>
+                    <li class="menu_fun">删除数据源</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content_right right">
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+            <p>*信隆行大数据平台调度系统*</p>
+        </div>
+    </div>
+    <div class="liuyan">
+        <a>离线请留言</a>
+    </div>
+    <div class="pg-footer">
+
+    </div>
+    <script>
+        function fold(num){
+            //console.log(1)
+            var cur_item=document.getElementById(num);
+            var cur_item_par=cur_item.parentElement.parentElement;
+            var lst_item=cur_item_par.children;
+            for(i=0;i<lst_item.length;i++){
+                   var item=lst_item[i];
+                    item.children[1].classList.add('hide');
+            }
+            cur_item.nextElementSibling.classList.remove('hide');
+        }
+    </script>
+</body>
+</html>

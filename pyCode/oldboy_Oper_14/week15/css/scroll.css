@@ -1,0 +1,123 @@
+body{
+    margin:0;
+}
+.header{
+        height:48px;
+        left:0;
+        right: 0;
+        top:0;
+        background-color: #2a69ff;
+        line-height: 48px;
+        }
+.content_left{
+    position:absolute;
+    top: 50px;
+    left:0;
+    bottom: 0;
+    width: 200px;
+    background-color: navy;
+}
+/* */
+.content_right{
+    position:absolute;
+    top: 50px;
+    left:203px;
+    right:0;
+    bottom: 0;
+    font-size: 35px;
+    color: red;
+    overflow: auto;
+    z-index: 1;
+}
+.head{
+    background-color: navy;
+    color:white;
+    font-weight: bold;
+    height: 50px;
+    text-align: center;
+    line-height: 48px;
+    /*border-top: 1px solid  white;*/
+}
+.head:hover{
+        background-color: #2a69ff;
+    }
+.content{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-left: 1px solid  navy;
+    border-right: 1px solid  navy;
+}
+.hide{
+    display: none;
+}
+.menu_fun{
+    margin: 20px 0 20px 0;
+    font-weight: bold;
+}
+.left{
+    float:left
+}
+.right{
+    float:right
+}
+.head-logo{
+    color: white;
+    width:200px;
+    height:48px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.head-user{
+    position: relative;
+    color: white;
+    width: 150px;
+    height:48px;
+    line-height: 48px;
+}
+.head-user:hover{
+    background-color: navy;
+    }
+.both{
+    clear:both
+}
+.header .head-user .img{
+    width:40px;
+    border-radius:38%;
+    margin-top: 4px;
+}
+.user_down{
+    position: absolute;
+    z-index: 2;
+    top: 48px;
+    right: 0;
+    width: 150px;
+    background-color: white;
+    color: black;
+    display: none;
+}
+/* 鼠标移动到用户头像的时候，执行hover，将user_down的display设置成block*/
+.head-user:hover .user_down{
+    display:block;
+}
+.user_down a{
+    display: block;
+    border-bottom: 1px solid #e5e5e5;
+}
+.liuyan{
+    position: fixed;
+    bottom: 0;
+    right:80px;
+    color: white;
+    background-color:navy ;
+    z-index: 10;
+    width: 150px;
+    height:48px;
+    line-height: 48px;
+    text-align: center;
+}
+a{
+    text-decoration:none
+}
