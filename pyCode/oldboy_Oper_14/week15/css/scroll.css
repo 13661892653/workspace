@@ -6,7 +6,7 @@ body{
         left:0;
         right: 0;
         top:0;
-        background-color: #2a69ff;
+        background-color: navy;
         line-height: 48px;
         }
 .content_left{
@@ -78,7 +78,7 @@ body{
     line-height: 48px;
 }
 .head-user:hover{
-    background-color: navy;
+    background-color: #2a69ff;
     }
 .both{
     clear:both
