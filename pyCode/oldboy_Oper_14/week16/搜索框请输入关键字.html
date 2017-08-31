@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索框请输入关键字</title>
+    <style>
+        .c_keys{
+            width: 200px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input id="id1" type="text" class="c_keys" onfocus="Focus();" onblur="Blur();" value="请输入关键字"/>
+    </div>
+
+    <script>
+        function Focus(){
+            var tag=document.getElementById('id1');
+            var val=tag.value;
+            if(val == "请输入关键字"){
+                tag.value="";
+            }
+        }
+        function Blur(){
+            var tag=document.getElementById('id1');
+            var val=tag.value;
+            if(val==""){
+                tag.value="请输入关键字";
+            }
+        }
+    </script>
+</body>
+</html>
