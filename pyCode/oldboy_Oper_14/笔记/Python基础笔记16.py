@@ -134,17 +134,23 @@ DOM学习：
 			document.getElementById('xx').onclick
 			document.getElementById('xx').onfocus
 		this 当前触发事件的标签
-			a.第一种绑定方式
+			a.事件的第一种绑定方式
 			<input type="button" onclick="clickOn(this)">
 			function clickOn(self){
 				//self 当前点击的标签
 			}
-			b.第二种绑定方式
+			b.事件的第二种绑定方式
 			<input id="i1" type=button>
 			document.getElementById('i1').onclick=function(){
 				//this代指当前点击的标签
 			}
-			c.第三种绑定方式
+			c.事件的第三种绑定方式
+			var mydiv=document.getElementById('form1')
+				mydiv.addEventListener('click',function(){
+				console.log('aa')
+				},false)
+			#false:冒泡模型
+			#true:捕捉模型，默认不写就是冒泡模型
 			
 		//作用域的示例
 		var myTrs =document.getElementByTagName('tr');
