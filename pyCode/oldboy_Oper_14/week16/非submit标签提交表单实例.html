@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>非submit标签提交表单实例</title>
+</head>
+<body>
+    <form id="form1" action="http://www.baidu.com">
+        <input type="text" />
+    </form>
+    <a onclick="submitForm();">A标签提交</a>
+    <script>
+        function submitForm(){
+            document.getElementById('form1').submit()
+        }
+    </script>
+</body>
+</html>
