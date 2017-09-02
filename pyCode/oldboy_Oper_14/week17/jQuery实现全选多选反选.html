@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery实现全选多选反选</title>
+</head>
+<body>
+<div>
+        <input type="button"  onclick="checkAll()" value="全选" />
+        <input type="button"  onclick="cancelAll()" value="取消" />
+        <input type="button"  onclick="reverse()" value="反选" />
+        <table style="border: 1px solid red">
+            <thead>
+                <tr>
+                    <th>选择</th>
+                    <th>主机</th>
+                    <th>端口</th>
+                </tr>
+            </thead>
+            <tbody id="tb">
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>255.255.255.255</td>
+                    <td>8080</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>255.255.255.254</td>
+                    <td>8080</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>255.255.255.253</td>
+                    <td>8080</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>255.255.255.252</td>
+                    <td>8080</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="code/jquery-1.12.4.js"></script>
+    <script>
+        function checkAll(){
+            $('#tb :checkbox').prop('checked',true);
+        }
+
+        function cancelAll(){
+            $('#tb :checkbox').prop('checked',false);
+        }
+        function reverse(){
+            $('#tb :checkbox').each(function(k){
+                if(this.checked){
+                    this.checked=false
+                }else{
+                    this.checked=true
+                }
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery实现TAB菜单切换</title>
+    <style>
+        .header{
+            height:48px;
+            background: grey;
+            width:500px;
+            color: white;
+            line-height: 48px;
+        }
+        .content{
+            height:600px;
+            background-color: #337ab7;
+            width: 500px;
+        }
+        .tab{
+            border-right: 1px solid #000000;
+            border-left: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            float:left;
+            width:100px;
+            text-align: center;
+        }
+        .active{
+            background-color: #337ab7;
+        }
+        .hide{
+            display: none;
+        }
+        .child_content{
+            float:left;
+            height: 600px;
+            width: 500px;
+            background-color: white;
+            border: 5px solid red;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="tab">基本信息</div>
+        <div class="tab">财务信息</div>
+        <div class="tab">股东信息</div>
+        <div class="tab">经营信息</div>
+    </div>
+    <div class="content">
+        <div class="child_content hide">
+            基本信息
+        </div>
+        <div class="child_content hide">
+            财务信息
+        </div>
+        <div class="child_content hide">
+            股东信息
+        </div>
+        <div class="child_content hide">
+            经营信息
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <script src="code/jquery-1.12.4.js"></script>
+    <script>
+        $('.tab').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            //获取被点击tab的索引值
+            var index=$(this).index();
+            //获取content中同样索引位置的content内容
+            var contentIndex=$('.content').children().get(index);
+            //移除hide，隐藏兄弟节点的内容
+            $(contentIndex).removeClass('hide').siblings().addClass('hide');
+        })
+    </script>
+</body>
+</html>

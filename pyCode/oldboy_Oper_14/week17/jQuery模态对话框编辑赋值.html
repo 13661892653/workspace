@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery模态对话框编辑赋值</title>
+    <link rel="stylesheet" href="jQuery模态对话框编辑赋值.css"/>
+</head>
+<body>
+<a onclick="addElement();">添加</a>
+
+    <table border="1" id="tb">
+        <tr>
+            <td target="hostname">server101</td>
+            <td target="port">8080</td>
+            <td target="ip">192.168.1.101</td>
+            <td>
+                <a class="edit">编辑</a> | <a class="del">删除</a>
+            </td>
+        </tr>
+        <tr>
+            <td target="hostname">server102</td>
+            <td target="port">8080</td>
+            <td target="ip">192.168.1.102</td>
+            <td>
+                <a class="edit">编辑</a> | <a class="del">删除</a>
+            </td>
+        </tr>
+        <tr>
+            <td target="hostname">server103</td>
+            <td target="port">8080</td>
+            <td target="ip">192.168.1.103</td>
+            <td>
+                <a class="edit">编辑</a> | <a class="del">删除</a>
+            </td>
+        </tr>
+        <tr>
+            <td target="hostname">server104</td>
+            <td target="port">8080</td>
+            <td target="ip">192.168.1.104</td>
+            <td>
+                <a class="edit">编辑</a> | <a class="del">删除</a>
+            </td>
+
+        </tr>
+    </table>
+
+    <div class="modal hide">
+        <div>
+            <p>主机名称<input name="hostname" type="text"  /></p>
+            <p>端口<input name="port" type="text" /></p>
+            <p>IP地址<input name="ip" type="text" /></p>
+        </div>
+        <div>
+            <input type="button" value="取消" onclick="cancelModal();" />
+            <input type="button" value="确定" onclick="confirmModal();" />
+        </div>
+    </div>
+
+    <div class="shadow hide"></div>
+    <script src="code/jquery-1.12.4.js"></script>
+    <script>
+        function addElement(){
+            $('.modal').removeClass('hide');
+            $('.shadow').removeClass('hide');
+        }
+
+        function cancelModal(){
+            $('.modal,.shadow').addClass('hide');
+            $('.modal input[type="text"]').val("")
+
+        }
+        $('.edit').click(function(){
+            //将遮罩层和模态框隐藏属性去掉，然后模态框就显示出来了
+            $('.modal,.shadow').removeClass('hide');
+            var datalist=$(this).parent().prevAll();
+            console.log(datalist)
+            //console.log(datalist[0],datalist[1],datalist[2])
+            //获取被点击行的数据
+            var hostname=$(datalist[0]).text();
+            var ip=$(datalist[1]).text();
+            var port=$(datalist[2]).text();
+            //将获取到的数据赋值给模态框的input对象
+            $('.modal input[name="hostname"]').val(hostname);
+            $('.modal input[name="ip"]').val(ip);
+            $('.modal input[name="port"]').val(port);
+        })
+    </script>
+</body>
+</html>
