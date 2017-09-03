@@ -83,12 +83,66 @@
 			removeClass('hide') #移除
 			toggleClass('hide')#存在移除，不存在增加
 		属性操作:
+			$(...).attr('n')
+			$(...).attr('n','v')
+			$(...).removeAttr('n')
+			#专门用于
+			$(...).prop('checked')
+			$(...).prop('checked',true)
+			index()获取元素索引位置
+	
+		文档处理
+			append 标签之后添加元素
+			prepend标签之前添加元素
+			after 标签之外之后添加元素
+			before标签之外之前添加元素
+			remove移除标签
+			empty清空标签内容
+			clone克隆标签
+		CSS处理
+			$('t1').css('样式名称','样式值')
+			点赞：
+				$('t1').append()
+				$('t1').remove()
+				-setInterval
+				透明度1->0
+				position
+				字体大小和位置的获取
+				
+		位置操作	
+			$(window).scrollTop()
+			$(window).scrollTop(0)
+			scrollLeft([val])
+			offset 获取标签在html的坐标位置
+		jQuery绑定方式
+			$('.c').click()
+			$('.c').bind('click',functrion())
+			$('.c').unbind('click',functrion())
+			==============
+			$('.c').delegate('a','click',functrion(){
+				//动态绑定点击事件，用于新增按钮事件绑定，不同于上面的集中绑定方法
+			})
+		 表单提交
+			阻止事件发生
+				return false
+			$(function(){
+				//页面框架加载完成后自动执行
+			})
+		jQuery扩展
+			$.extend $.方法
+			$.fn.extend $(..).方法
 			
-	
-	
-	
-	
-	
-	
+			(function(){
+			var status=1;
+			//封装变量，解决扩展函数全局变量冲突的问题
+			})(jQuery)
+			
+			
+			
+			
+			
+			
+			
+			
 	二、操作元素
 	
