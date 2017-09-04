@@ -94,12 +94,12 @@ def getImage(third,firstname):
             print("抓取图像异常！！！",e)
             continue
 if __name__=='__main__':
-    url='https://www.rt114.net/'
+    url='https://www.renti114.net/'
     html=gethtml(url)
     htmlList=getHtmlList(html)
     #获取图片国际分类
     for i in htmlList:
-        firstname = re.findall(r'https://www.rt114.net/(.*?)/',i)[0]
+        firstname = re.findall(r'https://www.renti114.net/(.*?)/',i)[0]
         print(firstname)
         htmlDetail = gethtml(i)
         dePageSize = getDePageSize(htmlDetail)
