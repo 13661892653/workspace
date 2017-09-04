@@ -3,8 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <title>第17周作业-表格批量编辑模式</title>
+    <style>
+        .table-c table{
+                border:1px solid #F00;
+            }
+        .table-c table td{
+                border:1px solid #F00;
+            }
+        .edit input,span{
+            padding: 5px;
+            margin: 5px;
+        }
+        .sp-edit{
+            background-color: #eeeeee;
+            border: 1px solid black;
+        }
+        .hide{
+            display:none;
+        }
+    </style>
 </head>
 <body>
+<div id='id-edit' class="edit">
+        <input type="button" id='btn-checkAll'  value="全选"/>
+        <input type="button" id='btn-reverse'  value="反选"/>
+        <input type="button" id='btn-cancelAll'  value="取消"/>
+        <span class="sp-edit" editModel="0">只读模式</span>
+</div>
+<div class="table-c">
+    <table>
+        <thead>
+            <tr>
+                <th>选择</th>
+                <th>主机名</th>
+                <th>端口</th>
+                <th>状态</th>
+            </tr>
+        </thead>
+        <tbody id="tb">
+            <tr>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>
+                    <span class="sp-content">server001</span>
+                    <input class="in-content hide" type="text"/>
+                </td>
+                <td>
+                    <span class="sp-content">8000</span>
+                    <input  class="in-content hide" type="text"/>
+                </td>
+                <td>
+                    <span class="sp-content">下线</span>
+                    <select  class="se-content hide" >
+                        <option>在线</option>
+                        <option>下线</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>
+                    <span class="sp-content">server001</span>
+                    <input  class="in-content hide" type="text"/>
+                </td>
+                <td>
+                    <span class="sp-content">8000</span>
+                    <input  class="in-content hide" type="text"/>
+                </td>
+                <td>
+                    <span class="sp-content">在线</span>
+                    <select class="se-content hide" >
+                        <option>在线</option>
+                        <option>下线</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>
+                    <span class="sp-content">server001</span>
+                    <input  class="in-content hide" type="text"/>
+                </td>
+                <td>
+                    <span class="sp-content">8000</span>
+                    <input  class="in-content hide" type="text"/>
+                </td>
+                <td>
+                    <span class="sp-content">在线</span>
+                    <select class="se-content hide" >
+                        <option>在线</option>
+                        <option>下线</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>
+                    <span class="sp-content">server001</span>
+                    <input  class="in-content hide" type="text"/>
+                </td>
+                <td>
+                    <span class="sp-content">8000</span>
+                    <input  class="in-content hide" type="text"/>
+                </td>
+                <td>
+                    <span class="sp-content">下线</span>
+                    <select class="se-content hide" >
+                        <option>在线</option>
+                        <option>下线</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="../code/jquery-1.12.4.js"></script>
+    <script>
+        $('#btn-checkAll').click(function(){
+            $('#tb :checkbox').prop('checked',true);
+        });
 
+        $('#btn-cancelAll').click(function(){
+            $('#tb :checkbox').prop('checked',false);
+        });
+
+        $('#btn-reverse').click(function(){
+            $('#tb :checkbox').each(function(){
+                if (this.checked){
+                    this.checked=false;
+                }else{
+                    this.checked=true;
+                }
+            });
+        });
+
+        $('.sp-edit').click(function(){
+            //判断当前的编辑模式，设置相对应的CSS样式
+            if ($('.sp-edit').attr('editModel')=='0'){
+                //为0时，模式为只读模式
+                $('.sp-edit').css('background-color','darkorange');
+                $('.sp-edit').css('border','0');
+                $('.sp-edit').attr('editModel','1');
+                $('.sp-edit').text('编辑模式');
+                //从只读模式跳转到编辑下，显示span内容，隐藏input内容
+                $('.in-content,.se-content').each(function(){
+                    //查找in-content、se-content的上一个标签，然后将值赋值给sp-content
+                    var cur=$(this).prev().text();
+                    console.log(cur);
+                    $(this).val(cur);
+                    $(this).removeClass('hide');
+                });
+                $('.sp-content').each(function(){
+                    $(this).addClass('hide');
+                });
+            }else{
+                //为1时，模式为编辑模式
+                $('.sp-edit').css('background-color','#eeeeee');
+                $('.sp-edit').css('border','1px solid black');
+                $('.sp-edit').attr('editModel','0');
+                $('.sp-edit').text('只读模式');
+                //从编辑模式跳到只读模式下，显示input内容，隐藏span内容
+                $('.sp-content').each(function(){
+                    //查找sp-content的下一个标签，然后将值赋值给sp-content
+                    var cur=$(this).next().val();
+                    console.log(cur);
+                    $(this).text(cur);
+                    $(this).removeClass('hide');
+                });
+                $('.se-content,.in-content').each(function(){
+                    $(this).addClass('hide');
+                });
+            }
+        });
+
+    </script>
+</div>
 </body>
 </html>
