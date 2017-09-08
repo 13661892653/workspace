@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+<div>
+    <div class="content">
+        <form action="/index" method="post">
+            <div>
+                <p>
+                    <span class="fb_lb">用户名:</span>
+                    <input type="text" name="username"/>
+                </p>
+                <p>
+                    <span class="fb_lb">密码:</span>
+                    <input type="password" name="password"/>
+                </p>
+            </div>
+            <div>
+                    <input type="submit" value="登录"/>
+                    <input type="button" value="取消"/>
+                    <span class="err_message">{{ msg }}</span>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
