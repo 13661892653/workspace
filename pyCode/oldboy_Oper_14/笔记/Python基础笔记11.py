@@ -22,7 +22,8 @@ Redis
 		keys * #获取所有keys
 		get name#获取值
 	Redis连接池
-	2亿用户实时在线统计,知道哪些用户在线
+	2亿用户实时在线统计,知道哪些用户在线（2亿个二进制长度）
+		8：1000 0000 0000 0000 0000 0000 0000
 		setbit user 99999 1
 		setbit user 88888 1
 		bitcount user
