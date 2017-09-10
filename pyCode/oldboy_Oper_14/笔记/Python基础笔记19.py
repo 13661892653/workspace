@@ -63,9 +63,9 @@
 
 一、路由系统，URL
 	1、url(r'^index/', views.index),    
-	   url(r'^home/', views.Home.as_view()),
+		url(r'^home/', views.Home.as_view()),
 	2、url(r'^detail-(\d+).html', views.detail),  
-	3、url(r'^detail-(?P<nid>\d+)-(?P<uid>\d+).html', views.detail)
+	3、url(r'^detail-(?P<nid>\d+)-(?P<uid>\d+).html', views.detail) #动态路由
 	   
 	   PS:
 			def detail(request, *args,**kwargs):
@@ -163,6 +163,14 @@
 		request.GET
 		request.POST
 		request.FILES
+			获取上传文件
+			obj=request.FILES.get(bbb)
+			import os
+			file_path=os.path.join('upload',obj.name)
+			f=open(file_path,mode='wb')
+			for i in chunks();
+				f.write(i)
+			f.close()
 		PS:
 			GET:获取数据				
 			POST:提交数据
