@@ -3,5 +3,6 @@
 #Tools:Pycharm
 #Date:
 __author__ = "Colby"
-
+import os
+print(os.path.isfile(__file__))
 print(10<<2)

@@ -10,6 +10,7 @@
 		<Model Expanded="Yes" ID="{97B28D77-8B46-4755-B671-23E1A55816AF}" Loaded="No" Name="堡垒机表结构逻辑模型设计" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="/workspace/MyProgram/Edwh/概念模型设计案例/堡垒机表结构模型设计.ldm"/>
 		<Model Expanded="Yes" ID="{0C1D1F86-E5B8-4143-9B04-CD10C1EF6196}" Loaded="No" Name="堡垒机表结构物理模型设计" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="/workspace/MyProgram/Edwh/概念模型设计案例/堡垒机表结构物理模型设计.pdm"/>
 		<Model Expanded="Yes" ID="{03D964F8-3622-4901-946E-655414D30FF7}" Loaded="No" Name="信隆行数据仓库逻辑模型" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="/workspace/MyProgram/Edwh/信隆行数据仓库逻辑模型.ldm"/>
+		<Model Expanded="Yes" ID="{F44BC1B6-BA49-4983-B428-CF1968E7CA4C}" Name="信隆行数据仓库物理模型" Selected="Yes" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="/xlhSvn/003系统设计/02详细设计/信隆行数据仓库物理模型.pdm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
