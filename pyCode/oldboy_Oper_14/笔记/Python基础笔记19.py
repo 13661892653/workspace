@@ -47,11 +47,11 @@
 				# 包含所有的请求数据
 				...
 				return HttpResponse('字符串')
-				return render(request, 'index.html', {''})
+				return render(request, 'index_bak.html', {''})
 				retrun redirect('URL')
 				
 		c. 模板语言
-			return render(request, 'index.html', {'li': [11,22,33]})
+			return render(request, 'index_bak.html', {'li': [11,22,33]})
 			
 			{% for item in li %}
 				<h1>{{item}}</h1>

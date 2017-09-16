@@ -21,7 +21,7 @@ def login(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index_bak.html')
 
 def user_info(request):
     if request.method == "GET":

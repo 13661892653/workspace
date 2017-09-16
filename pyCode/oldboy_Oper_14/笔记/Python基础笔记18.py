@@ -268,7 +268,7 @@
 			-- {{ 变量名 }}
 		
 				def func(request):
-					return render(request, "index.html", {'current_user': "alex"})
+					return render(request, "index_bak.html", {'current_user': "alex"})
 		
 					
 				index.html
@@ -292,7 +292,7 @@
 				</html>
 			-- For循环
 				def func(request):
-					return render(request, "index.html", {'current_user': "alex", 'user_list': ['alex','eric']})
+					return render(request, "index_bak.html", {'current_user': "alex", 'user_list': ['alex','eric']})
 		
 					
 				index.html
@@ -318,7 +318,7 @@
 				
 			#####索引################# 
 				def func(request):
-					return render(request, "index.html", {
+					return render(request, "index_bak.html", {
 								'current_user': "alex", 
 								'user_list': ['alex','eric'], 
 								'user_dict': {'k1': 'v1', 'k2': 'v2'}})
@@ -342,7 +342,7 @@
 			###### 条件
 			
 				def func(request):
-					return render(request, "index.html", {
+					return render(request, "index_bak.html", {
 								'current_user': "alex", 
 								"age": 18,
 								'user_list': ['alex','eric'], 
