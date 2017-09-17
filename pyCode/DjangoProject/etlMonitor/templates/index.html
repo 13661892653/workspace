@@ -9,9 +9,10 @@
     <meta name="author" content="">
     <link rel="icon" href="/static/images/favicon.ico">
     <link href="/static/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/bootstrap-3.3.7/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="/static/bootstrap-3.3.7/css/bootstrap-theme.css" rel="stylesheet">
-    <title>ETL调度监控系统</title>
     <link href="/static/css/index.css" rel="stylesheet">
+    <title>ETL调度监控系统</title>
     <!-- Bootstrap core CSS -->
     <link href="/static/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -47,8 +48,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">设置</a></li>
-            <li><a href="#">陈伦</a></li>
+            <li><a class="glyphicon glyphicon-wrench" href="#"> 权限管理</a></li>
+            <li><a class="glyphicon glyphicon-cog" href="#"> 用户设置</a></li>
+            <li><a class="glyphicon glyphicon-user" href="#"> 管理员:陈伦</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="查找">
@@ -61,38 +63,40 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">作业管理<span class="sr-only">(current)</span></a></li>
+            <li class="active"><a class="glyphicon glyphicon-list" href="#"> 作业管理<span class="sr-only">(current)</span></a></li>
             <li><a href="#">作业查询</a></li>
             <li><a href="#">作业编辑</a></li>
             <li><a href="#">新增转换</a></li>
             <li><a href="#">新增传输</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">作业监控<span class="sr-only">(current)</span></a></li>
+            <li class="active"><a class="glyphicon glyphicon-list" href="#"> 作业监控<span class="sr-only">(current)</span></a></li>
             <li><a href="">作业告警</a></li>
             <li><a href="">作业运行报表</a></li>
             <li><a href="">作业优化</a></li>
-            <li><a href="">作业优化</a></li>
+            <li><a href="">服务器监控(磁盘/内存)</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">元数据管理<span class="sr-only">(current)</span></a></li>
+            <li class="active"><a class="glyphicon glyphicon-list" href="#"> 元数据管理<span class="sr-only">(current)</span></a></li>
             <li><a href="">技术元数据</a></li>
             <li><a href="">业务元数据</a></li>
             <li><a href="">管理元数据</a></li>
+            <li><a href="">新增数据源</a></li>
+            <li><a href="">修改数据源</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">查询条件</h1>
+          <form method="POST" action="/etl/index/">
           <div class="row placeholders query_boder">
-              <form>
                   <div>
                         <div class="query">
                           <span>作业编号：</span>
-                          <input type="text" name="job_id"/>
+                          <input type="text" placeholder="作业编号" name="job_id"/>
                         </div>
                         <div class="query">
                           <span>作业名称：</span>
-                          <input type="text" name="job_name"/>
+                          <input type="text" placeholder="作业名称" name="job_name"/>
                         </div>
                         <div class="query">
                           <span>作业类别：</span>
@@ -100,47 +104,38 @@
                         </div>
                         <div class="query">
                           <span>作业状态：</span>
-                          <input type="text"/>
+                          <select name="job_status">
+                              <option value="DONE">DONE</option>
+                              <option value="WAITING">WAITING</option>
+                              <option value="ERROR">ERROR</option>
+                              <option value="RUNNING">RUNNING</option>
+                          </select>
                         </div>
+                      <div style="clear: both;"></div>
                   </div>
                   <div>
                         <div class="query">
                             <span>作业批次开始：</span>
-                            <input type="text" name="data_prd_st"/>
+                            <input size="16" type="text" name="data_prd_st" value="" class="form_datetime">
                         </div>
                         <div class="query">
                             <span>作业批次结束：</span>
-                            <input type="text" name="data_prd_ed"/>
+                            <input size="16" type="text" name="data_prd_ed" value="" class="form_datetime">
                         </div>
                       <div class="query">
-                            <button type="button" class="btn btn-success glyphicon glyphicon-search">查询</button>
-                            <button type="button" class="btn btn-error glyphicon glyphicon-remove">重置</button>
-                        </div>
+                            <button type="submit" class="btn btn-success glyphicon glyphicon-search">查询</button>
+                            <button type="reset" class="btn btn-error glyphicon glyphicon-remove">重置</button>
+                      </div>
+                      <div style="clear: both;"></div>
                   </div>
-              </form>
-{#            <div class="col-xs-6 col-sm-3 placeholder">#}
-{#              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200px" height="200px" class="img-responsive" alt="Generic placeholder thumbnail">#}
-{#              <h4>Label</h4>#}
-{#              <span class="text-muted">Something else</span>#}
-{#            </div>#}
-{#            <div class="col-xs-6 col-sm-3 placeholder">#}
-{#              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200px" height="200px" class="img-responsive" alt="Generic placeholder thumbnail">#}
-{#              <h4>Label</h4>#}
-{#              <span class="text-muted">Something else</span>#}
-{#            </div>#}
-{#            <div class="col-xs-6 col-sm-3 placeholder">#}
-{#              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">#}
-{#              <h4>Label</h4>#}
-{#              <span class="text-muted">Something else</span>#}
-{#            </div>#}
-{#            <div class="col-xs-6 col-sm-3 placeholder">#}
-{#              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">#}
-{#              <h4>Label</h4>#}
-{#              <span class="text-muted">Something else</span>#}
-{#            </div>#}
-          </div>
 
-          <h2 class="sub-header">查询结果：</h2>
+          </div>
+          </form>
+            <h2 class="sub-header">
+                <span>查询结果</span>
+                <span style="color: red">{{ record }}</span>
+                <span>条记录&gt;&gt;</span>
+            </h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -156,36 +151,19 @@
                 </tr>
               </thead>
               <tbody>
+              {% for item in data %}
                 <tr>
-                  <td>10001</td>
-                  <td>cdm_ent_corpinfo.import</td>
-                  <td>kettle</td>
-                  <td>成功</td>
-                  <td>2017-09-16</td>
-                  <td>2017-09-16 00:00:00</td>
-                  <td>2017-09-16 00:00:00</td>
+                  <td>{{ item.JOB_SEQ_ID }}</td>
+                  <td>{{ item.JOB_NM }}</td>
+                  <td>{{ item.JOB_NM }}</td>
+                  <td>{{ item.JOB_STS }}</td>
+                  <td>{{ item.DATA_PRD }}</td>
+                  <td>{{ item.ACT_ST_DT }}</td>
+                  <td>{{ item.ACT_ED_DT }}</td>
                   <td><button type="button" class="btn btn-success glyphicon glyphicon-ok"> 重置</button></td>
+                  <td><button type="button" class="btn btn-primary glyphicon glyphicon-log-out"> 查看日志</button></td>
                 </tr>
-                <tr>
-                  <td>10001</td>
-                  <td>cdm_ent_corpinfo.export</td>
-                  <td>kettle</td>
-                  <td>成功</td>
-                  <td>2017-09-16</td>
-                  <td>2017-09-16 00:00:00</td>
-                  <td>2017-09-16 00:00:00</td>
-                  <td><button type="button" class="btn btn-success glyphicon glyphicon-ok"> 重置</button></td>
-                </tr>
-                <tr>
-                  <td>10001</td>
-                  <td>cdm_ent_corpinfo</td>
-                  <td>python</td>
-                  <td>成功</td>
-                  <td>2017-09-16</td>
-                  <td>2017-09-16 00:00:00</td>
-                  <td>2017-09-16 00:00:00</td>
-                  <td><button type="button" class="btn btn-success glyphicon glyphicon-ok"> 重置</button></td>
-                </tr>
+              {% endfor %}
               </tbody>
             </table>
           </div>
@@ -199,9 +177,13 @@
     <script src="/static/js/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap-3.3.7/js/bootstrap-datetimepicker.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="/static/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript">
+        $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+    </script>
   </body>
 </html>
