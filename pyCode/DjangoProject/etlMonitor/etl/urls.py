@@ -6,4 +6,6 @@ from django.conf.urls import url,include
 from etl import views
 urlpatterns = [
     url(r'^index/', views.index),
+    url(r'^index_detail-delete-(?P<nid>\d+)', views.detail_delete),
+    url(r'^index_detail-update-(?P<nid>\d+)', views.detail_update),
 ]

@@ -9,7 +9,7 @@ def index(request):
     if request.method=='GET':
         return render(request, 'index.html')
     elif request.method=='POST':
-        job_id = request.POST.get('job_id')
+        job_seq_id = request.POST.get('job_seq_id')
         job_name = request.POST.get('job_name')
         job_type = request.POST.get('job_type')
         job_status = request.POST.getlist('job_status')[0]
@@ -20,7 +20,7 @@ def index(request):
         if data_prd_ed == '':
             data_prd_ed='2099-01-01'
 
-        obj=models.JOB_LOG.objects.filter(JOB_SEQ_ID__contains=job_id,
+        obj=models.JOB_LOG.objects.filter(JOB_SEQ_ID__contains=job_seq_id,
                                           JOB_NM__contains=job_name,
                                           #JOB_TYPE=job_type,
                                           JOB_STS=job_status,
@@ -30,5 +30,10 @@ def index(request):
         record=obj.count()
         print('obj',obj,'record',record)
         return render(request, 'index.html',{'data':obj,'record':record})
-def login(request):
-    pass
+def detail_delete(request,nid):
+    models.JOB_LOG.objects.filter(JOB_SEQ_ID=nid).delete()
+    return redirect('/etl/index/')
+
+def detail_update(request,nid):
+    models.JOB_LOG.objects.filter(JOB_SEQ_ID=nid).update(JOB_STS='WAITING')
+    return redirect('/etl/index/')
