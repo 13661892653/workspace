@@ -72,7 +72,7 @@
 	1、url(r'^index/', views.index),    
 		url(r'^home/', views.Home.as_view()),
 	2、url(r'^detail-(\d+).html', views.detail),  
-	3、url(r'^detail-(?P<nid>\d+)-(?P<uid>\d+).html', views.detail) #动态路由
+	3、url(r'^detail-(?P<nid>\d+)-(?P<uid>\d+).html', views.detail) #动态路由，"?P<nid>"获取匹配到表达式，变量名为nid
 	   
 	   PS:
 			def detail(request, *args,**kwargs):
@@ -171,13 +171,13 @@
 		request.POST
 		request.FILES
 			获取上传文件
-			obj=request.FILES.get(bbb)
-			import os
-			file_path=os.path.join('upload',obj.name)
-			f=open(file_path,mode='wb')
-			for i in chunks();
-				f.write(i)
-			f.close()
+				obj=request.FILES.get(bbb)
+				import os
+				file_path=os.path.join('upload',obj.name)
+				f=open(file_path,mode='wb')
+				for i in chunks();
+					f.write(i)
+				f.close()
 		PS:
 			GET:获取数据				
 			POST:提交数据
@@ -186,12 +186,12 @@
 		request.POST.getlist()
 	3、上传文件
 		# 上传文件,form标签做特殊设置
-		obj = request.FILES.get('fafafa')
-		obj.name
-		f = open(obj.name, mode='wb')
-		for item in obj.chunks():
-			f.write(item)
-		f.close()
+			obj = request.FILES.get('fafafa')
+			obj.name
+			f = open(obj.name, mode='wb')
+			for item in obj.chunks():
+				f.write(item)
+			f.close()
 	
 	4、FBV & CBV
 	   function base view
@@ -222,9 +222,11 @@
 四、ORM操作
 	select * from tb where id > 1
 	# 对应关系
-	models.tb.objects.filter(id__gt=1)
-	models.tb.objects.filter(id=1)
-	models.tb.objects.filter(id__lt=1)
+	models.tb.objects.filter(id__gt=1)#大于
+	models.tb.objects.filter(id=1)#等于
+	models.tb.objects.filter(id__lt=1)#小于
+	models.tb.objects.filter(id__in=[1,2,3])#in条件
+	models.tb.objects.filter(id__contains='colby')#Like
 	
 	创建类
 	
@@ -237,6 +239,9 @@
 			# 用户名列，字符串类型，指定长度
 			username = models.CharField(max_length=32)
 			password = models.CharField(max_length=64)
+			    class Meta:
+				db_table = 'JOB_METADATA'
+				#表的实际名称，不写的话，默认表名为："app名称_UserInfo"
 		
 	b. 注册APP
 
@@ -247,9 +252,9 @@
 			'django.contrib.sessions',
 			'django.contrib.messages',
 			'django.contrib.staticfiles',
-			'app01',
+			'app01',#注册app的名称
 		]
-	c. 执行命令
+	c. 执行命令-创建表结构，更新表结构
 		python manage.py  makemigrations
 		python manage.py  migrate
 		
@@ -281,7 +286,7 @@
 			自增（primary_key=True）
 			
 		字段的参数：
-			null               -> db是否可以为空
+			null               -> db是否可以为空True or False
 			default            -> 默认值
 			primary_key        -> 主键
 			db_column          -> 列名
@@ -305,13 +310,9 @@
 			error_messages    -> 错误信息欠
 			help_text         -> django admin提示
 			validators		  -> django form ,自定义错误信息（欠）
-			
-			
+						
 			创建 Django 用户：python manage.py createsuperuser
-			
-			
-			
-			
+				
 	2. 根据类对数据库表中的数据进行各种操作
 	
 		一对多：
@@ -321,9 +322,8 @@
 				外键字段_id
 			c.
 				models.tb.object.create(name='root', user_group_id=1)
-				
+				#插入数据
 			d. 
-				
 				userlist = models.tb.object.all()
 				for row in userlist:
 					row.id
