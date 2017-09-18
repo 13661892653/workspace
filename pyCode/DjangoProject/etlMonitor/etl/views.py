@@ -23,12 +23,12 @@ def index(request):
         obj=models.JOB_LOG.objects.filter(JOB_SEQ_ID__contains=job_seq_id,
                                           JOB_NM__contains=job_name,
                                           #JOB_TYPE=job_type,
-                                          JOB_STS=job_status,
+                                          JOB_STS__contains=job_status,
                                           DATA_PRD__gt=data_prd_st,
                                           DATA_PRD__lt=data_prd_ed
                                           )
         record=obj.count()
-        print('obj',obj,'record',record)
+        #print('obj',obj,'record',record)
         return render(request, 'index.html',{'data':obj,'record':record})
 def detail_delete(request,nid):
     models.JOB_LOG.objects.filter(JOB_SEQ_ID=nid).delete()

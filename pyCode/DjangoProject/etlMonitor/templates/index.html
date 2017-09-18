@@ -105,6 +105,7 @@
                         <div class="query">
                           <span>作业状态：</span>
                           <select name="job_status">
+                              <option value="">ALL</option>
                               <option value="DONE">DONE</option>
                               <option value="WAITING">WAITING</option>
                               <option value="ERROR">ERROR</option>
@@ -143,7 +144,7 @@
                   <th>日志编号</th>
                   <th>作业名称</th>
                   <th>作业类别</th>
-                  <th>作业状态</th>
+                  <th >作业状态</th>
                   <th>作业批次</th>
                   <th>开始时间</th>
                   <th>结束时间</th>
@@ -156,7 +157,15 @@
                   <td>{{ item.JOB_SEQ_ID }}</td>
                   <td>{{ item.JOB_NM }}</td>
                   <td>{{ item.JOB_NM }}</td>
-                  <td>{{ item.JOB_STS }}</td>
+                    {% if item.JOB_STS == "DONE" %}
+                        <td style="color: #2BD32B">{{ item.JOB_STS }}</td>
+                    {% elif item.JOB_STS == 'WAITING' %}
+                        <td style="color: #0000FF">{{ item.JOB_STS }}</td>
+                    {% elif item.JOB_STS == 'RUNNING' %}
+                        <td style="color: #CCAC1C">{{ item.JOB_STS }}</td>
+                    {% else %}
+                        <td style="color: #FF0000">{{ item.JOB_STS }}</td>
+                    {% endif %}
                   <td>{{ item.DATA_PRD }}</td>
                   <td>{{ item.ACT_ST_DT }}</td>
                   <td>{{ item.ACT_ED_DT }}</td>

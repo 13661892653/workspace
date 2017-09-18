@@ -57,6 +57,13 @@
 				<h1>{{item}}</h1>
 			{% endfor %}
 			
+			{% if var == "done" %}
+				<h1>{{item}}</h1>
+			{% elif var == "waiting" %}
+				<h2>{{item}}</h2>
+			{% else %}
+				<h3>{{item}}</h3>
+			{% endif %}
 			
 			***********  索引用点 **********
 			<h2> {{item.0 }} </h2>
