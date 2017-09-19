@@ -154,12 +154,17 @@
 				# user_type_id = models.IntergerFiled() # 约束，
 				user_type = models.ForeignKey("UserType",to_field='id') # 约束，
 		
-			  name age  user_type_id     
+			  name age  user_type_id //id自动增加)
 			# 张扬  18     3
 			# 张A扬 18     2
 			# 张B扬 18     2
-	
-	
+		双下划綫跨表操作"__"
+			models.Host.object.values('nid','hostname',"b__caption")#返回的字典
+			{% for item in data%}
+				<li> item['nid']</li>
+				<li> item['hostname']</li>
+				<li> item['b__caption']</li>
+			{% endfor %}
 张扬：
 	position:fixed absolute relative
 

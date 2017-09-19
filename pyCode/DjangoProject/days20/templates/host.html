@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Host</title>
+</head>
+<body>
+    <h1>主机用户表</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>主机IP</th>
+            <th>主机名称</th>
+            <th>主机端口</th>
+            <th>业务类型</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for item in data1 %}
+            <tr>
+                <td>{{ item.ip }}</td>
+                <td>{{ item.hostname }}</td>
+                <td>{{ item.port }}</td>
+                <td>{{ item.bussid.caption }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
