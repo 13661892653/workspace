@@ -12,3 +12,7 @@ def business(request):
 def host(request):
     data1=models.Host.objects.all()
     return render(request, 'host.html', {'data1': data1})
+
+
+def app(request):
+    pass

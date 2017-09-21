@@ -11,3 +11,7 @@ class Host(models.Model):
     ip=models.GenericIPAddressField(db_index=True)
     port=models.IntegerField()
     bussid=models.ForeignKey(to="Business",to_field='id')
+
+class App(models.Model):
+    r_host_app=models.ManyToManyField("Host")
+    name=models.CharField(max_length=128)
