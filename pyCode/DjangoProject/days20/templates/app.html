@@ -4,9 +4,69 @@
     <meta charset="UTF-8">
     <title>主机与应用关系查询</title>
     <link rel="stylesheet" href="/static/app.css"/>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.min.css"/>
+    <link href="/static/bootstrap-3.3.7/css/bootstrap-theme.css" rel="stylesheet">
+
 </head>
 <body>
-
+    <div class="body">
+        <h1>主机与应用关系查询</h1>
+        <div>
+            <input type="button"  class='btn-add'  value="新增关系"></input>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>应用名称</th>
+                <th>主机名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+                {% for item in data_app %}
+                <tr id="{{ item.id }}">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>
+                        {% for host in item.r_host_app.all %}
+                            <span class="host_list">{{ host.hostname }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <input type="button" class='edit'    value="编辑"></input>
+                        <input type="button" class='detail'  value="详细"></input>
+                        <input type="button" class='delete'  value="删除"></input>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="shade hide"></div>
+    <div class="add-list hide">
+        <form method="post" action="/app/">
+            <div>
+                <div  class="global-left"><lable>应用名称</lable></div>
+                <div  class="global-left"><input class='form-control app-input' type="text" name="appname"/></div>
+            </div>
+            <div>
+                <lable>主机列表</lable>
+                <select id="host_list" name="hostname" multiple>
+                    {% for host in data_host %}
+                    <option id="{{ host.id }}">{{ host.hostname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <input type="submit" class='btn btn-success glyphicon glyphicon-search' value="提交"></input>
+                <button type="button" class='btn btn-success glyphicon glyphicon-search'>Ajax提交</button>
+                <button type="button" class='btn btn-danger  glyphicon glyphicon-remove'>取消</button>
+            </div>
+        </form>
+    </div>
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script src="/static/app.js"></script>
 </body>
 </html>

@@ -1,4 +1,7 @@
-from django.shortcuts import render
+#coding=utf-8
+from django.shortcuts import render,HttpResponse,redirect
+from django.core import serializers
+import json
 from app01 import models
 # Create your views here.
 def business(request):
@@ -15,4 +18,24 @@ def host(request):
 
 
 def app(request):
-    pass
+    ret = {'status': True, 'error': None, 'data': None}
+    if request.method=='GET':
+        data_app=models.App.objects.all()
+        data_host = models.Host.objects.all()
+        return render(request, 'app.html', {'data_app': data_app,'data_host':data_host})
+    elif request.method=='POST':
+        # try:
+        #     obj = models.App.objects.all()
+        #     ret['data']=obj
+        #     print('11111111111111111', type(ret))
+        #     ret=serializers.serialize("json", ret)
+        # except Exception as e:
+        #     ret['status'] = False
+        #     ret['error'] = '请求错误'
+        # return HttpResponse(json.dumps(ret),content_type='application/json')
+        appname=request.POST.get('appname')
+        hostname=request.POST.getlist('hostname')
+        print(appname,hostname)
+        return redirect('/app')
+    else:
+        pass

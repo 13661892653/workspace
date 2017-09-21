@@ -222,21 +222,26 @@
 				
 			无法直接对第三张表进行操作
 			
-			obj = Application.objects.get(id=1)
+			obj = models.Application.objects.get(id=1)
 			obj.name
 			
 			# 第三张表操作
+			#增加
 			obj.r.add(1)
 			obj.r.add(2)
 			obj.r.add(2,3,4)
 			obj.r.add(*[1,2,3,4])
 			
+			#删除
 			obj.r.remove(1)
 			obj.r.remove(2,4)
 			obj.r.remove(*[1,2,3])
 			
+			#清空
 			obj.r.clear()
 			
+			
+			#更新
 			obj.r.set([3,5,7])
 			
 			# 所有相关的主机对象“列表” QuerySet
