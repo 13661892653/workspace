@@ -36,6 +36,8 @@ def app(request):
         appname=request.POST.get('appname')
         hostname=request.POST.getlist('hostname')
         print(appname,hostname)
+        obj=models.App.objects.create(name=appname)
+        obj.r_host_app.add(*hostname)
         return redirect('/app')
     else:
         pass
