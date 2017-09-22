@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^business/', views.business),
     url(r'^host/', views.host),
     url(r'^app/', views.app),
+    url(r'^app_ajax/', views.app_ajax),
 ]

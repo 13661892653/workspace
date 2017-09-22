@@ -41,3 +41,16 @@ def app(request):
         return redirect('/app')
     else:
         pass
+
+
+def app_ajax(request):
+    if request.method == 'POST':
+        ret = {'status': True, 'error': None, 'data': None}
+        appname = request.POST.get('appname')
+        hostname = request.POST.getlist('hostname')
+        print('打印输出',appname, hostname)
+        obj = models.App.objects.create(name=appname)
+        obj.r_host_app.add(*hostname)
+        return HttpResponse(json.dumps(ret))
+    else:
+        pass

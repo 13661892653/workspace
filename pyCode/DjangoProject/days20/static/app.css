@@ -36,9 +36,10 @@
 }
 .host_list{
     display: inline-block !important;
-    background-color:cornflowerblue !important;
+    /**background-color:cornflowerblue !important;
     color: white !important;
     border: 1px solid #000000 !important;
+    */
 }
 .shade{
     position: fixed;
