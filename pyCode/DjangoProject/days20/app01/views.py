@@ -42,7 +42,6 @@ def app(request):
     else:
         pass
 
-
 def app_ajax(request):
     if request.method == 'POST':
         ret = {'status': True, 'error': None, 'data': None}
@@ -54,3 +53,11 @@ def app_ajax(request):
         return HttpResponse(json.dumps(ret))
     else:
         pass
+
+def app_delete(request,nid):
+    print('nid',nid)
+    print(request.method)
+    obj=models.App.objects.get(id=nid)
+    print('obj',obj)
+    obj.r_host_app.clear()
+    return redirect('/app')

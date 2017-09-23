@@ -6,11 +6,6 @@
     <link rel="stylesheet" href="/static/app.css"/>
     <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.min.css"/>
     <link href="/static/bootstrap-3.3.7/css/bootstrap-theme.css" rel="stylesheet">
-
-    <script type="text/javascript" src="/static/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="/static/app.js"></script>
-    <script type="text/javascript" src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 <body>
     <div class="body">
@@ -24,7 +19,7 @@
                 <th>编号</th>
                 <th>应用名称</th>
                 <th>主机名称</th>
-{#                <th>IP地址</th>#}
+                <th>IP地址</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -38,15 +33,15 @@
                             <span class="host_list">{{ host.hostname }}</span>
                         {% endfor %}
                     </td>
-{#                    <td>#}
-{#                        {% for host in item.r_host_app.all %}#}
-{#                            <span class="host_list">{{ host.ip }}</span>#}
-{#                        {% endfor %}#}
-{#                    </td>#}
+                    <td>
+                        {% for host in item.r_host_app.all %}
+                            <span class="host_list">{{ host.ip }}</span>
+                        {% endfor %}
+                    </td>
                     <td>
                         <input type="button" class='edit'    value="编辑"></input>
                         <input type="button" class='detail'  value="详细"></input>
-                        <input type="button" class='delete'  value="删除"></input>
+                        <a href="/app_delete_{{ item.id }}"><input type="button" class='delete'  value="解除绑定"></input></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -73,14 +68,14 @@
                 </select>
             </div>
             <div>
-{#                <input  type="submit"  class='btn btn-success glyphicon glyphicon-search' value="提交"/>#}
-                <button type="button" onclick="test()" id="btn_ajax_app" class='btn btn-success glyphicon glyphicon-search'>xx</button>
+                <input  type="submit"  class='btn btn-success glyphicon glyphicon-search' value="Form提交"/>
+                <button type="button" id="btn_ajax_app" class='btn btn-success glyphicon glyphicon-search'>异步提交</button>
                 <button type="button" class='btn btn-danger  glyphicon glyphicon-remove'>取消</button>
             </div>
         </form>
     </div>
-    <script>
-
-    </script>
+    <script type="text/javascript" src="/static/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="/static/app.js"></script>
+    <script type="text/javascript" src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

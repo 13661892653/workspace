@@ -5,8 +5,7 @@ class JOB_LOC(models.Model):
     LOC_NM=models.CharField(max_length=64)
     LOC_CAP=models.IntegerField()
     CUR_WRKLD=models.CharField(max_length=11)
-    class Meta:
-        db_table = 'JOB_LOC'
+
 
 class JOB_LOG(models.Model):
     JOB_SEQ_ID=models.AutoField(primary_key=True)
@@ -21,8 +20,7 @@ class JOB_LOG(models.Model):
     RW_RD=models.IntegerField(null=True)
     RW_IST=models.IntegerField(null=True)
     RW_UPT=models.IntegerField(null=True)
-    class Meta:
-        db_table = 'JOB_LOG'
+
 
 class JOB_METADATA(models.Model):
     JOB_ID = models.AutoField(primary_key=True)
@@ -42,13 +40,10 @@ class JOB_METADATA(models.Model):
     NTY_PTY=models.CharField(max_length=128)
     INIT_FLAG=models.CharField(max_length=2)
     PPN_TSTMP=models.CharField(max_length=128)
-    class Meta:
-        db_table = 'JOB_METADATA'
+
 
 class JOB_SEQ(models.Model):
     SEQ_ID=models.AutoField(primary_key=True)
     JOB_NM=models.CharField(max_length=128)
     PRE_JOB=models.CharField(max_length=128)
     SEQ_TY=models.CharField(max_length=128)
-    class Meta:
-        db_table = 'JOB_SEQ'
