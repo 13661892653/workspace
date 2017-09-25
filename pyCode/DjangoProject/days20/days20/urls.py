@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^host/', views.host),
     url(r'^app/', views.app),
     url(r'^app_ajax/', views.app_ajax),
+    url(r'^app_delete_(?P<nid>\d+)', views.app_delete),
 ]

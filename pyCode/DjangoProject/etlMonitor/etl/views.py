@@ -37,3 +37,4 @@ def detail_delete(request,nid):
 def detail_update(request,nid):
     models.JOB_LOG.objects.filter(JOB_SEQ_ID=nid).update(JOB_STS='WAITING')
     return redirect('/etl/index/')
+
