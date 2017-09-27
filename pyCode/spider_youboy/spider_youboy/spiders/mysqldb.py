@@ -29,7 +29,7 @@ def exeBath(conn, cur, sql,data):
 def exeQuery(cur, sql):
     # 查询语句
     cur.execute(sql)
-    result = cur.fetchone()
+    result = cur.fetchall()
     return result
 def connClose(conn, cur):
     # 关闭所有连接
