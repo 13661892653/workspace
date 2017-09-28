@@ -6,16 +6,116 @@ Author:colby_chen
 Date:2017-09-26
 '''
 import copy
-
 from scrapy import Request
 from scrapy.selector import Selector, HtmlXPathSelector
 from scrapy.spiders import CrawlSpider
-from .mysqldb import *
-#import connClose,connDB,exeBath,exeQuery,exeUpdate
+from .mysqldb import connClose,connDB,exeBath,exeQuery,exeUpdate
+import urllib.request
+from lxml import etree
+
+def gethtml(url):
+    page = urllib.request.urlopen(url)
+    html = page.read().decode('utf-8')
+    return html
+
+def getPage(url):
+    '''
+    根据传过来的url，获取所有分页，并返回一个url列表
+    :param url:
+    :return:
+    '''
+    urlList=[]
+    startUrl=url
+    html=gethtml(startUrl)
+    selector=etree.HTML(html)
+    nextPageFlag=selector.xpath('//div[@class="sheng_weizhi_next01"]/node()[last()]/text()')
+    print('nextPageFlag',nextPageFlag)
+    maxPage=None
+    if nextPageFlag.__len__()>0:
+        endurl=url+'10000'
+        endhtml=gethtml(endurl)
+        maxPage = selector.xpath('//div[@class="sheng_weizhi_next01"]/strong/text()')[0]
+        print('maxPage', maxPage)
+        for i in range(int(maxPage)+1):
+            currentUrl=url+str(i)
+            print('currentUrl',currentUrl)
+            urlList.append(currentUrl)
+    else:
+        urlList.append(startUrl)
+    print('urlList...............................................', urlList)
+    return urlList
+
+def enterpriseContentDetail(enterpriseUrl,*args,**kwargs):
+    page = urllib.request.urlopen(enterpriseUrl)
+    html = page.read().decode('utf-8')
+    selector = etree.HTML(html)
+    # enterpriseContent = selector.xpath('//div[@class="txl_content_con"]/ul[1]/')
+    # print('enterpriseContent', enterpriseContent)
+    enterpriseDetail = []
+    enterpriseName = selector.xpath('//div[@class="txl_content_con"]/ul[1]/h1/text()')[0].replace('\t','').replace('\r\n','')
+    contactPerson = selector.xpath('//div[@class="txl_content_con"]/ul[1]/li[2]/text()')[0].replace('\t','').replace('\r\n','')
+    enterpriseFax = selector.xpath('//div[@class="txl_content_con"]/ul[1]/li[3]/text()')[0].replace('\t','').replace('\r\n','')
+    enterprisePhone = selector.xpath('//div[@class="txl_content_con"]/ul[1]/li[4]/text()')[0].replace('\t','').replace('\r\n','')
+    enterpriseMobile = selector.xpath('//div[@class="txl_content_con"]/ul[1]/li[5]/text()')[0].replace('\t','').replace('\r\n','')
+    enterpriseAddr = selector.xpath('//div[@class="txl_content_con"]/ul[1]/li[6]/text()')[0].replace('\t','').replace('\r\n','')
+    enterpriseUrl=enterpriseUrl
+    base=list(*args)
+    enterpriseDetail = [enterpriseName,contactPerson,enterpriseFax,enterprisePhone,enterpriseMobile,enterpriseAddr,enterpriseUrl]
+    if enterpriseDetail.__len__() == 0:
+        enterpriseDetail = ['', '', '', '', '', '',enterpriseUrl]
+    base.extend(enterpriseDetail)
+    return base
+
 class youboySpider(CrawlSpider):
     name="youboySpider"
     redis_key="youboySpider:start_urls"
     start_urls=['http://book.youboy.com/diqu.html']
+    def enterpriseContent(self,response):
+        '''企业列表处理'''
+        select_enterpriseList = Selector(response)
+        items_enterpriseList = response.meta['baseInfo2']
+        print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+        enterpriseList = select_enterpriseList.xpath('//*[@id="content"]/ul/div/strong/a')
+        provinceName = items_enterpriseList['provinceName']
+        cityName = items_enterpriseList['cityName']
+        catagory_1_Name = items_enterpriseList['catagory_1_Name']
+        catagory_1_Url = items_enterpriseList['catagory_1_Url']
+        catagory_2_Name = items_enterpriseList['catagory_2_Name']
+        catagory_2_Url = items_enterpriseList['catagory_2_Url']
+        catagory_3_Name = items_enterpriseList['catagory_3_Name']
+        catagory_3_Url = items_enterpriseList['catagory_3_Url']
+        baseInfo = [provinceName, cityName, catagory_1_Name, catagory_1_Url, catagory_2_Name, catagory_2_Url,
+                    catagory_3_Name, catagory_3_Url]
+        enterpriseContentList = []
+        if enterpriseList.__len__()==0:
+            enterpriseContentList=[(provinceName,cityName,catagory_1_Name,catagory_1_Url,catagory_2_Name,catagory_2_Url,catagory_3_Name,catagory_3_Url,'','','','','','','')]
+        for enterpriseInfo in enterpriseList:
+            enterpriseUrl=enterpriseInfo.xpath('@href').extract()[0]
+            enterpriseContent=enterpriseContentDetail(enterpriseUrl,baseInfo)
+            enterpriseContentList.append(enterpriseContent)
+
+        sql = "replace into youboy_enterprise(provinceName,cityName,catagory_1_Name,catagory_1_Url,catagory_2_Name,catagory_2_Url,catagory_3_Name,catagory_3_Url" \
+              ",enterpriseName,contactPerson,enterpriseFax,enterprisePhone,enterpriseMobile,enterpriseAddr,enterpriseUrl) " \
+              "values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        connMysql = connDB()
+        result = exeBath(connMysql[0], connMysql[1], sql, enterpriseContentList)
+        connClose(connMysql[0], connMysql[1])
+
+    def parse_enterpriseFirstPage(self, response):
+        '''企业列表处理'''
+        select_enterpriseList=Selector(response)
+        baseInfo2 = response.meta['items_catagory_3']
+        firstPage = baseInfo2['catagory_3_Url']
+        pageList=getPage(firstPage)
+        print('pageList...............................................',pageList)
+        for pageurl in pageList:
+            print('pageurl...............................................', pageurl)
+            '''
+            dont_filter=True 多层循环失效加上此参数
+            '''
+            yield Request(pageurl,meta={'baseInfo2':copy.deepcopy(baseInfo2)},callback=self.enterpriseContent,dont_filter=True)
+            print('pageurl22222222...............................................', pageurl)
+
     def parse_catagory_3(self,response):
         '''行业三级类目处理函数'''
         '''行业二级类目处理函数'''
@@ -30,16 +130,9 @@ class youboySpider(CrawlSpider):
             items_catagory_3['catagory_3_Name'] = catagory_3_Name
             items_catagory_3['catagory_3_Url'] = items_catagory_3['url'] + catagory_3_Url
             #print(items_catagory_3['provinceName'],items_catagory_3['cityName'],items_catagory_3['catagory_1_Name'],items_catagory_3['catagory_1_Url'],items_catagory_3['catagory_2_Name'],items_catagory_3['catagory_2_Url'],items_catagory_3['catagory_3_Name'],items_catagory_3['catagory_3_Url'])
-            #yield Request(items_catagory_2['catagory_2_Url'], meta={'items_catagory_2': items_catagory_2},callback=self.parse_catagory_3)
-            data.append((items_catagory_3['provinceName'],items_catagory_3['cityName'],items_catagory_3['catagory_1_Name'],items_catagory_3['catagory_1_Url'],items_catagory_3['catagory_2_Name'],items_catagory_3['catagory_2_Url'],items_catagory_3['catagory_3_Name'],items_catagory_3['catagory_3_Url']))
-
-        '''行业数据批量加载数据入库'''
-        sql = "replace into youboy_enterprise(provinceName,cityName,catagory_1_Name,catagory_1_Url,catagory_2_Name,catagory_2_Url,catagory_3_Name,catagory_3_Url) " \
-              "values(%s,%s,%s,%s,%s,%s,%s,%s)"
-        connMysql = connDB()
-        result = exeBath(connMysql[0], connMysql[1], sql, data)
-        # print('加载记录数:', result)
-        connClose(connMysql[0], connMysql[1])
+            yield Request(items_catagory_3['catagory_3_Url'], meta={'items_catagory_3': copy.deepcopy(items_catagory_3)}
+                          ,callback=self.parse_enterpriseFirstPage)
+            #data.append((items_catagory_3['provinceName'],items_catagory_3['cityName'],items_catagory_3['catagory_1_Name'],items_catagory_3['catagory_1_Url'],items_catagory_3['catagory_2_Name'],items_catagory_3['catagory_2_Url'],items_catagory_3['catagory_3_Name'],items_catagory_3['catagory_3_Url']))
 
     def parse_catagory_2(self, response):
         '''行业二级类目处理函数'''
@@ -58,7 +151,7 @@ class youboySpider(CrawlSpider):
                   ,items_catagory_2['catagory_1_Url']
                   ,items_catagory_2['catagory_2_Name']
                   ,items_catagory_2['catagory_2_Url'])
-            yield Request(items_catagory_2['catagory_2_Url'], meta={'items_catagory_2': items_catagory_2}, callback=self.parse_catagory_3)
+            yield Request(items_catagory_2['catagory_2_Url'], meta={'items_catagory_2': copy.deepcopy(items_catagory_2)}, callback=self.parse_catagory_3)
 
     def parse_catagory_1(self,response):
         '''行业一级类目处理函数'''
@@ -93,7 +186,6 @@ class youboySpider(CrawlSpider):
                 cityName = city.xpath('text()').extract()[0]
                 cityUrl = city.xpath('@href').extract()[0]
                 cityUrl = url + cityUrl
-                #print(provinceName,cityName,cityUrl)
                 diquUrl.append((provinceName,cityName,cityUrl,'Y'))
         #print(diquUrl)
         '''批量加载数据入库'''
@@ -104,12 +196,11 @@ class youboySpider(CrawlSpider):
         #print('加载记录数:', result)
         connClose(connMysql[0], connMysql[1])
 
-
         #############################################################################################################
         #############################################################################################################
         #############################################################################################################
         #读取url，按省市分别处理
-        selectsql = "select provinceName,cityName,url from youboy_diqu where flag='Y'"
+        selectsql = "select provinceName,cityName,url from youboy_diqu where provinceName='上海' and cityName='上海' and flag='Y'"
         connMysql = connDB()
         results = exeQuery(connMysql[1],selectsql)
         # updatesql = "update youboy_diqu set flag='N' where provinceName='%s' and cityName='%s'" %(result[0],result[1])
