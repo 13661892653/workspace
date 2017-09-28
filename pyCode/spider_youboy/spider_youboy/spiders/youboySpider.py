@@ -28,13 +28,13 @@ def getPage(url):
     startUrl=url
     html=gethtml(startUrl)
     selector=etree.HTML(html)
-    nextPageFlag=selector.xpath('//div[@class="sheng_weizhi_next01"]/node()[last()]/text()')
+    nextPageFlag=selector.xpath('//dl[@class="sheng_weizhi_next01"]/a[last()]/text()')
     print('nextPageFlag',nextPageFlag)
     maxPage=None
     if nextPageFlag.__len__()>0:
         endurl=url+'10000'
         endhtml=gethtml(endurl)
-        maxPage = selector.xpath('//div[@class="sheng_weizhi_next01"]/strong/text()')[0]
+        maxPage = selector.xpath('//dl[@class="sheng_weizhi_next01"]/strong/text()')[0]
         print('maxPage', maxPage)
         for i in range(int(maxPage)+1):
             currentUrl=url+str(i)
@@ -107,14 +107,11 @@ class youboySpider(CrawlSpider):
         baseInfo2 = response.meta['items_catagory_3']
         firstPage = baseInfo2['catagory_3_Url']
         pageList=getPage(firstPage)
-        print('pageList...............................................',pageList)
         for pageurl in pageList:
-            print('pageurl...............................................', pageurl)
             '''
             dont_filter=True 多层循环失效加上此参数
             '''
             yield Request(pageurl,meta={'baseInfo2':copy.deepcopy(baseInfo2)},callback=self.enterpriseContent,dont_filter=True)
-            print('pageurl22222222...............................................', pageurl)
 
     def parse_catagory_3(self,response):
         '''行业三级类目处理函数'''
@@ -200,7 +197,7 @@ class youboySpider(CrawlSpider):
         #############################################################################################################
         #############################################################################################################
         #读取url，按省市分别处理
-        selectsql = "select provinceName,cityName,url from youboy_diqu where provinceName='上海' and cityName='上海' and flag='Y'"
+        selectsql = "select provinceName,cityName,url from youboy_diqu where flag='Y'"
         connMysql = connDB()
         results = exeQuery(connMysql[1],selectsql)
         # updatesql = "update youboy_diqu set flag='N' where provinceName='%s' and cityName='%s'" %(result[0],result[1])
