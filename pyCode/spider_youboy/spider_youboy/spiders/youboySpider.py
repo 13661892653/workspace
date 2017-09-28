@@ -36,7 +36,7 @@ def getPage(url):
         endhtml=gethtml(endurl)
         maxPage = selector.xpath('//dl[@class="sheng_weizhi_next01"]/strong/text()')[0]
         print('maxPage', maxPage)
-        for i in range(int(maxPage)+1):
+        for i in range(1,int(maxPage)+1):
             currentUrl=url+str(i)
             print('currentUrl',currentUrl)
             urlList.append(currentUrl)
