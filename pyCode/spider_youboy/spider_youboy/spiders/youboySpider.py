@@ -8,11 +8,12 @@ Date:2017-09-26
 import copy
 from scrapy import Request
 from scrapy.selector import Selector, HtmlXPathSelector
-from scrapy.spiders import CrawlSpider
+#from scrapy.spiders import CrawlSpider
+from scrapy_redis.spiders import RedisSpider
 from .mysqldb import connClose,connDB,exeBath,exeQuery,exeUpdate
 import urllib.request
 from lxml import etree
-
+from ..items import SpiderYouboyItem
 def gethtml(url):
     page = urllib.request.urlopen(url)
     html = page.read().decode('utf-8')
@@ -36,7 +37,7 @@ def getPage(url):
         endhtml=gethtml(endurl)
         maxPage = selector.xpath('//dl[@class="sheng_weizhi_next01"]/strong/text()')[0]
         print('maxPage', maxPage)
-        for i in range(int(maxPage)+1):
+        for i in range(1,int(maxPage)+1):
             currentUrl=url+str(i)
             print('currentUrl',currentUrl)
             urlList.append(currentUrl)
@@ -66,7 +67,7 @@ def enterpriseContentDetail(enterpriseUrl,*args,**kwargs):
     base.extend(enterpriseDetail)
     return base
 
-class youboySpider(CrawlSpider):
+class youboySpider(RedisSpider):
     name="youboySpider"
     redis_key="youboySpider:start_urls"
     start_urls=['http://book.youboy.com/diqu.html']
@@ -88,18 +89,32 @@ class youboySpider(CrawlSpider):
                     catagory_3_Name, catagory_3_Url]
         enterpriseContentList = []
         if enterpriseList.__len__()==0:
-            enterpriseContentList=[(provinceName,cityName,catagory_1_Name,catagory_1_Url,catagory_2_Name,catagory_2_Url,catagory_3_Name,catagory_3_Url,'','','','','','','')]
+            items_enterpriseList['enterpriseName']=''
+            items_enterpriseList['contactPerson']=''
+            items_enterpriseList['enterpriseFax']=''
+            items_enterpriseList['enterprisePhone']=''
+            items_enterpriseList['enterpriseMobile']=''
+            items_enterpriseList['enterpriseAddr']=''
+            items_enterpriseList['enterpriseUrl']=''
+            #enterpriseContentDict=[(provinceName,cityName,catagory_1_Name,catagory_1_Url,catagory_2_Name,catagory_2_Url,catagory_3_Name,catagory_3_Url,'','','','','','','')]
         for enterpriseInfo in enterpriseList:
             enterpriseUrl=enterpriseInfo.xpath('@href').extract()[0]
             enterpriseContent=enterpriseContentDetail(enterpriseUrl,baseInfo)
-            enterpriseContentList.append(enterpriseContent)
+            items_enterpriseList['enterpriseName'] = enterpriseContent[8]
+            items_enterpriseList['contactPerson'] = enterpriseContent[9]
+            items_enterpriseList['enterpriseFax'] = enterpriseContent[10]
+            items_enterpriseList['enterprisePhone'] = enterpriseContent[11]
+            items_enterpriseList['enterpriseMobile'] = enterpriseContent[12]
+            items_enterpriseList['enterpriseAddr'] = enterpriseContent[13]
+            items_enterpriseList['enterpriseUrl'] = enterpriseContent[14]
+            yield items_enterpriseList
 
-        sql = "replace into youboy_enterprise(provinceName,cityName,catagory_1_Name,catagory_1_Url,catagory_2_Name,catagory_2_Url,catagory_3_Name,catagory_3_Url" \
-              ",enterpriseName,contactPerson,enterpriseFax,enterprisePhone,enterpriseMobile,enterpriseAddr,enterpriseUrl) " \
-              "values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        connMysql = connDB()
-        result = exeBath(connMysql[0], connMysql[1], sql, enterpriseContentList)
-        connClose(connMysql[0], connMysql[1])
+        # sql = "replace into youboy_enterprise(provinceName,cityName,catagory_1_Name,catagory_1_Url,catagory_2_Name,catagory_2_Url,catagory_3_Name,catagory_3_Url" \
+        #       ",enterpriseName,contactPerson,enterpriseFax,enterprisePhone,enterpriseMobile,enterpriseAddr,enterpriseUrl) " \
+        #       "values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        # connMysql = connDB()
+        # result = exeBath(connMysql[0], connMysql[1], sql, enterpriseContentList)
+        # connClose(connMysql[0], connMysql[1])
 
     def parse_enterpriseFirstPage(self, response):
         '''企业列表处理'''
@@ -192,12 +207,11 @@ class youboySpider(CrawlSpider):
         result = exeBath(connMysql[0], connMysql[1],sql,diquUrl)
         #print('加载记录数:', result)
         connClose(connMysql[0], connMysql[1])
-
         #############################################################################################################
         #############################################################################################################
         #############################################################################################################
         #读取url，按省市分别处理
-        selectsql = "select provinceName,cityName,url from youboy_diqu where flag='Y'"
+        selectsql = "select provinceName,cityName,url from youboy_diqu where provinceName='上海' and cityName='上海' and flag='Y'"
         connMysql = connDB()
         results = exeQuery(connMysql[1],selectsql)
         # updatesql = "update youboy_diqu set flag='N' where provinceName='%s' and cityName='%s'" %(result[0],result[1])

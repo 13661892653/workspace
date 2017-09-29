@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页操作</title>
+    <link rel="stylesheet" href="/static/css/testPage.css"/>
+</head>
+<body>
+<div>
+    <ul>
+        {% for item in data%}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</div>
+<div >
+   {{ pageStr }}
+</div>
+</body>
+</html>

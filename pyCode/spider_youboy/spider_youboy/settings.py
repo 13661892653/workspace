@@ -17,10 +17,24 @@ NEWSPIDER_MODULE = 'spider_youboy.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'spider_youboy (+http://www.yourdomain.com)'
-
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+ITEM_PIPELINES = {
+   'spider_youboy.pipelines.SpiderYouboyPipeline': 300,
+}
+MONGODB_HOST = "127.0.0.1"
+MONGODB_PORT = 27017
+MONGODB_DB = 'youboy'
+MONGODB_COLL = 'enterprise'
 
+SCHEDULER="scrapy_redis.scheduler.Scheduler"
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+SCHEDULER_PERSIST=True
+SCHEDULER_QUEUE_CLASS="scrapy_redis.queue.SpiderPriorityQueue"
+REDIS_URL = None
+REDIS_HOST='127.0.0.1'
+REDIS_PORT=6379
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -64,9 +78,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    'spider_youboy.pipelines.SpiderYouboyPipeline': 300,
-}
+# ITEM_PIPELINES = {
+#     'spider_youboy.pipelines.SpiderYouboyPipeline': 300,
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

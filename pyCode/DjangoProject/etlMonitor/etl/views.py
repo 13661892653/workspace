@@ -4,6 +4,8 @@ import time
 from django.shortcuts import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.utils.safestring import mark_safe
+
 from etl import models
 def index(request):
     if request.method=='GET':
@@ -37,4 +39,26 @@ def detail_delete(request,nid):
 def detail_update(request,nid):
     models.JOB_LOG.objects.filter(JOB_SEQ_ID=nid).update(JOB_STS='WAITING')
     return redirect('/etl/index/')
+
+def testpage(request):
+    data=[]
+    perSize=10
+    totalCount=100
+    currentPage=request.GET.get('page',1)
+    currentPage=int(currentPage)
+    for i in range(1,totalCount+1):
+        data.append(i)
+    begin=(currentPage-1) * perSize
+    end=currentPage * perSize
+    data=data[begin:end]
+
+    totalPage,yu=divmod(totalCount,perSize)
+
+    pageList=[]
+    for j in range(1,totalPage+1):
+        tempStr='<a class="paging" href="/etl/testpage/?page=%s">%s</a>' %(j,j)
+        pageList.append(tempStr)
+    pageStr=''.join(pageList)
+    pageStr=mark_safe(pageStr)
+    return render(request,'testPage.html',{'data':data,'pageStr':pageStr})
 
