@@ -1,9 +1,12 @@
-.paging{
-    border: 1px solid blue;
-    background-color: blue;
-    color: white;
-    margin: 3px;
-    padding: 2px;
-    width: 10px;
-    height: 10px;
+.activePage{
+    background-color: blue!important;
+    color: white!important;
+}
+.left{
+    float: left!important;
+}
+.jumpToPage{
+    width: 33px!important;
+    height: 33px!important;
+    display: inline-block!important;
 }

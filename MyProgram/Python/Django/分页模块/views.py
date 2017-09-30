@@ -47,12 +47,9 @@ def detail_update(request, nid):
 
 def testpage(request):
     pageCodeNum=10
+    perSize = 20
     totalCount = 1000
     currentPage = request.GET.get('page', 1)
-    perSize = request.COOKIES.get("per_page_count")
-    print('111,perSize', perSize)
-    perSize=int(perSize)
-    print('222,perSize',perSize)
     currentPage = int(currentPage)
     pageObj=paging.Page(currentPage, totalCount, perSize,pageCodeNum)
     data = []
