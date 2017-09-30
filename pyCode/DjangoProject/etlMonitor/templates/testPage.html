@@ -17,28 +17,33 @@
 <div >
     <div aria-label="Page navigation">
         <div class="left">
+            <select class="jumpToPage" id='selid' onchange="onChangeFun(this);">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+            </select>
             <ul class="pagination">
             {{ pageStr }}
             </ul>
         </div>
     </div>
-    <select id='selid' onchange="onChangeFun(this)">
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-    </select>
+
 </div>
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/jquery.cookie.js"></script>
 <script>
      $(function(){
-                var v = $.cookie('per_page_count', {'path': "/etl/testpage/"});
-                $('#selid').select.val(v);
+                var v_per_page_count= $.cookie('per_page_count');
+                if (v_per_page_count){
+                    $('#selid').val(v_per_page_count);
+                }
         });
-    function onChangeFun(ths) {
+    function onChangeFun(ths){
         var selValue=$(ths).val();
-        console.log(selValue);
-        $.cookie('per_page_count',selValue,{'path':'/etl/testpage/'});
+        $.cookie('per_page_count',selValue,{expires: 7,path: '/' });
+        console.log($.cookie('per_page_count'));
         location.reload();
     }
 </script>

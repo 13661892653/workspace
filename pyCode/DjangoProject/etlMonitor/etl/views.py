@@ -1,3 +1,4 @@
+#coding=utf-8
 from django.shortcuts import render
 import time
 # Create your views here.
@@ -49,7 +50,8 @@ def testpage(request):
     pageCodeNum=10
     totalCount = 1000
     currentPage = request.GET.get('page', 1)
-    perSize = request.COOKIES.get("per_page_count")
+    perSize = request.COOKIES.get("per_page_count",20)
+    #re.set_cookie(key, value, ...)
     print('111,perSize', perSize)
     perSize=int(perSize)
     print('222,perSize',perSize)
