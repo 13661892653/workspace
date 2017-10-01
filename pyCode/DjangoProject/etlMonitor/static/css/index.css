@@ -9,3 +9,20 @@
 .col_red{
     color:red !important;
 }
+.activePage{
+    background-color: blue!important;
+    color: white!important;
+}
+.left{
+    float: left!important;
+}
+.jumpToPage{
+    width: 45px!important;
+    height: 33px!important;
+    display: inline-block!important;
+}
+.selectPage{
+    width: 100px!important;
+    height: 33px!important;
+    display: inline-block!important;
+}
