@@ -11,7 +11,7 @@
     <link href="/static/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
     <link href="/static/bootstrap-3.3.7/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="/static/bootstrap-3.3.7/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="/static/css/index.css" rel="stylesheet">
+    <link href="/static/css/page.css" rel="stylesheet">
     <title>ETL调度监控系统</title>
     <!-- Bootstrap core CSS -->
     <link href="/static/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -87,7 +87,7 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">查询条件</h1>
-          <form method="GET" action="/etl/index/">
+          <form method="POST" action="/etl/queryjob/">
           <div class="row placeholders query_boder">
                   <div>
                         <div class="query">
@@ -105,11 +105,9 @@
                         <div class="query">
                           <span>作业状态：</span>
                           <select name="job_status">
-                              <option value="ALL">ALL</option>
-                              <option value="DONE">DONE</option>
-                              <option value="WAITING">WAITING</option>
-                              <option value="ERROR">ERROR</option>
-                              <option value="RUNNING">RUNNING</option>
+                              {% for item in jobstatusList %}
+                              <option value="{{ item.LOC_NM }}">{{ item.LOC_NM }}</option>
+                              {% endfor%}
                           </select>
                         </div>
                       <div style="clear: both;"></div>
@@ -212,7 +210,7 @@
     <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
     <script src="/static/js/jquery.cookie.js"></script>
     <script type="text/javascript">
-        $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+        $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd'});
          $(function(){
                 var v_per_page_count= $.cookie('per_page_count');
                 if (v_per_page_count){

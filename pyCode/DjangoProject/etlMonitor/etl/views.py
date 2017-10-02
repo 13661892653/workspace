@@ -9,56 +9,74 @@ from django.utils.safestring import mark_safe
 from etl import models
 from comm import paging
 
-def index(request):
-    pageCodeNum = 10
-    totalCount = 1000
-    currentPage = request.GET.get('page', 1)
-    perSize = request.COOKIES.get("per_page_count", 20)
-    print('111,perSize', perSize)
-    perSize = int(perSize)
-    print('222,perSize', perSize)
-    currentPage = int(currentPage)
+def queryjob(request,pid):
 
-    job_seq_id = request.POST.get('job_seq_id')
-    job_name = request.POST.get('job_name')
-    print(job_seq_id,job_name)
-    job_type = request.POST.get('job_type')
-    print(request.POST.getlist('job_status'))
-    job_status = request.POST.getlist('job_status')
-    data_prd_st = request.POST.get('data_prd_st')
-    data_prd_ed = request.POST.get('data_prd_ed')
-    if data_prd_st == '':
-        data_prd_st = '0000-01-01'
-    if data_prd_ed == '':
-        data_prd_ed = '2099-01-01'
-    totalCount = models.JOB_LOG.objects.filter(JOB_SEQ_ID__contains=job_seq_id,
-                                        JOB_NM__contains=job_name,
-                                        # JOB_TYPE=job_type,
-                                        JOB_STS__contains=job_status,
-                                        DATA_PRD__gt=data_prd_st,
-                                        DATA_PRD__lt=data_prd_ed
-                                        ).count()
-    pageObj = paging.Page(currentPage, totalCount, perSize, pageCodeNum)
-    data = models.JOB_LOG.objects.filter(JOB_SEQ_ID__contains=job_seq_id,
-                                        JOB_NM__contains=job_name,
-                                        # JOB_TYPE=job_type,
-                                        JOB_STS__contains=job_status,
-                                        DATA_PRD__gt=data_prd_st,
-                                        DATA_PRD__lt=data_prd_ed
-                                        )[pageObj.beginCount:pageObj.endCount]
-    pageStr = pageObj.pageStr("/etl/index/")
-    # print('obj',obj,'record',record)
-    return render(request, 'index.html', {'data': data, 'record': totalCount,'pageStr': pageStr})
+    if request.method=='GET':
+        pageCodeNum = 10
+        currentPage = request.GET.get('page', 1)
+        perSize = request.COOKIES.get("per_page_count", 20)
+        perSize = int(perSize)
+        currentPage = int(currentPage)
+        if currentPage <= 0:
+            currentPage = 1
+        totalCount = models.JOB_LOG.objects.all().count()
+        pageObj = paging.Page(currentPage, totalCount, perSize, pageCodeNum)
+        data = models.JOB_LOG.objects.all()[pageObj.beginCount:pageObj.endCount]
+        pageStr = pageObj.pageStr("/etl/queryjob/")
+        jobstatusList = models.JOB_LOC.objects.all()
+        return render(request, 'queryjob.html', {'data': data,
+                                                 'record': totalCount,
+                                                 'pageStr': pageStr,
+                                                 'jobstatusList':jobstatusList
+                                                 })
+    if request.method=='POST':
+        pageCodeNum = 10
+        currentPage = request.GET.get('page', 1)
+        perSize = request.COOKIES.get("per_page_count", 20)
+        perSize = int(perSize)
+        currentPage = int(currentPage)
+        if currentPage <= 0:
+            currentPage = 1
+        job_seq_id = request.POST.get('job_seq_id')
+        job_name = request.POST.get('job_name')
+        job_status = request.POST.getlist('job_status')[0]
+        data_prd_st = request.POST.get('data_prd_st')
+        data_prd_ed = request.POST.get('data_prd_ed')
+        if data_prd_st == '':
+            data_prd_st = '0000-01-01'
+        if data_prd_ed == '':
+            data_prd_ed = '2099-01-01'
+        jobstatusList = models.JOB_LOC.objects.all()
+        print('job_status',job_status)
+        totalCount = models.JOB_LOG.objects.filter(JOB_SEQ_ID__contains=job_seq_id,
+                                            JOB_NM__contains=job_name,
+                                            JOB_STS__contains=job_status,
+                                            DATA_PRD__gt=data_prd_st,
+                                            DATA_PRD__lt=data_prd_ed
+                                            ).count()
+        pageObj = paging.Page(currentPage, totalCount, perSize, pageCodeNum)
+        data = models.JOB_LOG.objects.filter(JOB_SEQ_ID__contains=job_seq_id,
+                                            JOB_NM__contains=job_name,
+                                            JOB_STS__contains=job_status,
+                                            DATA_PRD__gt=data_prd_st,
+                                            DATA_PRD__lt=data_prd_ed
+                                            )[pageObj.beginCount:pageObj.endCount]
+        pageStr = pageObj.pageStr("/etl/queryjob/")
+        return render(request, 'queryjob.html', {'data': data,
+                                                 'record': totalCount,
+                                                 'pageStr': pageStr,
+                                                 'jobstatusList': jobstatusList
+                                                 })
 
 
 def detail_delete(request, nid):
     models.JOB_LOG.objects.filter(JOB_SEQ_ID=nid).delete()
-    return redirect('/etl/index/')
+    return redirect('/etl/queryjob/')
 
 
 def detail_update(request, nid):
     models.JOB_LOG.objects.filter(JOB_SEQ_ID=nid).update(JOB_STS='WAITING')
-    return redirect('/etl/index/')
+    return redirect('/etl/queryjob/')
 
 
 def testpage(request):
@@ -66,10 +84,7 @@ def testpage(request):
     totalCount = 1000
     currentPage = request.GET.get('page', 1)
     perSize = request.COOKIES.get("per_page_count",20)
-    #re.set_cookie(key, value, ...)
-    print('111,perSize', perSize)
     perSize=int(perSize)
-    print('222,perSize',perSize)
     currentPage = int(currentPage)
     pageObj=paging.Page(currentPage, totalCount, perSize,pageCodeNum)
     data = []
