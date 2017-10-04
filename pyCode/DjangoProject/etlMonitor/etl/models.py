@@ -47,3 +47,11 @@ class JOB_SEQ(models.Model):
     JOB_NM=models.CharField(max_length=128)
     PRE_JOB=models.CharField(max_length=128)
     SEQ_TY=models.CharField(max_length=128)
+
+class USER(models.Model):
+    USERNAME=models.CharField(max_length=25)
+    PASSWORD=models.CharField(max_length=16)
+    EMAIL = models.CharField(max_length=64)
+    MOBILE = models.CharField(max_length=11,default='00000000000')
+    REG_DATE=models.CharField(max_length=30)
+    LOGIN_DATE = models.CharField(max_length=30)

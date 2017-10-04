@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>信隆行ETL管理登录界面</title>
+    <link href="/static/css/alogin.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<form id="form1" action="/etl/login/" method="POST">
+    <div class="Main">
+        <ul>
+            <li class="top"></li>
+            <li class="top2"></li>
+            <li class="topA"></li>
+            <li class="topB">
+                <span>
+                    <img src="/static/images/yirong_logo.png" alt="" style=""/>
+                </span>
+            </li>
+            <li class="topC"></li>
+            <li class="topD">
+                <ul class="login">
+                    <li><span class="spn-left">用户名:</span>
+                        <span class="left">
+                            <input id="Text1" name='username' type="text" class="txt" placeholder="输入用户名"/>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="spn-left">密&nbsp;&nbsp;&nbsp;&nbsp;码:</span>
+                        <span class="left">
+                            <input id="Text2" name='password' type="password" class="txt" placeholder="输入密码"/>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="spn-left">验证码:</span>
+                        <span class="left">
+                            <input id="Text3" disabled type="text" class="txtCode" placeholder="功能暂未开放"/>
+                        </span>
+                    </li>
+
+                    <li>
+                        <span class="left">记住我：</span>
+                        <input id="Checkbox1" name="iscookie" value='1' type="checkbox"/>
+                    </li>
+                </ul>
+            </li>
+            <li class="topE"></li>
+            <li class="middle_A"></li>
+            <li class="middle_B"></li>
+            <li class="middle_C">
+                <button type="button" id="id_login" class="btn btn-primary glyphicon glyphicon-log-in"> 登录</button>
+                <span><a href="/etl/register/">去注册</a></span>
+                <span class="error_msg">{{ message }}</span>
+            </li>
+            <li class="middle_D"></li>
+            <li class="bottom_A"></li>
+            <li class="bottom_B"></li>
+        </ul>
+    </div>
+</form>
+<script src="/static/js/jquery.min.js"></script>
+<script>
+    $('#id_login').click(function(){
+        $('#form1').submit();
+    })
+</script>
+</body>
+</html>
