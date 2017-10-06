@@ -28,6 +28,7 @@
     	<!--注册模块-->
     	<div class="register">
             <form method="POST" action="/etl/register/">
+                {% csrf_token %}
     		<!--用户名-->
     		<div class="register-box">
     			<!--表单项-->
