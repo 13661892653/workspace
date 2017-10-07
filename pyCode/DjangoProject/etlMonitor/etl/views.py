@@ -50,6 +50,8 @@ def queryjob(request,pid):
                 data_prd_ed = '2099-01-01'
             jobstatusList = models.JOB_LOC.objects.all()
             print('job_status',job_status)
+            if job_status=='ALL':
+                job_status=''
             totalCount = models.JOB_LOG.objects.filter(JOB_SEQ_ID__contains=job_seq_id,
                                                 JOB_NM__contains=job_name,
                                                 JOB_STS__contains=job_status,
