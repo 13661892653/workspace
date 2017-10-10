@@ -55,3 +55,13 @@ class USER(models.Model):
     MOBILE = models.CharField(max_length=11,default='00000000000')
     REG_DATE=models.CharField(max_length=30)
     LOGIN_DATE = models.CharField(max_length=30)
+
+#################################################
+class UserType(models.Model):
+    caption=models.CharField(max_length=32)
+
+
+class UserInfo(models.Model):
+    username=models.CharField(max_length=32)
+    email=models.EmailField()
+    userType=models.ForeignKey(to='UserType',to_field='id')

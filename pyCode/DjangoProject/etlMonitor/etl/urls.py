@@ -5,6 +5,7 @@ __author__ = 'colby'
 from django.conf.urls import url,include
 from etl import views
 from etl import logins
+from etl import days24
 urlpatterns = [
     #登录注册logins
     url(r'^register/', logins.register),
@@ -14,4 +15,6 @@ urlpatterns = [
     url(r'^testpage/', views.testpage),
     url(r'^index_detail-delete-(?P<nid>\d+)', views.detail_delete),
     url(r'^index_detail-update-(?P<nid>\d+)', views.detail_update),
+    url(r'^days24/', days24.days24),
+
 ]
