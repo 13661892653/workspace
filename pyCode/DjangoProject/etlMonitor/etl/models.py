@@ -62,6 +62,6 @@ class UserType(models.Model):
 
 
 class UserInfo(models.Model):
-    username=models.CharField(max_length=32)
-    email=models.EmailField()
-    userType=models.ForeignKey(to='UserType',to_field='id')
+    username=models.CharField(verbose_name='用户名',max_length=32)
+    email=models.EmailField(verbose_name='邮箱')
+    userType=models.ForeignKey(verbose_name='用户类型',to='UserType',to_field='id')
