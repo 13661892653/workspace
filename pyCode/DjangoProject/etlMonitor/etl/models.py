@@ -56,7 +56,7 @@ class USER(models.Model):
     REG_DATE=models.CharField(max_length=30)
     LOGIN_DATE = models.CharField(max_length=30)
 
-#################################################
+################################################
 class UserType(models.Model):
     caption=models.CharField(max_length=32)
 
@@ -64,4 +64,4 @@ class UserType(models.Model):
 class UserInfo(models.Model):
     username=models.CharField(verbose_name='用户名',max_length=32)
     email=models.EmailField(verbose_name='邮箱')
-    userType=models.ForeignKey(verbose_name='用户类型',to='UserType',to_field='id')
+    #usertype=models.ForeignKey(verbose_name='用户类型',to='UserType',to_field='id')
