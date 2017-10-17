@@ -5,12 +5,26 @@
     <title>days24</title>
 </head>
 <body>
-<h1>hello world!</h1>
+{#<form action="/etl/days24/" method="POST">#}
+{#    {% csrf_token %}#}
+{#    {{ obj.as_p }}#}
+{#    <input type="submit" value="提交">#}
+{#</form>#}
+<input type="text" id="sendMes">
+<input type="button" id ='sendAc' value="发送IF请求">
+<iframe id='if1' style="width: 1024px;height: 768px;"></iframe>
 
-<form action="/etl/days24/" method="POST">
-    {% csrf_token %}
-    {{ obj.as_p }}
-    <input type="submit" value="提交">
-</form>
+<hr>
+<input type="file">
+<p></p>
+<input type="button" value="上传文件">
+<hr>
+<script src="/static/js/jquery.min.js"></script>
+<script>
+    $('#sendAc').click(function(){
+        var url=$('#sendMes').val();
+        $('#if1').attr('src',url);
+    })
+</script>
 </body>
 </html>
