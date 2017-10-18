@@ -16,5 +16,8 @@ urlpatterns = [
     url(r'^index_detail-delete-(?P<nid>\d+)', views.detail_delete),
     url(r'^index_detail-update-(?P<nid>\d+)', views.detail_update),
     url(r'^days24/', days24.days24),
-
+    url(r'^upload/', days24.upload),
+    url(r'^upload_file/', days24.upload_file),
+    #测试
+    url(r'^iframetest/', days24.iframetest),
 ]

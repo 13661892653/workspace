@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iFrame测试</title>
+</head>
+<body>
+    <form method="POST" action="/etl/iframetest/" target="ifr1">
+        {% csrf_token %}
+        <iframe name="ifr1"></iframe>
+        <input type="text" name="username">
+        <input type="text" name="email">
+        <input type="submit" value="提交iframe">
+    </form>
+</body>
+</html>

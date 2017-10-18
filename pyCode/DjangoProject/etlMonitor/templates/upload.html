@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传演练</title>
+    <style>
+        .sendf{
+            width: 100px;
+            height: 25px;
+            display: inline-block;
+            background-color: #0000FF;
+            color: white;
+            z-index: 10;
+            opacity: 0;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .upload{
+            width: 100px;
+            height: 25px;
+            z-index: 9;
+            text-align: center;
+            background-color: #006dcc;
+            color: white;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+        }
+        .upload:hover{
+            background-color:#0000FF;
+        }
+        .div1{
+            position: relative;
+        }
+        .div2{
+            position: absolute;
+            top: 75px;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <input type="file" class='sendf' id='idsend' name="sendFile">
+    <a class="upload">文件上传</a>
+</div>
+<div class="div2">
+    <input type="button" value="提交" onclick="submitXHR();">
+</div>
+{#    <script src="/static/js/jquery.min.js"></script>#}
+    <script>
+        function submitXHR(){
+            var fileObj=document.getElementById('idsend').files[0];
+            var fd=new FormData();
+            fd.append('sendFile',fileObj);
+            var xhr=new XMLHttpRequest();
+            xhr.open('POST','/etl/upload_file/',true);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    var obj = JSON.parse(xhr.responseText);
+                    console.log(obj);
+                }
+            };
+            xhr.send(fd);
+        }
+    </script>
+</body>
+</html>
