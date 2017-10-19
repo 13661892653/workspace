@@ -7,7 +7,7 @@ from django.shortcuts import render,redirect,HttpResponse
 from django import forms
 from django.forms import fields
 from etl import models
-
+import json
 class UserInfoModelForm(forms.ModelForm):
 
     class Meta:
@@ -36,3 +36,31 @@ def days24(request):
         obj.is_valid()
         obj.errors
         return render(request, 'days24.html', {'obj': obj})
+def iframetest(request):
+    username=request.POST.get('username')
+    email = request.POST.get('email')
+    print(username,email)
+    return render(request,'iframetest.html')
+
+def upload(request):
+    '''
+    上传页面载入
+    :param request:
+    :return:
+    '''
+    return render(request,'upload.html')
+
+def upload_file(request):
+    '''
+    文件上传处理
+    :param request:
+    :return:
+    '''
+    fileobj=request.FILES.get('sendFile')
+    print(type(fileobj))
+    #指定文件的上传路径
+    with open('static\\upload\\'+fileobj.name,'wb') as f:
+        for item in fileobj.chunks():
+            f.write(item)
+    ret={'code':True,'data':'test'}
+    return HttpResponse(json.dumps(ret))
