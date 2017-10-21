@@ -42,6 +42,10 @@
             position: absolute;
             top: 75px;
         }
+        .div3{
+            position: absolute;
+            top: 150px;
+        }
     </style>
 </head>
 <body>
@@ -51,8 +55,19 @@
 </div>
 <div class="div2">
     <input type="button" value="提交" onclick="submitXHR();">
+    <input type="button" value="jQ提交" onclick="submitJQ();">
 </div>
-{#    <script src="/static/js/jquery.min.js"></script>#}
+<hr/>
+<div class="div3">
+    <form method="POST" action="/etl/upload_file/" enctype="multipart/form-data" target="ifm1">
+        {% csrf_token %}
+        <iframe id="ifm1" name="ifm1" style="display: none"></iframe>
+        <input type="file" id="idfile" name="sendFile">
+        <input type="submit" onclick="submitIF();" value="IF提交">
+    </form>
+</div>
+
+    <script src="/static/js/jquery.min.js"></script>
     <script>
         function submitXHR(){
             var fileObj=document.getElementById('idsend').files[0];
@@ -67,6 +82,30 @@
                 }
             };
             xhr.send(fd);
+        }
+
+        function submitJQ(){
+            var fileObj=document.getElementById('idsend').files[0];
+            var fd=new FormData();
+            fd.append('sendFile',fileObj);
+
+            $.ajax({
+                url:'/etl/upload_file/',
+                type:'POST',
+                data:fd,
+                processData:false,
+                contentType:false,
+                success:function (args) {
+                    console.log(args);
+                }
+            });
+        }
+        function submitIF(){
+            $('#ifm1').load(function(){
+                var text = $('#ifm1').contents().find('body').text();
+                var obj = JSON.parse(text);
+                console.log(obj);
+            })
         }
     </script>
 </body>
