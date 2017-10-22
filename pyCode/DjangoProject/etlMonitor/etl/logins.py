@@ -1,12 +1,17 @@
 #coding=utf-8
 #PythonVer:3.5.2
+from io import BytesIO
+
 __Author__='colby chen'
+
 from django.shortcuts import render,redirect,HttpResponse
 from django import forms
 from django.forms import widgets
 from django.forms import fields
 from etl import models
 import datetime,time
+from utils import checkCode
+
 class FormVal(forms.Form):
     username=fields.CharField(error_messages={'required':'用户名不能为空'},
                               widget=widgets.TextInput(attrs={'id': 'username'}))
@@ -25,23 +30,26 @@ class FormVal(forms.Form):
                               widget=widgets.TextInput(attrs={'id': 'mobile'}))
 
 def login(request):
+    checkCodeFlag=False
     if request.method == 'GET':
         return render(request, 'login.html')
     if request.method == 'POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
+        checkcode = request.POST.get('checkcode')
         iscookie=request.POST.get('iscookie')
         print(username,password,iscookie)
         loginResult=models.USER.objects.filter(USERNAME=username,PASSWORD=password).first()
-        print(loginResult)
-        if loginResult:
+        if checkcode.upper() == request.session['CheckCode'].upper():
+            checkCodeFlag=True
+        if loginResult and checkCodeFlag:
             request.session['username'] = username
             request.session['is_login'] = True
             if request.POST.get('iscookie', None) == '1':
                 request.session.set_expiry(1209600)
             return redirect('/etl/queryjob')
         else:
-            message='用户或密码错误'
+            message='密码或验证码错误'
             return render(request, 'login.html', {'message': message})
 
 def register(request):
@@ -92,3 +100,11 @@ def register(request):
             #print(obj.errors)
             return render(request, 'register.html', {'obj': obj})
         return render(request, 'register.html')
+
+def checkCodeV(request):
+    stream = BytesIO()
+    img, code = checkCode.create_validate_code()
+    print('img, code',img, code)
+    img.save(stream, 'PNG')
+    request.session['CheckCode'] = code
+    return HttpResponse(stream.getvalue())

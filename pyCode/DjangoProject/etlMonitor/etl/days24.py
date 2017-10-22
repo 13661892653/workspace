@@ -8,6 +8,7 @@ from django import forms
 from django.forms import fields
 from etl import models
 import json
+import os
 class UserInfoModelForm(forms.ModelForm):
 
     class Meta:
@@ -58,9 +59,11 @@ def upload_file(request):
     '''
     fileobj=request.FILES.get('sendFile')
     print(type(fileobj))
+    imagePath=os.path.join('static/upload/',fileobj.name)
+    print('imagePath',imagePath)
     #指定文件的上传路径
-    with open('static\\upload\\'+fileobj.name,'wb') as f:
+    with open(imagePath,'wb') as f:
         for item in fileobj.chunks():
             f.write(item)
-    ret={'code':True,'data':'test'}
+    ret={'code':True,'data':imagePath}
     return HttpResponse(json.dumps(ret))

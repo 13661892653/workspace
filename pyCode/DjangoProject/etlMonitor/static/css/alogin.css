@@ -199,3 +199,6 @@ ul
 .error_msg{
 	color: red!important;
 }
+.idCheck{
+	z-index: 1000!important;
+}

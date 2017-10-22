@@ -15,7 +15,7 @@
             <li class="topA"></li>
             <li class="topB">
                 <span>
-                    <img src="/static/images/yirong_logo.png" alt="" style=""/>
+                    <img src="/static/images/yirong_logo1.png" alt="" style=""/>
                 </span>
             </li>
             <li class="topC"></li>
@@ -35,7 +35,11 @@
                     <li>
                         <span class="spn-left">验证码:</span>
                         <span class="left">
-                            <input id="Text3" disabled type="text" class="txtCode" placeholder="功能暂未开放"/>
+                            <input id="Text3" type="text" class="txtCode" name="checkcode"/>
+                        </span>
+                        <span class="left">
+                            <img src="/etl/check_code.html" onclick="changeCheckCode(this);">
+{#                              <img src="/static/images/20130809170025.png" class="idCheck">#}
                         </span>
                     </li>
 
@@ -63,7 +67,11 @@
 <script>
     $('#id_login').click(function(){
         $('#form1').submit();
-    })
+    });
+    function changeCheckCode(ths){
+            ths.src = ths.src +  '?';
+            console.log('success!');
+        }
 </script>
 </body>
 </html>

@@ -46,6 +46,12 @@
             position: absolute;
             top: 150px;
         }
+        .div4{
+            position: absolute;
+            top: 350px;
+            height:200px;
+            width:200px;
+        }
     </style>
 </head>
 <body>
@@ -66,7 +72,8 @@
         <input type="submit" onclick="submitIF();" value="IF提交">
     </form>
 </div>
-
+<div id="div4">
+</div>
     <script src="/static/js/jquery.min.js"></script>
     <script>
         function submitXHR(){
@@ -96,7 +103,14 @@
                 processData:false,
                 contentType:false,
                 success:function (args) {
+                    args=JSON.parse(args);
                     console.log(args);
+                    console.log(args['data']);
+                    $('#div4').empty();
+                    var imageTag=document.createElement('img');
+                    imageTag.src='/' + args.data;
+                    console.log(imageTag);
+                    $('#div4').append(imageTag);
                 }
             });
         }

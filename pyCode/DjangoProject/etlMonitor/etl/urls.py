@@ -10,6 +10,8 @@ urlpatterns = [
     #登录注册logins
     url(r'^register/', logins.register),
     url(r'^login/', logins.login),
+    url(r'^check_code.html', logins.checkCodeV),
+
     #作业日志查看
     url(r'^queryjob/(?P<pid>\d*)', views.queryjob),
     url(r'^testpage/', views.testpage),
