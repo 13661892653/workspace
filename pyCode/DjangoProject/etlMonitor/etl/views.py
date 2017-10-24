@@ -9,7 +9,7 @@ from django.utils.safestring import mark_safe
 from etl import models
 from comm import paging
 
-def queryjob(request,pid):
+def job_query(request,pid):
     if request.session.get('is_login'):
         if request.method=='GET':
             pageCodeNum = 10
@@ -22,15 +22,15 @@ def queryjob(request,pid):
             totalCount = models.JOB_LOG.objects.all().count()
             pageObj = paging.Page(currentPage, totalCount, perSize, pageCodeNum)
             data = models.JOB_LOG.objects.all()[pageObj.beginCount:pageObj.endCount]
-            pageStr = pageObj.pageStr("/etl/queryjob/")
+            pageStr = pageObj.pageStr("/etl/job_query/")
             jobstatusList = models.JOB_LOC.objects.all()
             username=request.session.get('username')
-            return render(request, 'queryjob.html', {'data': data,
+            return render(request, 'job_query.html', {'data': data,
                                                      'record': totalCount,
                                                      'pageStr': pageStr,
                                                      'jobstatusList':jobstatusList,
                                                      'username':username
-                                                     })
+                                                      })
         if request.method=='POST':
             pageCodeNum = 10
             currentPage = request.GET.get('page', 1)
@@ -65,24 +65,24 @@ def queryjob(request,pid):
                                                 DATA_PRD__gt=data_prd_st,
                                                 DATA_PRD__lt=data_prd_ed
                                                 )[pageObj.beginCount:pageObj.endCount]
-            pageStr = pageObj.pageStr("/etl/queryjob/")
+            pageStr = pageObj.pageStr("/etl/job_query/")
             username = request.session.get('username')
-            return render(request, 'queryjob.html', {'data': data,
+            return render(request, 'job_query.html', {'data': data,
                                                      'record': totalCount,
                                                      'pageStr': pageStr,
                                                      'jobstatusList': jobstatusList,
                                                      'username':username
-                                                     })
+                                                      })
     else:
         return redirect('/etl/login/')
 def detail_delete(request, nid):
     models.JOB_LOG.objects.filter(JOB_SEQ_ID=nid).delete()
-    return redirect('/etl/queryjob/')
+    return redirect('/etl/job_query/')
 
 
 def detail_update(request, nid):
     models.JOB_LOG.objects.filter(JOB_SEQ_ID=nid).update(JOB_STS='WAITING')
-    return redirect('/etl/queryjob/')
+    return redirect('/etl/job_query/')
 
 
 def testpage(request):

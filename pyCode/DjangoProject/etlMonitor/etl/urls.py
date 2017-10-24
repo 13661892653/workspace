@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^check_code.html', logins.checkCodeV),
 
     #作业日志查看
-    url(r'^queryjob/(?P<pid>\d*)', views.queryjob),
+    url(r'^job_query/(?P<pid>\d*)', views.job_query),
     url(r'^testpage/', views.testpage),
     url(r'^index_detail-delete-(?P<nid>\d+)', views.detail_delete),
     url(r'^index_detail-update-(?P<nid>\d+)', views.detail_update),
