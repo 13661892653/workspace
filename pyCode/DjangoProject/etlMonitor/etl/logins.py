@@ -47,7 +47,7 @@ def login(request):
             request.session['is_login'] = True
             if request.POST.get('iscookie', None) == '1':
                 request.session.set_expiry(1209600)
-            return redirect('/etl/queryjob')
+            return redirect('/etl/job_query')
         else:
             message='密码或验证码错误'
             return render(request, 'login.html', {'message': message})
