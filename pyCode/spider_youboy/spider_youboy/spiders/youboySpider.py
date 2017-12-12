@@ -163,7 +163,9 @@ class youboySpider(RedisSpider):
                   ,items_catagory_2['catagory_1_Url']
                   ,items_catagory_2['catagory_2_Name']
                   ,items_catagory_2['catagory_2_Url'])
-            yield Request(items_catagory_2['catagory_2_Url'], meta={'items_catagory_2': copy.deepcopy(items_catagory_2)}, callback=self.parse_catagory_3)
+            yield Request(items_catagory_2['catagory_2_Url'],
+                          meta={'items_catagory_2': copy.deepcopy(items_catagory_2)},
+                          callback=self.parse_catagory_3)
 
     def parse_catagory_1(self,response):
         '''行业一级类目处理函数'''
