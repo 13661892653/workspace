@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 #superuser:admin password:rootroot
 #
-class userProfile(AbstractUser):
+class UserProfile(AbstractUser):
     nick_name=models.CharField(max_length=50,verbose_name="昵称",default=0)
     birday=models.DateField(verbose_name="生日",null=True,blank=True)
     gender=models.CharField(max_length=8,choices=(("male","男"),("female","女")),default="female")

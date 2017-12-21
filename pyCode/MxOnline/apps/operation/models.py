@@ -2,7 +2,7 @@
 from django.db import models
 from datetime import datetime
 
-from users.models import userProfile
+from users.models import UserProfile
 from courses.models import Course
 
 # Create your models here.
@@ -24,7 +24,7 @@ class UserAsk(models.Model):
 
 
 class CourseComment(models.Model):
-    user=models.ForeignKey(userProfile,on_delete=models.DO_NOTHING,verbose_name="用户")
+    user=models.ForeignKey(UserProfile,on_delete=models.DO_NOTHING,verbose_name="用户")
     course=models.ForeignKey(Course,on_delete=models.DO_NOTHING,verbose_name="课程")
     comments=models.CharField(max_length=200,verbose_name="评论")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
@@ -35,7 +35,7 @@ class CourseComment(models.Model):
 
 
 class UserFavorite(models.Model):
-    user = models.ForeignKey(userProfile, on_delete=models.DO_NOTHING,verbose_name="用户")
+    user = models.ForeignKey(UserProfile, on_delete=models.DO_NOTHING,verbose_name="用户")
     fav_id = models.IntegerField(verbose_name="数据id")
     fav_type=models.IntegerField(choices=((1,"课程"),(2,"课程机构"),(3,"讲师")))
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
@@ -57,7 +57,7 @@ class UserMessage(models.Model):
 
 
 class UserCourse(models.Model):
-    user = models.ForeignKey(userProfile,on_delete=models.DO_NOTHING, verbose_name="用户")
+    user = models.ForeignKey(UserProfile,on_delete=models.DO_NOTHING, verbose_name="用户")
     course = models.ForeignKey(Course,on_delete=models.DO_NOTHING, verbose_name="课程")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
