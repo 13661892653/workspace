@@ -58,5 +58,5 @@ def getImageName(dir):
             file3=startFormatDate(file2)
         rm(dir,fileNameSource_file,file3,fileNameSource_houzui)
 if __name__=="__main__":
-    dir="C:\\Users\\Administrator\\WeiXin"
+    dir="F:\\来自：HUAWEI GRA-UL00\\QQ_Images"
     getImageName(dir)
