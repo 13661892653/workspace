@@ -40,5 +40,5 @@ def ScanDir(path):
                     WriteFile(fileName)
 
 if __name__ == "__main__":
-    Path = "C:\\Users\chenlun\Desktop\miniApp-master"
+    Path = "E:\\crm02\\src\\main"
     ScanDir(Path)
