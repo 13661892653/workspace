@@ -6,7 +6,6 @@ __author__ = "Colby"
 class A(object):
     def __init__(self):
         print('初始化A')
-
 class B(object):
     def __new__(cls,age):
         print('第一步')
