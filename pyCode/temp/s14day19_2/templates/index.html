@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% for k,v in user_dict.items %}
+        <li style="margin: 50px"><a href="/detail/{{ k }}">{{ k }}</a></li>
+    {% endfor %}
+
+</body>
+</html>
