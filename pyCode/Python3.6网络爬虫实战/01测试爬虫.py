@@ -14,4 +14,4 @@ from selenium import webdriver
 response=requests.get("http://www.baidu.com")
 print(response.headers)
 driver = webdriver.Chrome()
-driver.get("http://m.weibo.com")
+driver.get("http://www.baidu.com")
