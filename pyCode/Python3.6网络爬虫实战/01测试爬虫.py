@@ -10,8 +10,12 @@
 # dirver.get("http://m.weibo.com")
 # pip install  chromedriver
 import requests
+from urllib import request,error
 from selenium import webdriver
 response=requests.get("http://www.baidu.com")
 print(response.headers)
 driver = webdriver.Chrome()
-driver.get("http://www.baidu.com")
+response=driver.get("http://www.baidu.com")
+print(response)
+
+print(requests.get('http://www.baidu.com'))
