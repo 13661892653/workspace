@@ -137,6 +137,6 @@ content='''
 '''
 document1=PyQuery(url='http://www.baidu.com')
 document2=PyQuery(content)
-document3=PyQuery(filename='test.html')
+#document3=PyQuery(filename='test.html')
 print(document1('link'))
 print(document2('link'))
