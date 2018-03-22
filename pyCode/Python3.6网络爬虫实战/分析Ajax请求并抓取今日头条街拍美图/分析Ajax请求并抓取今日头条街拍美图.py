@@ -1,13 +1,13 @@
 #coding=utf-8
 import requests
+import pymongo
+import re
+import json
+import ast
 from requests.exceptions import RequestException
 from urllib.parse import urlencode
 from bs4 import BeautifulSoup
-import pymongo
-import re
 from multiprocessing import Pool
-import json
-import ast
 from config import *
 
 client=pymongo.MongoClient(MONGO_URL)
