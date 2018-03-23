@@ -90,7 +90,7 @@ def save_to_mongo(result):
         return False
 def main(offset):
     html=get_page_index(0,'风景')
-    print('南充',html)
+    print('上海',html)
     for url in parse_page_index(html):
         if url:
             html=get_page_detail(url)
@@ -103,4 +103,4 @@ def main(offset):
 if __name__=="__main__":
     #启用多线程
     pool=Pool()
-    pool.map(main,[i*10 for i in range(10)])
+    pool.map(main,[i*10 for i in range(20)])
