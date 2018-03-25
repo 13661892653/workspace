@@ -89,7 +89,7 @@ def save_to_mongo(result):
             return True
         return False
 def main(offset):
-    html=get_page_index(0,'风景')
+    html=get_page_index(0,'美女')
     print('上海',html)
     for url in parse_page_index(html):
         if url:

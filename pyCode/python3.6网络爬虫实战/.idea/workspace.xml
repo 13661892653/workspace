@@ -10,19 +10,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/python3_6$16_Selenium.coverage" NAME="16-使用Selenium模拟浏览器抓取淘宝商品美食信息 Coverage Results" MODIFIED="1521989979680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/16-使用Selenium模拟浏览器抓取淘宝商品美食信息" />
     <SUITE FILE_PATH="coverage/Python3_6$.coverage" NAME="临时调试 Coverage Results" MODIFIED="1521772304170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Python3_6$Ajax.coverage" NAME="分析Ajax请求并抓取今日头条街拍美图 Coverage Results" MODIFIED="1521795109105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图" />
     <SUITE FILE_PATH="coverage/Python3_6$16_Selenium.coverage" NAME="16-使用Selenium模拟浏览器抓取淘宝商品美食信息 Coverage Results" MODIFIED="1521772320543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/16-使用Selenium模拟浏览器抓取淘宝商品美食信息" />
+    <SUITE FILE_PATH="coverage/python3_6$Ajax.coverage" NAME="分析Ajax请求并抓取今日头条街拍美图 Coverage Results" MODIFIED="1521861001823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图" />
+    <SUITE FILE_PATH="coverage/Python3_6$Ajax.coverage" NAME="分析Ajax请求并抓取今日头条街拍美图 Coverage Results" MODIFIED="1521795109105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="分析Ajax请求并抓取今日头条街拍美图.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图/分析Ajax请求并抓取今日头条街拍美图.py">
+      <file leaf-file-name="16-使用Selenium模拟浏览器抓取淘宝商品美食信息.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/16-使用Selenium模拟浏览器抓取淘宝商品美食信息/16-使用Selenium模拟浏览器抓取淘宝商品美食信息.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="105" column="44" lean-forward="true" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
+            <state relative-caret-position="440">
+              <caret line="53" column="57" lean-forward="true" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
               <folding>
-                <element signature="e#14#29#0" expanded="true" />
+                <element signature="e#36#66#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -42,8 +44,8 @@
       <list>
         <option value="$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图/config.py" />
         <option value="$PROJECT_DIR$/临时调试.py" />
-        <option value="$PROJECT_DIR$/16-使用Selenium模拟浏览器抓取淘宝商品美食信息/16-使用Selenium模拟浏览器抓取淘宝商品美食信息.py" />
         <option value="$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图/分析Ajax请求并抓取今日头条街拍美图.py" />
+        <option value="$PROJECT_DIR$/16-使用Selenium模拟浏览器抓取淘宝商品美食信息/16-使用Selenium模拟浏览器抓取淘宝商品美食信息.py" />
       </list>
     </option>
   </component>
@@ -53,11 +55,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="653" />
-    <option name="y" value="157" />
-    <option name="width" value="1170" />
-    <option name="height" value="1100" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="114" />
+    <option name="y" value="536" />
+    <option name="width" value="1585" />
+    <option name="height" value="538" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -75,36 +77,40 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Python3.6网络爬虫实战" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Python3.6网络爬虫实战" type="462c0819:PsiDirectoryNode" />
+              <item name="python3.6网络爬虫实战" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python3.6网络爬虫实战" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Python3.6网络爬虫实战" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Python3.6网络爬虫实战" type="462c0819:PsiDirectoryNode" />
-              <item name="分析Ajax请求并抓取今日头条街拍美图" type="462c0819:PsiDirectoryNode" />
+              <item name="python3.6网络爬虫实战" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python3.6网络爬虫实战" type="462c0819:PsiDirectoryNode" />
+              <item name="16-使用Selenium模拟浏览器抓取淘宝商品美食信息" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Python3.6网络爬虫实战" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Python3.6网络爬虫实战" type="462c0819:PsiDirectoryNode" />
+              <item name="python3.6网络爬虫实战" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python3.6网络爬虫实战" type="462c0819:PsiDirectoryNode" />
+              <item name="Request正则表达式爬取猫眼电影top100" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="python3.6网络爬虫实战" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python3.6网络爬虫实战" type="462c0819:PsiDirectoryNode" />
               <item name="分析Ajax请求并抓取今日头条街拍美图" type="462c0819:PsiDirectoryNode" />
-              <item name="分析Ajax请求并抓取今日头条街拍美图.py" type="8704e2dd:PyFileNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -118,7 +124,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.分析Ajax请求并抓取今日头条街拍美图">
+  <component name="RunManager" selected="Python.16-使用Selenium模拟浏览器抓取淘宝商品美食信息">
     <configuration name="临时调试" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -144,9 +150,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/16-使用Selenium模拟浏览器抓取淘宝商品美食信息" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Python3.6网络爬虫实战" />
@@ -163,9 +169,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Python3.6网络爬虫实战" />
@@ -183,8 +189,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.分析Ajax请求并抓取今日头条街拍美图" />
-        <item index="1" class="java.lang.String" itemvalue="Python.16-使用Selenium模拟浏览器抓取淘宝商品美食信息" />
+        <item index="0" class="java.lang.String" itemvalue="Python.16-使用Selenium模拟浏览器抓取淘宝商品美食信息" />
+        <item index="1" class="java.lang.String" itemvalue="Python.分析Ajax请求并抓取今日头条街拍美图" />
         <item index="2" class="java.lang.String" itemvalue="Python.临时调试" />
       </list>
     </recent_temporary>
@@ -206,15 +212,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3861607" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09709822" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="265" y="443" width="1389" height="153" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.59820426" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="265" y="443" width="1389" height="153" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3236607" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22371244" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.041845493" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -245,11 +251,35 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图/分析Ajax请求并抓取今日头条街拍美图.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3120">
+          <caret line="87" column="25" lean-forward="false" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/16-使用Selenium模拟浏览器抓取淘宝商品美食信息/16-使用Selenium模拟浏览器抓取淘宝商品美食信息.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="e#36#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图/分析Ajax请求并抓取今日头条街拍美图.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#29#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图/分析Ajax请求并抓取今日头条街拍美图.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -265,15 +295,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/16-使用Selenium模拟浏览器抓取淘宝商品美食信息/16-使用Selenium模拟浏览器抓取淘宝商品美食信息.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -287,10 +308,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/分析Ajax请求并抓取今日头条街拍美图/分析Ajax请求并抓取今日头条街拍美图.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="105" column="44" lean-forward="true" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
+        <state relative-caret-position="-3600">
+          <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Request正则表达式爬取猫眼电影top100/Request正则表达式爬取猫眼电影top100.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="54" column="20" lean-forward="true" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/16-使用Selenium模拟浏览器抓取淘宝商品美食信息/16-使用Selenium模拟浏览器抓取淘宝商品美食信息.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="53" column="57" lean-forward="true" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
           <folding>
-            <element signature="e#14#29#0" expanded="true" />
+            <element signature="e#36#66#0" expanded="true" />
           </folding>
         </state>
       </provider>
