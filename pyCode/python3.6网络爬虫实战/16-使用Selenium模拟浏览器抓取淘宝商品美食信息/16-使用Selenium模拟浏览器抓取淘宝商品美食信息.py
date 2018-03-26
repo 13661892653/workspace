@@ -12,12 +12,12 @@ browser = webdriver.Chrome()
 def search():
     try:
         browser.get('https://www.taobao.com/')
-        input = WebDriverWait(browser, 50).until(
+        input = WebDriverWait(browser, 10).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, "#q")))
-        submit=WebDriverWait(browser,50).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#J_TSearchForm > div.search-button > button')))
+        submit=WebDriverWait(browser,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#J_TSearchForm > div.search-button > button')))
         input.send_keys('美食')
         submit.click()
-        total=WebDriverWait(browser, 50).until(EC.presence_of_element_located((By.CSS_SELECTOR,'#mainsrp-pager > div > div > div > div.total')))
+        total=WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR,'#mainsrp-pager > div > div > div > div.total')))
         get_products()
         return total.text
     except TimeoutException:
@@ -44,7 +44,7 @@ def next_page(page_number):
 
 
 def get_products():
-    WebDriverWait(browser, 50).until(
+    WebDriverWait(browser, 10).until(
         EC.presence_of_element_located((By.CSS_SELECTOR,'#mainsrp-itemlist .items item'))
     )
     html=browser.page_source
