@@ -5,19 +5,19 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import pyquery
+import pyquery as pq
 import pymongo
 import re
 browser = webdriver.Chrome()
 def search():
     try:
         browser.get('https://www.taobao.com/')
-        input = WebDriverWait(browser, 50).until(
+        input = WebDriverWait(browser, 10).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, "#q")))
-        submit=WebDriverWait(browser,50).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#J_TSearchForm > div.search-button > button')))
+        submit=WebDriverWait(browser,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#J_TSearchForm > div.search-button > button')))
         input.send_keys('美食')
         submit.click()
-        total=WebDriverWait(browser, 50).until(EC.presence_of_element_located((By.CSS_SELECTOR,'#mainsrp-pager > div > div > div > div.total')))
+        total=WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR,'#mainsrp-pager > div > div > div > div.total')))
         get_products()
         return total.text
     except TimeoutException:
@@ -44,11 +44,12 @@ def next_page(page_number):
 
 
 def get_products():
-    WebDriverWait(browser, 50).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR,'#mainsrp-itemlist .items item'))
+    print("正在获取详情信息...")
+    WebDriverWait(browser, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR,'#mainsrp-itemlist .items .item'))
     )
     html=browser.page_source
-    doc=pyquery(html)
+    doc=pq(html)
     items=doc('#mainsrp-itemlist .items .item').items()
     for item in items:
         product={
