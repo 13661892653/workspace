@@ -20,7 +20,7 @@ def search():
         input = WebDriverWait(browser, 10).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, "#q")))
         submit=WebDriverWait(browser,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#J_TSearchForm > div.search-button > button')))
-        input.send_keys('python视频')
+        input.send_keys('婴儿用品')
         submit.click()
         total=WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR,'#mainsrp-pager > div > div > div > div.total')))
         get_products()
