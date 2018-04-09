@@ -2,6 +2,9 @@
 #Version:python3.5.2
 #Tools:Pycharm
 #Date:
+"""
+数据仓库，处理Mongodb到Mysql的数据问题
+"""
 __author__ = "Colby"
 import pymongo
 import pymysql
