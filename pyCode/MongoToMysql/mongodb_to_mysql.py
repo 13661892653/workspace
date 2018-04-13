@@ -22,6 +22,28 @@ class MongoDB(object):
         collection_names = self.client.collection_names()
         return collection_names
 
+class MysqlDB(object):
+    def __init__(self,user,password,server,port):
+        """
+        mongodb=MongoDB('user','password','server','port')
+        :param user:
+        :param password:
+        :param server:
+        :param port:
+        """
+        self.user = user
+        self.password = password
+        self.server = server
+        self.port = port
+        self.url = 'mongodb://' + self.user + ':' + self.password + '@' + self.server + ':' + self.port
+        self.client = pymongo.MongoClient(self.url)
+    def DatabaseNames(self):
+        pass
+    def CollectionNames(self):
+        pass
+    def Create_Table(self):
+        pass
+
 def ConnectMongoDB():
     user=''
     pwd=''
@@ -46,7 +68,7 @@ def FormatDDL(column,tableName):
     );''')
     return lst
 
-def main():
+def Main():
     client=ConnectMongoDB()
     database_names=client.database_names()
     for database_name in database_names:
@@ -57,9 +79,11 @@ def main():
             for content in data:
                 column=list(content.keys())
                 ddlStr = FormatDDL(column,collection_name)
+                #DDL操作
                 for ddl in ddlStr:
                     print(ddl)
+                #Create_Table(ddl)
                 break
 
 if __name__=="__main__":
-    main()
+    Main()
