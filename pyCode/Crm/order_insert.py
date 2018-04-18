@@ -58,7 +58,7 @@ def insert_content(browser,enterprise_name):
     remark.send_keys('总部代下单。')
     # 跟单人
 
-
+    time.sleep(10)
 def left_url(url):
     order_url = urljoin('http://crm.easyrong.com',url)
     return order_url
