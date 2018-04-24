@@ -3,5 +3,15 @@
 __date__ = '2018/4/12 22:49'
 __author__ = 'colby'
 import requests
-from pyquery import PyQuery
 import pyspider
+from pyquery import PyQuery
+
+
+def main(url):
+    pass
+
+
+if __name__ == "__main__":
+    #猫途鹰官网
+    url='http://www.tripadvisor.cn'
+    main(url)

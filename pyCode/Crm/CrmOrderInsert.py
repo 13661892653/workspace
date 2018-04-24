@@ -72,7 +72,7 @@ def insert_content(browser,enterprise_name,order_date):
         merchandiser.select_by_visible_text('章科铭')
 
         button = browser.find_element_by_id('btn_addord')
-        #button.click()
+        button.click()
     except Exception as e:
         print('企业订单录入错误：',enterprise_name)
 def left_url(url):
