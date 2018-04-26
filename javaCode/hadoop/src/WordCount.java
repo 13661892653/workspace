@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-class Main {
+class WordCount {
     static class CharTreeNode{
         int cnt = 0;
         CharTreeNode[] children = new CharTreeNode[26];
@@ -112,12 +112,12 @@ class Main {
         int i;
         for(i=1;i<=Count;i++)
         {
-            filePath="D:\\workspace\\javaCode\\hadoop\\input\\Shakespeare"+i+".txt";
+            filePath="data/input/Shakespeare"+i+".txt";
             readTxtFile(filePath,root);
         }
         result=getWordCount(root);
         Iterator<word_count> itr = result.iterator();
-        fw=new FileWriter("D:\\workspace\\javaCode\\hadoop\\output\\5.txt");
+        fw=new FileWriter("data/output/output.txt");
         str=new String();
 
         while (itr.hasNext()) {
