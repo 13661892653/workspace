@@ -9,6 +9,8 @@ def main():
             print("大写字母")
         elif string.islower():
             print("小写字母")
+        elif string=="q":
+            break
         else:
             print("特殊字符")
 
