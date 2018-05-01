@@ -1,0 +1,181 @@
+1、修改主机名称
+vim /etc/hosts
+重启
+
+2、修改该hosts文件，添加主机跟ip的映射关系
+虚拟机网络host-only
+这个必须注释掉
+#127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+#::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+添加以下的地址关系
+192.168.1.101 COLBY-NN-101
+192.168.1.102 COLBY-NN-102
+192.168.1.111 COLBY-DN-111
+
+3、安装JDK
+/usr/local/jdk1.8.0_171
+
+vi /etc/profile
+
+
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib:JRE_HOME/lib
+
+4、ssh免密码登录
+三台机器分别执行：ssh-keygen -t rsa
+	COLBY-NN-001
+	COLBY-NN-002
+	COLBY-DN-001
+COLBY-NN-001 拷贝到 COLBY-NN-002、COLBY-DN-001
+ssh-copy-id COLBY-NN-101
+ssh-copy-id COLBY-NN-102
+ssh-copy-id COLBY-DN-111
+
+
+5、安装zk
+cp zoo_sample.cfg zoo.cfg
+
+mkdir /app/bigdata/zookeeper-3.4.10/tmp
+
+在最后添加：
+server.1=COLBY-NN-101:2888:3888
+server.2=COLBY-NN-102:2888:3888
+server.3=COLBY-DN-111:2888:3888
+
+
+再创建一个空文件
+touch /app/bigdata/zookeeper-3.4.10/tmp/myid
+最后向该文件写入ID
+echo 1 > /app/bigdata/zookeeper-3.4.10/tmp/myid
+
+配置一下文件：
+core-site.xml、hdfs-site.xml、yarn-site.xml、mapred-site.xml、hadoop-env.sh、workers 
+
+1.3将配置好的zookeeper拷贝到其他节点(首先分别在COLBY-NN-102、COLBY-DN-111根目录下创建一个app目录：mkdir /app)
+			scp -r /app/bigdata/zookeeper-3.4.10/ COLBY-NN-102:/app/bigdata/
+			scp -r /app/bigdata/zookeeper-3.4.10/ COLBY-DN-111:/app/bigdata/
+			
+			注意：修改COLBY-NN-101、COLBY-DN-111对应/app/zookeeper-3.4.10/tmp/myid内容
+			COLBY-NN-101
+				echo 2 > /app/bigdata/zookeeper-3.4.10/tmp/myid
+			COLBY-DN-111
+				echo 3 > /app/bigdata/zookeeper-3.4.10/tmp/myid
+
+scp -r /etc/profile COLBY-NN-102:/etc/profile
+scp -r /etc/profile COLBY-DN-111:/etc/profile
+
+
+scp -r  /app/bigdata/zookeeper/conf/zoo.cfg COLBY-NN-102:/app/bigdata/zookeeper/conf/
+scp -r  /app/bigdata/zookeeper/conf/zoo.cfg COLBY-DN-111:/app/bigdata/zookeeper/conf/
+
+
+
+
+
+三台服务分别执行
+zkServer.sh start
+
+执行状态
+zkServer.sh status
+
+
+mv  apache-flume-1.8.0-bin flume
+mv apache-hive-1.2.2-bin hive
+mv hadoop-2.9.0 hadoop
+mv hbase-1.2.6 hbase
+mv kafka_2.12-1.1.0 kafka
+mv spark-2.3.0-bin-hadoop2.7 spark
+mv zookeeper-3.4.10 zookeeper
+
+拷贝hadoop文件
+scp -r /app/bigdata/hadoop COLBY-NN-102:/app/bigdata/
+scp -r /app/bigdata/hadoop COLBY-DN-111:/app/bigdata/
+
+
+scp -r /app/bigdata/hadoop/etc/hadoop/* COLBY-NN-102:/app/bigdata/hadoop/etc/hadoop/
+scp -r /app/bigdata/hadoop/etc/hadoop/* COLBY-DN-111:/app/bigdata/hadoop/etc/hadoop/
+
+
+scp -r /app/bigdata/hadoop/hdfs/name/* COLBY-NN-102:/app/bigdata/hadoop/hdfs/name
+hadoop-daemon.sh start journalnode
+hdfs zkfc –formatZK
+hdfs zkfc -formatZK
+
+hdfs namenode -format
+
+3.1新的命令
+hdfs --daemon start journalnode
+
+hadoop-daemon.sh start journalnode
+
+
+启动mysql
+systemctl start mysqld
+mysql -uroot -p
+root/mrA)FxSK+0Fi
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'hadoop'; 
+
+添加远程账户
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'hadoop' WITH GRANT OPTION;
+
+验证yarn集群 
+
+
+
+
+rpm -e --nodeps jdk-1.6.0_16-fcs
+
+stop-yarn.sh
+stop-dfs.sh
+start-dfs.sh
+start-yarn.sh
+
+
+3.1新的命令
+hdfs --daemon start journalnode
+
+（缺少用户定义而造成的）因此编辑启动和关闭
+
+$ vim sbin/start-dfs.sh
+$ vim sbin/stop-dfs.sh
+
+HDFS_DATANODE_USER=root   
+HDFS_SECONDARYNAMENODE_USER=root  
+
+start-dfs.sh修改  追加
+HDFS_NAMENODE_USER=root
+HDFS_DATANODE_USER=root
+HDFS_JOURNALNODE_USER=root
+HDFS_ZKFC_USER=root
+HDFS_SECONDARYNAMENODE_USER=root
+
+start-yarn.sh修改  追加
+YARN_RESOURCEMANAGER_USER=root
+YARN_NODEMANAGER_USER=root
+
+
+
+WARNING: YARN_CONF_DIR has been replaced by HADOOP_CONF_DIR
+
+
+
+conf.Configuration: resource-types.xml not found
+
+
+<property>
+  <name>yarn.app.mapreduce.am.env</name>
+  <value>HADOOP_MAPRED_HOME=${full path of your hadoop distribution directory}</value>
+</property>
+<property>
+  <name>mapreduce.map.env</name>
+  <value>HADOOP_MAPRED_HOME=${full path of your hadoop distribution directory}</value>
+</property>
+<property>
+  <name>mapreduce.reduce.env</name>
+  <value>HADOOP_MAPRED_HOME=${full path of your hadoop distribution directory}</value>
+</property>
+
+mkdir -p /app/bigdata/hadoop/hdfs/name
+mkdir -p /app/bigdata/hadoop/hdfs/data
