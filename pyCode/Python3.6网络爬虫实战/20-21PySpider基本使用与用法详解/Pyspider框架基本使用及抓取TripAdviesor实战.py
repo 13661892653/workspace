@@ -6,10 +6,8 @@ import requests
 import pyspider
 from pyquery import PyQuery
 
-
 def main(url):
     print("第一步")
-
 
 if __name__ == "__main__":
     #猫途鹰官网
