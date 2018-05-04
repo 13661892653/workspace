@@ -179,3 +179,6 @@ conf.Configuration: resource-types.xml not found
 
 mkdir -p /app/bigdata/hadoop/hdfs/name
 mkdir -p /app/bigdata/hadoop/hdfs/data
+
+
+hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.0.jar wordcount /input /out
