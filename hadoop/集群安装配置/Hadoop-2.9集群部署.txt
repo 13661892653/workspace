@@ -92,11 +92,18 @@ scp -r /app/bigdata/hadoop COLBY-NN-102:/app/bigdata/
 scp -r /app/bigdata/hadoop COLBY-DN-111:/app/bigdata/
 
 
+scp -r /app/bigdata/hadoop/tmp COLBY-NN-102:/app/bigdata/hadoop/
+
+
 scp -r /app/bigdata/hadoop/etc/hadoop/* COLBY-NN-102:/app/bigdata/hadoop/etc/hadoop/
 scp -r /app/bigdata/hadoop/etc/hadoop/* COLBY-DN-111:/app/bigdata/hadoop/etc/hadoop/
 
 
-scp -r /app/bigdata/hadoop/hdfs/name/* COLBY-NN-102:/app/bigdata/hadoop/hdfs/name
+scp -r /app/bigdata/hadoop/hdfs/name/* COLBY-NN-102:/app/bigdata/hadoop/hdfs/name/
+
+scp -r /app/bigdata/hadoop/tmp/ COLBY-NN-102:/app/bigdata/hadoop/
+
+
 hadoop-daemon.sh start journalnode
 hdfs zkfc –formatZK
 hdfs zkfc -formatZK
@@ -119,7 +126,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'hadoop';
 添加远程账户
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'hadoop' WITH GRANT OPTION;
-
+GRANT ALL PRIVILEGES ON *.* TO root@"172.16.16.152" IDENTIFIED BY "youpassword" WITH GRANT OPTION;
 验证yarn集群 
 
 
@@ -150,8 +157,6 @@ HDFS_DATANODE_USER=root
 HDFS_JOURNALNODE_USER=root
 HDFS_ZKFC_USER=root
 HDFS_SECONDARYNAMENODE_USER=root
-
-start-yarn.sh修改  追加
 YARN_RESOURCEMANAGER_USER=root
 YARN_NODEMANAGER_USER=root
 
@@ -182,3 +187,106 @@ mkdir -p /app/bigdata/hadoop/hdfs/data
 
 
 hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.0.jar wordcount /input /out
+
+
+配置spark集群
+spark-env.sh
+#配置内容如下：
+export SCALA_HOME=/usr/share/scala
+export JAVA_HOME=/usr/java/jdk1.8.0_112/
+export SPARK_MASTER_IP=master
+export SPARK_WORKER_MEMORY=1g
+export HADOOP_CONF_DIR=/opt/hadoop-2.7.3/etc/hadoop
+
+slaves添加
+COLBY-NN-101
+COLBY-NN-102
+COLBY-DN-111
+
+分布式
+scp -r  /app/bigdata/spark/ COLBY-DN-111:/app/bigdata/
+scp -r  /app/bigdata/spark/ COLBY-DB-111:/app/bigdata/
+
+启动spark集群
+/app/bigdata/spark/sbin/start-all.sh
+'''
+	#!/bin/bash
+	echo -e "\033[31m ========Start The Cluster======== \033[0m"
+	echo -e "\033[31m Starting Hadoop Now !!! \033[0m"
+	/opt/hadoop-2.7.3/sbin/start-all.sh
+	echo -e "\033[31m Starting Spark Now !!! \033[0m"
+	/opt/spark-2.1.0-bin-hadoop2.7/sbin/start-all.sh
+	echo -e "\033[31m The Result Of The Command \"jps\" :  \033[0m"
+	jps
+	echo -e "\033[31m ========END======== \033[0m"
+'''
+
+进入spark：
+[root@COLBY-NN-101 sbin]#spark-shell
+2018-05-05 16:42:25 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+Spark context Web UI available at http://COLBY-DN-111:4040
+Spark context available as 'sc' (master = local[*], app id = local-1525509759926).
+Spark session available as 'spark'.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 2.3.0
+      /_/
+         
+Using Scala version 2.11.8 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_171)
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala>
+
+'''
+验证spark
+val file=sc.textFile("hdfs://COLBY-NN-101:9000/input/profile")
+val rdd = file.flatMap(line => line.split(" ")).map(word => (word,1)).reduceByKey(_+_)
+rdd.collect()
+rdd.foreach(println)
+'''
+
+
+安装配置HBASE
+hbase-env.sh
+export JAVA_HOME=/usr/local/jdk（jdk安装路径）
+去掉注释 # export  HBASE_MANAGES_ZK=true，使用hbase自带zookeeper。
+
+
+hbase-site.xml
+
+
+<configuration>
+	<property>
+		<name>hbase.rootdir</name> <!-- hbase存放数据目录 -->
+		<value>hdfs://COLBY-NN-101:9000/opt/hbase/hbase_db</value>
+		<!-- 端口要和Hadoop的fs.defaultFS端口一致-->
+	</property>
+	<property>
+		<name>hbase.cluster.distributed</name> <!-- 是否分布式部署 -->
+		<value>true</value> 
+	</property>
+	<property>
+		<name>hbase.zookeeper.quorum</name> <!-- list of  zookooper -->
+		<value>COLBY-NN-101,COLBY-NN-102,COLBY-DN-111</value> 
+	</property>
+	<property><!--zookooper配置、日志等的存储位置 -->
+		<name>hbase.zookeeper.property.dataDir</name> 
+		<value>/app/bigdata/hbase/logs/zookeeper</value>
+	</property>
+</configuration>
+
+regionservers
+
+COLBY-NN-101
+COLBY-NN-102
+COLBY-DN-111
+
+
+分布式
+scp -r  /app/bigdata/hbase/ COLBY-NN-102:/app/bigdata/
+scp -r  /app/bigdata/hbase/ COLBY-DN-111:/app/bigdata/
