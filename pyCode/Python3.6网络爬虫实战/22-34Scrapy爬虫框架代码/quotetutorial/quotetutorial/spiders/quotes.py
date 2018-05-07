@@ -1,11 +1,24 @@
 # -*- coding: utf-8 -*-
 import scrapy
-
+from quotetutorial.items import QuotetutorialItem
 
 class QuotesSpider(scrapy.Spider):
     name = 'quotes'
     allowed_domains = ['quotes.toscrape.com']
     start_urls = ['http://quotes.toscrape.com/']
-
+    #parse 默认回调函数
     def parse(self, response):
-        pass
+        quotes = response.css('.quote')
+        for quote in quotes:
+            item=QuotetutorialItem()
+            #extract_first 返回单个结果，extract返回一个列表
+            text   = quote.css('.text::text').extract_first()
+            author = quote.css('.author::text').extract_first()
+            tags   = quote.css('.tags .tag::text').extract()
+            item['text']= text
+            item['author'] = author
+            item['tags'] = tags
+            yield item
+        next = response.css('.pager .next a::attr(href)').extract_first()
+        url=response.urljoin(next)
+        yield scrapy.Request(url=url,callback=self.parse)
