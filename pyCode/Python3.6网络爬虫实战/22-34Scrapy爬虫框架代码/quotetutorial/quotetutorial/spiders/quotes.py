@@ -20,5 +20,8 @@ class QuotesSpider(scrapy.Spider):
             item['tags'] = tags
             yield item
         next = response.css('.pager .next a::attr(href)').extract_first()
+        print("下一页URL地址：",next)
+        #response.urljoin=start_urls + url
         url=response.urljoin(next)
+        print("下一页URL地址：", url)
         yield scrapy.Request(url=url,callback=self.parse)
