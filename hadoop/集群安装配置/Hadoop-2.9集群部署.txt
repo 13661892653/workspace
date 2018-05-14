@@ -11,6 +11,8 @@ vim /etc/hosts
 192.168.1.101 COLBY-NN-101
 192.168.1.102 COLBY-NN-102
 192.168.1.111 COLBY-DN-111
+192.168.1.112 COLBY-DN-112
+192.168.1.113 COLBY-DN-113
 
 3、安装JDK
 /usr/local/jdk1.8.0_171
@@ -21,39 +23,44 @@ vi /etc/profile
 export JRE_HOME=$JAVA_HOME/jre
 export CLASSPATH=.:$JAVA_HOME/lib:JRE_HOME/lib
 
+分发JDK
+scp -r /usr/local/jdk COLBY-NN-102:/usr/local/
+scp -r /usr/local/jdk COLBY-DN-111:/usr/local/
+scp -r /usr/local/jdk COLBY-DN-112:/usr/local/
+scp -r /usr/local/jdk COLBY-DN-113:/usr/local/
 4、ssh免密码登录
 三台机器分别执行：ssh-keygen -t rsa
-	COLBY-NN-001
-	COLBY-NN-002
-	COLBY-DN-001
-COLBY-NN-001 拷贝到 COLBY-NN-002、COLBY-DN-001
+	COLBY-NN-101
+	COLBY-NN-102
+	COLBY-DN-111
+	COLBY-DN-112
+	COLBY-DN-113
+
+在101跟102上面分别执行
 ssh-copy-id COLBY-NN-101
 ssh-copy-id COLBY-NN-102
 ssh-copy-id COLBY-DN-111
+ssh-copy-id COLBY-DN-112
+ssh-copy-id COLBY-DN-113
 
-
-5、安装zk
+5、安装zookeeper
 cp zoo_sample.cfg zoo.cfg
+修改dataDir=/app/bigdata/zookeeper/tmp
+mkdir -p /app/bigdata/zookeeper/tmp
 
-mkdir /app/bigdata/zookeeper-3.4.10/tmp
-
-在最后添加：
+在最后添加（zk三台服务器就够了）：
 server.1=COLBY-NN-101:2888:3888
 server.2=COLBY-NN-102:2888:3888
 server.3=COLBY-DN-111:2888:3888
 
-
 再创建一个空文件
-touch /app/bigdata/zookeeper-3.4.10/tmp/myid
+touch /app/bigdata/zookeeper/tmp/myid
 最后向该文件写入ID
-echo 1 > /app/bigdata/zookeeper-3.4.10/tmp/myid
-
-配置一下文件：
-core-site.xml、hdfs-site.xml、yarn-site.xml、mapred-site.xml、hadoop-env.sh、workers 
+echo 1 > /app/bigdata/zookeeper/tmp/myid
 
 1.3将配置好的zookeeper拷贝到其他节点(首先分别在COLBY-NN-102、COLBY-DN-111根目录下创建一个app目录：mkdir /app)
-			scp -r /app/bigdata/zookeeper-3.4.10/ COLBY-NN-102:/app/bigdata/
-			scp -r /app/bigdata/zookeeper-3.4.10/ COLBY-DN-111:/app/bigdata/
+			scp -r /app/bigdata/zookeeper/ COLBY-NN-102:/app/bigdata/
+			scp -r /app/bigdata/zookeeper/ COLBY-DN-111:/app/bigdata/
 			
 			注意：修改COLBY-NN-101、COLBY-DN-111对应/app/zookeeper-3.4.10/tmp/myid内容
 			COLBY-NN-101
@@ -64,12 +71,8 @@ core-site.xml、hdfs-site.xml、yarn-site.xml、mapred-site.xml、hadoop-env.sh�
 scp -r /etc/profile COLBY-NN-102:/etc/profile
 scp -r /etc/profile COLBY-DN-111:/etc/profile
 
-
 scp -r  /app/bigdata/zookeeper/conf/zoo.cfg COLBY-NN-102:/app/bigdata/zookeeper/conf/
 scp -r  /app/bigdata/zookeeper/conf/zoo.cfg COLBY-DN-111:/app/bigdata/zookeeper/conf/
-
-
-
 
 
 三台服务分别执行
@@ -78,44 +81,37 @@ zkServer.sh start
 执行状态
 zkServer.sh status
 
-
-mv  apache-flume-1.8.0-bin flume
-mv apache-hive-1.2.2-bin hive
-mv hadoop-2.9.0 hadoop
-mv hbase-1.2.6 hbase
-mv kafka_2.12-1.1.0 kafka
-mv spark-2.3.0-bin-hadoop2.7 spark
-mv zookeeper-3.4.10 zookeeper
+配置hadoop
+core-site.xml、hdfs-site.xml、yarn-site.xml、mapred-site.xml、hadoop-env.sh、workers 
 
 拷贝hadoop文件
 scp -r /app/bigdata/hadoop COLBY-NN-102:/app/bigdata/
 scp -r /app/bigdata/hadoop COLBY-DN-111:/app/bigdata/
-
-
-scp -r /app/bigdata/hadoop/tmp COLBY-NN-102:/app/bigdata/hadoop/
-
+scp -r /app/bigdata/hadoop COLBY-DN-112:/app/bigdata/
+scp -r /app/bigdata/hadoop COLBY-DN-113:/app/bigdata/
 
 scp -r /app/bigdata/hadoop/etc/hadoop/* COLBY-NN-102:/app/bigdata/hadoop/etc/hadoop/
 scp -r /app/bigdata/hadoop/etc/hadoop/* COLBY-DN-111:/app/bigdata/hadoop/etc/hadoop/
 
-
 scp -r /app/bigdata/hadoop/hdfs/name/* COLBY-NN-102:/app/bigdata/hadoop/hdfs/name/
 
 scp -r /app/bigdata/hadoop/tmp/ COLBY-NN-102:/app/bigdata/hadoop/
-
-
+在每台服务器上面启动journalnode
 hadoop-daemon.sh start journalnode
+
+然后格式化
+hdfs namenode -format
+再格式化
 hdfs zkfc –formatZK
 hdfs zkfc -formatZK
 
-hdfs namenode -format
-
 3.1新的命令
-hdfs --daemon start journalnode
+hdfs --daemon start journalnode（新）
 
-hadoop-daemon.sh start journalnode
+hadoop-daemon.sh start journalnode（2版本的）
 
-
+====================Mysql==========================
+安装Mysql注意事项
 启动mysql
 systemctl start mysqld
 mysql -uroot -p
@@ -127,11 +123,8 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'hadoop';
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'hadoop' WITH GRANT OPTION;
 GRANT ALL PRIVILEGES ON *.* TO root@"172.16.16.152" IDENTIFIED BY "youpassword" WITH GRANT OPTION;
+
 验证yarn集群 
-
-
-
-
 rpm -e --nodeps jdk-1.6.0_16-fcs
 
 stop-yarn.sh
@@ -160,36 +153,13 @@ HDFS_SECONDARYNAMENODE_USER=root
 YARN_RESOURCEMANAGER_USER=root
 YARN_NODEMANAGER_USER=root
 
-
-
-WARNING: YARN_CONF_DIR has been replaced by HADOOP_CONF_DIR
-
-
-
-conf.Configuration: resource-types.xml not found
-
-
-<property>
-  <name>yarn.app.mapreduce.am.env</name>
-  <value>HADOOP_MAPRED_HOME=${full path of your hadoop distribution directory}</value>
-</property>
-<property>
-  <name>mapreduce.map.env</name>
-  <value>HADOOP_MAPRED_HOME=${full path of your hadoop distribution directory}</value>
-</property>
-<property>
-  <name>mapreduce.reduce.env</name>
-  <value>HADOOP_MAPRED_HOME=${full path of your hadoop distribution directory}</value>
-</property>
-
 mkdir -p /app/bigdata/hadoop/hdfs/name
 mkdir -p /app/bigdata/hadoop/hdfs/data
-
 
 hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.0.jar wordcount /input /out
 
 
-配置spark集群
+================配置spark集群======================
 spark-env.sh
 #配置内容如下：
 export SCALA_HOME=/usr/share/scala
@@ -250,12 +220,13 @@ rdd.collect()
 rdd.foreach(println)
 '''
 
-
+==================HBASE======================
 安装配置HBASE
 hbase-env.sh
 export JAVA_HOME=/usr/local/jdk（jdk安装路径）
 去掉注释 # export  HBASE_MANAGES_ZK=true，使用hbase自带zookeeper。
-
+# The directory where pid files are stored. /tmp by default.  
+ export HBASE_PID_DIR=/var/hadoop/pids 
 
 hbase-site.xml
 
@@ -287,6 +258,173 @@ COLBY-NN-102
 COLBY-DN-111
 
 
-分布式
+hbase
 scp -r  /app/bigdata/hbase/ COLBY-NN-102:/app/bigdata/
 scp -r  /app/bigdata/hbase/ COLBY-DN-111:/app/bigdata/
+
+启动hbase
+start-hbase.sh
+输入jps命令查看进程是否启动成功，若 master上出现HMaster、HQuormPeer，
+
+slave上出现HRegionServer、HQuorumPeer，就是启动成功了。
+
+浏览器访问地址
+http://colby-nn-101:16010/master-status
+
+
+hbase验证
+[root@COLBY-NN-101 sbin]# hbase shell
+[root@COLBY-NN-101 sbin]# hbase shell
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/app/bigdata/hbase/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/app/bigdata/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+HBase Shell; enter 'help<RETURN>' for list of supported commands.
+Type "exit<RETURN>" to leave the HBase Shell
+Version 1.2.6, rUnknown, Mon May 29 02:25:32 CDT 2017
+
+hbase(main):001:0>
+
+============================hbase简单练习==========================================
+进入hbase shell console
+$HBASE_HOME/bin/hbase shell
+如果有kerberos认证，需要事先使用相应的keytab进行一下认证（使用kinit命令），认证成功之后再使用hbase shell进入可以使用whoami命令可查看当前用户
+hbase(main)> whoami
+表的管理
+1）查看有哪些表
+hbase(main)> list
+2）创建表
+
+# 语法：create <table>, {NAME => <family>, VERSIONS => <VERSIONS>}
+# 例如：创建表t1，有两个family name：f1，f2，且版本数均为2
+hbase(main)> create 'test',{NAME => 'f1', VERSIONS => 2},{NAME => 'f2', VERSIONS => 2}
+
+create 'student',{NAME => 'f1', VERSIONS => 2},{NAME => 'f2', VERSIONS => 2}
+create 'class',{NAME => 'f1', VERSIONS => 2},{NAME => 'f2', VERSIONS => 2}
+create 'grade',{NAME => 'f1', VERSIONS => 2},{NAME => 'f2', VERSIONS => 2}
+
+3）删除表
+分两步：首先disable，然后drop
+例如：删除表t1
+
+hbase(main)> disable 't1'
+hbase(main)> drop 't1'
+4）查看表的结构
+
+# 语法：describe <table>
+# 例如：查看表t1的结构
+hbase(main)> describe 't1'
+5）修改表结构
+修改表结构必须先disable
+
+# 语法：alter 't1', {NAME => 'f1'}, {NAME => 'f2', METHOD => 'delete'}
+# 例如：修改表test1的cf的TTL为180天
+hbase(main)> disable 'test1'
+hbase(main)> alter 'test1',{NAME=>'body',TTL=>'15552000'},{NAME=>'meta', TTL=>'15552000'}
+hbase(main)> enable 'test1'
+权限管理
+1）分配权限
+# 语法 : grant <user> <permissions> <table> <column family> <column qualifier> 参数后面用逗号分隔
+# 权限用五个字母表示： "RWXCA".
+# READ('R'), WRITE('W'), EXEC('X'), CREATE('C'), ADMIN('A')
+# 例如，给用户‘test'分配对表t1有读写的权限，
+hbase(main)> grant 'test','RW','t1'
+2）查看权限
+
+# 语法：user_permission <table>
+# 例如，查看表t1的权限列表
+hbase(main)> user_permission 't1'
+3）收回权限
+
+# 与分配权限类似，语法：revoke <user> <table> <column family> <column qualifier>
+# 例如，收回test用户在表t1上的权限
+hbase(main)> revoke 'test','t1'
+表数据的增删改查
+1）添加数据
+# 语法：put <table>,<rowkey>,<family:column>,<value>,<timestamp>
+# 例如：给表t1的添加一行记录：rowkey是rowkey001，family name：f1，column name：col1，value：value01，timestamp：系统默认
+hbase(main)> put 't1','rowkey001','f1:col1','value01'
+用法比较单一。
+2）查询数据
+a）查询某行记录
+
+# 语法：get <table>,<rowkey>,[<family:column>,....]
+# 例如：查询表t1，rowkey001中的f1下的col1的值
+hbase(main)> get 't1','rowkey001', 'f1:col1'
+# 或者：
+hbase(main)> get 't1','rowkey001', {COLUMN=>'f1:col1'}
+# 查询表t1，rowke002中的f1下的所有列值
+hbase(main)> get 't1','rowkey001'
+b）扫描表
+
+# 语法：scan <table>, {COLUMNS => [ <family:column>,.... ], LIMIT => num}
+# 另外，还可以添加STARTROW、TIMERANGE和FITLER等高级功能
+# 例如：扫描表t1的前5条数据
+hbase(main)> scan 't1',{LIMIT=>5}
+c）查询表中的数据行数
+
+# 语法：count <table>, {INTERVAL => intervalNum, CACHE => cacheNum}
+# INTERVAL设置多少行显示一次及对应的rowkey，默认1000；CACHE每次去取的缓存区大小，默认是10，调整该参数可提高查询速度
+# 例如，查询表t1中的行数，每100条显示一次，缓存区为500
+hbase(main)> count 't1', {INTERVAL => 100, CACHE => 500}
+3）删除数据
+a )删除行中的某个列值
+
+# 语法：delete <table>, <rowkey>,  <family:column> , <timestamp>,必须指定列名
+# 例如：删除表t1，rowkey001中的f1:col1的数据
+hbase(main)> delete 't1','rowkey001','f1:col1'
+注：将删除改行f1:col1列所有版本的数据
+b )删除行
+
+# 语法：deleteall <table>, <rowkey>,  <family:column> , <timestamp>，可以不指定列名，删除整行数据
+# 例如：删除表t1，rowk001的数据
+hbase(main)> deleteall 't1','rowkey001'
+c）删除表中的所有数据
+
+# 语法： truncate <table>
+# 其具体过程是：disable table -> drop table -> create table
+# 例如：删除表t1的所有数据
+hbase(main)> truncate 't1'
+Region管理
+1）移动region
+# 语法：move 'encodeRegionName', 'ServerName'
+# encodeRegionName指的regioName后面的编码，ServerName指的是master-status的Region Servers列表
+# 示例
+hbase(main)>move '4343995a58be8e5bbc739af1e91cd72d', 'db-41.xxx.xxx.org,60020,1390274516739'
+2）开启/关闭region
+
+# 语法：balance_switch true|false
+hbase(main)> balance_switch
+3）手动split
+
+# 语法：split 'regionName', 'splitKey'
+4）手动触发major compaction
+
+#语法：
+#Compact all regions in a table:
+#hbase> major_compact 't1'
+#Compact an entire region:
+#hbase> major_compact 'r1'
+#Compact a single column family within a region:
+#hbase> major_compact 'r1', 'c1'
+#Compact a single column family within a table:
+#hbase> major_compact 't1', 'c1'
+配置管理及节点重启
+1）修改hdfs配置
+hdfs配置位置：/etc/hadoop/conf
+# 同步hdfs配置
+cat /home/hadoop/slaves|xargs -i -t scp /etc/hadoop/conf/hdfs-site.xml hadoop@{}:/etc/hadoop/conf/hdfs-site.xml
+#关闭：
+cat /home/hadoop/slaves|xargs -i -t ssh hadoop@{} "sudo /home/hadoop/cdh4/hadoop-2.0.0-cdh4.2.1/sbin/hadoop-daemon.sh --config /etc/hadoop/conf stop datanode"
+#启动：
+cat /home/hadoop/slaves|xargs -i -t ssh hadoop@{} "sudo /home/hadoop/cdh4/hadoop-2.0.0-cdh4.2.1/sbin/hadoop-daemon.sh --config /etc/hadoop/conf start datanode"
+2）修改hbase配置
+hbase配置位置：
+
+# 同步hbase配置
+cat /home/hadoop/hbase/conf/regionservers|xargs -i -t scp /home/hadoop/hbase/conf/hbase-site.xml hadoop@{}:/home/hadoop/hbase/conf/hbase-site.xml
+ 
+# graceful重启
+cd ~/hbase
+bin/graceful_stop.sh --restart --reload --debug inspurXXX.xxx.xxx.org
