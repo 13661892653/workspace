@@ -55,7 +55,7 @@ public class CollectTask extends TimerTask {
 		
 		//构造一个HDFS的客户端对象
 		
-			FileSystem fs=FileSystem.get(new URI("hdfs://COLBY-NN-101:9000"), new Configuration(), "root");
+			FileSystem fs=FileSystem.get(new URI("hdfs://BIGDATA:9000"), new Configuration(), "root");
 			File[] touploadFiles=toUploadDir.listFiles();
 			
 			//检查HDFS的日期目录是否存在，如果不存在则创建
