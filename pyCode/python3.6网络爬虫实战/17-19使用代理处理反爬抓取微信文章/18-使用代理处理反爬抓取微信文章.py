@@ -30,8 +30,10 @@ def get_html(url,count=1):
             }
             response=requests.get(url,allow_redirects=False,headers=headers,proxies=proxies)
         else:
+
             response = requests.get(url, allow_redirects=False, headers=headers)
         if response.status_code == 200:
+            print('当前状态正常！')
             return response.text
         if response.status_code == 302:
             print('Response status:302')
