@@ -2,18 +2,19 @@
 from hdfs import *
 
 def main():
-    client = Client("http://COLBY-NN-101:50070",timeout=1000)
+    client = Client("http://BIGDATA:50070",timeout=1000)
     #upload(client)
     cat_hdfs_file(client)
 
-
 def upload(client):
-    res_upload=client.upload("/", "F:/BaiduNetdiskDownload/Adobe Acrobat DC Pro v17.009.20058.7z", overwrite=True,n_threads=1)
+    #上传文件
+    res_upload=client.upload("/", "F:/内部资料/大数据/Hadoop-day02-HDFS工作机制/01.自开发分布式数据采集系统--系统流程设计--采集任务逻辑实现.mp4", overwrite=True,n_threads=1)
     res_list =client.list("/")
     print(res_upload,res_list)
 
 def cat_hdfs_file(client):
-    f=client.read('/logs/2018-05-27-17/access_log_243d2263-fc00-4255-a562-235469d17ef5.log',encoding='gbk')
+    #读取文件
+    f=client.read('/logs/2018-05-28-09/access_log_0d9b716f-fa57-4a1c-b7c7-cc713afa5c67.log',encoding='gbk')
     with f as reader:
         print(reader.read())
 if __name__ == "__main__":
