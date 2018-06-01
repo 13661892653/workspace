@@ -85,10 +85,10 @@ def get_html(page,count=1):
         return get_html(page, count)
 
 def main(page):
-    begin = page-100+1
+    begin = page-10+1
     end = page - 1
     if page==13:
-        end=1226
+        end=123
     for i in range(begin,end):
         html=get_html(i,count)
         parse_index(html)
@@ -101,4 +101,4 @@ def save_to_mongo(result):
         return False
 if __name__ == "__main__":
     pool = Pool()
-    pool.map(main, [i * 100 for i in range(2,13)])
+    pool.map(main, [i * 10 for i in range(2,123)])
