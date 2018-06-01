@@ -25,8 +25,8 @@ def get_proxy():
     except ConnectionError:
         return None
 
-def parse_index(html):
-    soup = BeautifulSoup(html, 'lxml')
+def parse_index(htmlText):
+    soup = BeautifulSoup(htmlText, 'lxml')
     items = soup.select(".table-plate3")
     for item in items:
         data = {}
@@ -94,6 +94,7 @@ def main(page):
         parse_index(html)
 
 def save_to_mongo(result):
+    #将返回的结果存储到MONGODB。
     if result:
         if db[MONGO_TABLE].insert(result):
             print('插入成功')
