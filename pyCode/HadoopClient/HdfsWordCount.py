@@ -1,6 +1,5 @@
 # coding=utf-8
 # author:colby
-# QQ:470563152
 
 from hdfs import *
 
