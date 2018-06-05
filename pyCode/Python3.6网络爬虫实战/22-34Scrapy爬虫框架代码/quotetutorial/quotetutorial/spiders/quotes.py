@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+#Author:colby
+'''
+scrapy startproject quoteturorial
+scrapy genspider quotes quotes.toscrape.com
+'''
 import scrapy
 from quotetutorial.items import QuotetutorialItem
 
@@ -6,7 +11,10 @@ class QuotesSpider(scrapy.Spider):
     name = 'quotes'
     allowed_domains = ['quotes.toscrape.com']
     start_urls = ['http://quotes.toscrape.com/']
-    #parse 默认回调函数
+    #parse 默认回调函数,start_requests可以不用写，start_urls默认到callback函数，调用parse
+    def start_requests(self):
+        for url in self.start_urls:
+            yield scrapy.Request(url=url,callback=self.parse)
     def parse(self, response):
         quotes = response.css('.quote')
         for quote in quotes:
