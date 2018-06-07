@@ -7,8 +7,10 @@ class BaiduSpider(scrapy.Spider):
     allowed_domains = ['www.baidu.com']
     start_urls = ['http://www.baidu.com/']
     def make_requests_from_url(self, url):
+        #更改默认的回调函数parse
         return scrapy.Request(url=url,callback=self.parse_index)
     def parse(self, response):
         pass
     def parse_index(self,response):
         print('baidu',response.status)
+        self.logger.info(response.status)
