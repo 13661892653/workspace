@@ -28,7 +28,6 @@ class MongPipeline(object):
 
     @classmethod#类方法不需要实例化，可以直接调用,并且首先调用类方法。
     def from_crawler(cls,crawler):
-        print('11111111111')
         return cls(
             mongo_uri=crawler.settings.get('MONGO_URI'),
             mongo_db = crawler.settings.get('MONGO_DB')
