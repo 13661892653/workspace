@@ -10,6 +10,17 @@ class ZhihuSpider(scrapy.Spider):
     name = 'zhihu'
     allowed_domains = ['www.zhihu.com']
     start_urls = ['http://www.zhihu.com/']
+    '''
+    url='https://www.zhihu.com/people/excited-vczh/answers'
+    '''
+    def start_requests(self):
+        yield scrapy.Request(url=self.start_urls[0],callback=self.parse)
 
-    def parse(self, response):
+
+
+    def parse_follows(self, response):
+        pass
+
+
+    def parse_followers(self, response):
         pass
