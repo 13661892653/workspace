@@ -24,6 +24,5 @@ class ZhihuSpider(Spider):
     def parse_user(self, response):
         print(response.text)
 
-
     def parse_follows(self, response):
         print(response.text)
