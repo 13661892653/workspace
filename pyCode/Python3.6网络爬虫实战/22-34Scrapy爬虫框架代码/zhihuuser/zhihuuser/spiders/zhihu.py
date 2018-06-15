@@ -4,7 +4,8 @@ scrapy startproject zhihuuser
 scrapy genspider zhihu www.zhihu.com
 '''
 from  scrapy import Spider,Request
-
+from zhihuuser.items import UserItem
+import json
 
 class ZhihuSpider(Spider):
     name = 'zhihu'
@@ -22,7 +23,8 @@ class ZhihuSpider(Spider):
 
 
     def parse_user(self, response):
-        print(response.text)
+        result=json.loads(response.text)
+        item=UserItem()
 
     def parse_follows(self, response):
         print(response.text)
