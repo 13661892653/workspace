@@ -3,8 +3,10 @@
 scrapy startproject zhihuuser
 scrapy genspider zhihu www.zhihu.com
 '''
-from  scrapy import Spider,Request
+import json
 
+from scrapy import Spider,Request
+from zhihuuser.items import UserItem
 
 class ZhihuSpider(Spider):
     name = 'zhihu'
@@ -22,7 +24,19 @@ class ZhihuSpider(Spider):
 
 
     def parse_user(self, response):
-        print(response.text)
+        result=json.loads(response.text)
+        item=UserItem()
+        for field in item.fields:
+            if field in result.keys():
+                item[field]=result.get(field)
+        yield item
 
     def parse_follows(self, response):
-        print(response.text)
+        results = json.loads(response.text)
+        if 'data' in results.keys():
+            for result in results.get('data'):
+                yield Request(self.user_url.format(user=result.get('url_token'),include=self.user_query),callback=self.parse_user)
+
+        if 'paging' in results.keys() and results.get('paging').get('is_end') == False:
+            next_page=results.get('paging').get('next')
+            yield Request(next_page,self.parse_follows)
