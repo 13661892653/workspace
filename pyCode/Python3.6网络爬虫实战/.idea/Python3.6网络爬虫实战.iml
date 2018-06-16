@@ -14,7 +14,6 @@
     <orderEntry type="module" module-name="spider_youboy" />
     <orderEntry type="module" module-name="HadoopClient" />
     <orderEntry type="module" module-name="cyzone" />
-    <orderEntry type="module" module-name="Crm" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />
