@@ -4,14 +4,14 @@ scrapy startproject zhihuuser
 scrapy genspider zhihu www.zhihu.com
 '''
 import json
-
 from scrapy import Spider,Request
+from scrapy_redis.spiders import RedisSpider
 from zhihuuser.items import UserItem
 
-class ZhihuSpider(Spider):
+class ZhihuSpider(RedisSpider):
     name = 'zhihu'
     allowed_domains = ['www.zhihu.com']
-    start_urls = ['http://www.zhihu.com/']
+    redis_key = 'http://www.zhihu.com/'
     start_user='excited-vczh'
     user_url = 'https://www.zhihu.com/api/v4/members/{user}?include={include}'
     user_query = 'allow_message%2Cis_followed%2Cis_following%2Cis_org%2Cis_blocking%2Cemployments%2Canswer_count%2Cfollower_count%2Carticles_count%2Cgender%2Cbadge%5B%3F(type%3Dbest_answerer)%5D.topics'

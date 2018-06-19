@@ -96,5 +96,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 MONGO_URI='localhost'
 MONGO_DATABASE='zhihu'
-
-REDIS_URL='redis://user:pass@hostname:6379'
+REDIS_HOST = "127.0.0.1"
+REDIS_PORT = 6379
+#REDIS_URL='redis://user:pass@hostname:6379'
