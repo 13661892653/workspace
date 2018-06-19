@@ -4,7 +4,7 @@
 #
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-
+import requests
 from scrapy import signals
 
 
@@ -101,3 +101,24 @@ class ZhihuuserDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class MyproxiesSpiderMiddleware(object):
+
+    def __init__(self, ip=''):
+        self.ip = ip
+
+    def get_proxy(self):
+        try:
+            proxy_pool_url = 'http://127.0.0.1:5555/random'
+            response = requests.get(proxy_pool_url)
+            if response.status_code == 200:
+                return response.text
+            return None
+        except ConnectionError:
+            return None
+
+    def process_request(self, request, spider):
+        proxy = self.get_proxy()
+        print("this is ip:" + proxy)
+        request.meta["proxy"] = "http://" + proxy
