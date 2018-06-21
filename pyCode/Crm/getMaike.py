@@ -30,10 +30,13 @@ def get_first_json():
     resonse=requests.get(first_url,headers=request_headers)
     soup=BeautifulSoup(resonse.text,'lxml')
     json_data=json.loads(soup.text)
-    items=parse_json(json_data)
-
+    if json_data.get('list'):
+        items=parse_json(json_data)
+    else:
+        print('未登录...状态',resonse.status_code)
 def parse_json(json_data):
     items={}
+    print(json_data)
     datas = json_data['list']['d']
     date_list = json_data['list']['mp_fsCA']
     next_page_url = json_data['list']['nxt']

@@ -9,7 +9,7 @@ public class HelloWorld {
 		
 		String name=sc.nextLine();
 		
-		String res = name + "ฤ๚บรฃก";
+		String res = name + "ๆจๅฅฝ๏ผ";
 		
 		System.out.println(res);
 	}

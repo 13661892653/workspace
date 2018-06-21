@@ -16,6 +16,7 @@
     <orderEntry type="module" module-name="cyzone" />
     <orderEntry type="module" module-name="ProxyPool-master" />
     <orderEntry type="module" module-name="scrapy-redis" />
+    <orderEntry type="module" module-name="Crm" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />

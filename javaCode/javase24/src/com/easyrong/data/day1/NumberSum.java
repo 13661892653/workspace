@@ -12,7 +12,7 @@ public class NumberSum {
         int jia = n1 + n2;
         int jian = n1 - n2;
         int cheng = n1 * n2;
-        float chu = (float)n1 / (float)n2;
+        float chu = (float)n1 / n2;
         System.out.println(jia);
         System.out.println(jian);
         System.out.println(cheng);
