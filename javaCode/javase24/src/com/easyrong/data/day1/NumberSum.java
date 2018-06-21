@@ -7,8 +7,16 @@ public class NumberSum {
         Scanner scanner=new Scanner(System.in);
         String number1=scanner.nextLine();
         String number2=scanner.nextLine();
-        int res=Integer.parseInt(number1) + Integer.parseInt(number2);
-        System.out.println(res);
+        int n1 = Integer.parseInt(number1);
+        int n2 = Integer.parseInt(number2);
+        int jia = n1 + n2;
+        int jian = n1 - n2;
+        int cheng = n1 * n2;
+        float chu = (float)n1 / (float)n2;
+        System.out.println(jia);
+        System.out.println(jian);
+        System.out.println(cheng);
+        System.out.println(chu);
 
     }
 }
