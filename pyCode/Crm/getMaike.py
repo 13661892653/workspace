@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import json
 import pymongo
 from settings import *
+
 client=pymongo.MongoClient(MONGO_URL)
 db=client[MONGO_DB]
 
@@ -78,10 +79,10 @@ def parse_many_json(next):
     parse_json(json_data)
 
 def save_to_mongodb(item):
-    print('item',item)
+    print('正在插入行', item['row'], '...')
     if item:
         if db[MONGO_TABLE].insert(item):
-            print('插入成功')
+            print('行',item['row'],'插入成功')
             return True
         return False
 
