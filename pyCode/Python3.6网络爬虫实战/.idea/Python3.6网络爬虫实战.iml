@@ -7,15 +7,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="MxOnline" />
-    <orderEntry type="module" module-name="ProxyPool-master" />
-    <orderEntry type="module" module-name="Crm" />
-    <orderEntry type="module" module-name="PythonStudy" />
     <orderEntry type="module" module-name="spider_youboy" />
     <orderEntry type="module" module-name="HadoopClient" />
     <orderEntry type="module" module-name="cyzone" />
-    <orderEntry type="module" module-name="ProxyPool-master" />
-    <orderEntry type="module" module-name="scrapy-redis" />
     <orderEntry type="module" module-name="Crm" />
   </component>
   <component name="TestRunnerService">
