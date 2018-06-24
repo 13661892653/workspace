@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/Python3.6网络爬虫实战.iml" filepath="$PROJECT_DIR$/.idea/Python3.6网络爬虫实战.iml" />
       <module fileurl="file://$PROJECT_DIR$/../PythonStudy/.idea/PythonStudy.iml" filepath="$PROJECT_DIR$/../PythonStudy/.idea/PythonStudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/../cyzone/.idea/cyzone.iml" filepath="$PROJECT_DIR$/../cyzone/.idea/cyzone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gkcx/.idea/gkcx.iml" filepath="$PROJECT_DIR$/../gkcx/.idea/gkcx.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Git_Third_Package/scrapy-redis/.idea/scrapy-redis.iml" filepath="$PROJECT_DIR$/../Git_Third_Package/scrapy-redis/.idea/scrapy-redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/../spider_youboy/.idea/spider_youboy.iml" filepath="$PROJECT_DIR$/../spider_youboy/.idea/spider_youboy.iml" />
     </modules>

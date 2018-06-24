@@ -11,6 +11,7 @@
     <orderEntry type="module" module-name="HadoopClient" />
     <orderEntry type="module" module-name="cyzone" />
     <orderEntry type="module" module-name="Crm" />
+    <orderEntry type="module" module-name="gkcx" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />

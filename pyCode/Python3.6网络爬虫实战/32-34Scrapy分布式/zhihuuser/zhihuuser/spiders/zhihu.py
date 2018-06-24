@@ -39,17 +39,20 @@ class ZhihuSpider(RedisSpider):
             if field in result.keys():
                 item[field]=result.get(field)
         yield item
-        yield Request(self.follows_url.format(user=result.get('url_token'), include=self.follows_query, offset=0, limit=20),
+        yield Request(self.follows_url.format(user=result.get('url_token'),
+                                              include=self.follows_query, offset=0, limit=20),
                       self.parse_follows)
         yield Request(
-            self.followers_url.format(user=result.get('url_token'), include=self.followers_query, offset=0, limit=20),
+            self.followers_url.format(user=result.get('url_token'),
+                                      include=self.followers_query, offset=0, limit=20),
             self.parse_followers)
 
     def parse_follows(self, response):
         results = json.loads(response.text)
         if 'data' in results.keys():
             for result in results.get('data'):
-                yield Request(self.user_url.format(user=result.get('url_token'),include=self.user_query),callback=self.parse_user)
+                yield Request(self.user_url.format(user=result.get('url_token'),
+                                                   include=self.user_query),callback=self.parse_user)
 
         if 'paging' in results.keys() and results.get('paging').get('is_end') == False:
             next_page=results.get('paging').get('next')
@@ -59,7 +62,8 @@ class ZhihuSpider(RedisSpider):
         results = json.loads(response.text)
         if 'data' in results.keys():
             for result in results.get('data'):
-                yield Request(self.user_url.format(user=result.get('url_token'),include=self.user_query),callback=self.parse_user)
+                yield Request(self.user_url.format(user=result.get('url_token'),
+                                                   include=self.user_query),callback=self.parse_user)
 
         if 'paging' in results.keys() and results.get('paging').get('is_end') == False:
             next_page=results.get('paging').get('next')
