@@ -31,7 +31,7 @@ def get_tbody(driver,url):
 
 def get_gkcx_index(page):
     urls = ('https://gkcx.eol.cn/soudaxue/queryProvinceScore.html?page={}'.format(page) for page in
-            range(page - 50 + 1, page))
+            range(page - 100 + 1, page))
     driver = webdriver.PhantomJS()
     #'PhantomJS'
     #totalPage='264064'
@@ -67,4 +67,4 @@ def main(page):
 
 if __name__ == "__main__":
     pool = Pool()
-    pool.map(main, [i*50 for i in range(1,8)])
+    pool.map(main, [i * 50 for i in range(8, 16)])
