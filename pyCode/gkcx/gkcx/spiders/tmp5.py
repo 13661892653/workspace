@@ -8,6 +8,7 @@ from selenium import webdriver
 # from selenium.webdriver.common.by import By
 import pymongo
 import random
+import re
 
 MONGO_URI='localhost'
 MONGO_DATABASE='gkcx'
@@ -38,8 +39,10 @@ def get_gkcx_index(page):
     driver.maximize_window()
     for url in urls:
         data={}
+        page_num=re.findall('.*?page=(\d+)', url)[0]
         items=get_tbody(driver,url)
         print('items',items)
+        data['页码'] = page_num
         for item in items:
             item = item.find_all('td')
             data['_id'] = hash(item[0].a['href']+str(random.random()))
@@ -67,4 +70,4 @@ def main(page):
 
 if __name__ == "__main__":
     pool = Pool()
-    pool.map(main, [i * 500 for i in range(24, 32)])
+    pool.map(main, [i*500 for i in range(24,32)])

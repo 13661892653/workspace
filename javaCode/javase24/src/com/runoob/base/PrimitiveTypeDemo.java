@@ -1,6 +1,6 @@
 package com.runoob.base;
 
-public class PrimitiveTypeTest {
+public class PrimitiveTypeDemo {
     public static void main(String[] args) {
         // byte
         System.out.println("基本类型：byte 二进制位数：" + Byte.SIZE);
