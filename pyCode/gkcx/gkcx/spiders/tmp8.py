@@ -8,6 +8,7 @@ from selenium import webdriver
 # from selenium.webdriver.common.by import By
 import pymongo
 import random
+import re
 
 MONGO_URI='localhost'
 MONGO_DATABASE='gkcx'
@@ -38,20 +39,25 @@ def get_gkcx_index(page):
     driver.maximize_window()
     for url in urls:
         data={}
+        page_num=re.findall('.*?page=(\d+)', url)[0]
         items=get_tbody(driver,url)
         print('items',items)
+        data['页码'] = page_num
         for item in items:
             item = item.find_all('td')
-            data['_id'] = hash(item[0].a['href']+str(random.random()))
-            data['学校网址'] = item[0].a['href']
-            data['学校名称'] = item[0].a['title']
-            data['招生地址'] = item[1].text
-            data['文理科'] = item[2].text
-            data['年份'] = item[3].text
-            data['录取批次'] = item[4].text
-            data['平均分'] = item[5].text
-            data['省控线'] = item[6].text
-            data['线差'] = item[7].text
+            try:
+                data['_id'] = hash(item[0].a['href']+str(random.random()))
+                data['学校网址'] = item[0].a['href']
+                data['学校名称'] = item[0].a['title']
+                data['招生地址'] = item[1].text
+                data['文理科'] = item[2].text
+                data['年份'] = item[3].text
+                data['录取批次'] = item[4].text
+                data['平均分'] = item[5].text
+                data['省控线'] = item[6].text
+                data['线差'] = item[7].text
+            except Exception as e:
+                print('id获取错误')
             save_to_mongo(data)
 
 def save_to_mongo(result):
@@ -67,4 +73,4 @@ def main(page):
 
 if __name__ == "__main__":
     pool = Pool()
-    pool.map(main, [i * 500 for i in range(45, 50)])
+    pool.map(main, [i*500 for i in range(48,52)])

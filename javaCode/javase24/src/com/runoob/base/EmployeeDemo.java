@@ -1,7 +1,7 @@
 package com.runoob.base;
 
 import java.io.*;
-public class EmployeeTest{
+public class EmployeeDemo {
 
     public static void main(String []args){
         /* 使用构造器创建两个对象 */
