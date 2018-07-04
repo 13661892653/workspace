@@ -15,8 +15,8 @@ public class ArrayDemo {
             }else{
                 System.out.println("偶数隐藏，不打印！");
             }
-
         }
 
     }
+
 }
