@@ -4,7 +4,8 @@ public class Person {
     String name;
     String sex;
     int age;
-    public void PersonInfo(){
-        System.out.println(name+sex+age);
+
+    public void Personal() {
+        System.out.println("姓名："+name +" 性别："+ sex+" 年龄：" + age);
     }
 }

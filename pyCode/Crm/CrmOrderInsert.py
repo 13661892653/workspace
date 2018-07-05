@@ -95,7 +95,7 @@ def main():
     button.click()
 
     #读取文件企业信息列表
-    with open('data.csv', encoding='utf-8') as file:
+    with open('data.csv', encoding='gbk') as file:
         for row in file:
             #print(replaceAll(row).split(','))
             content=replaceAll(row).split(',')
