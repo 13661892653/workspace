@@ -6,8 +6,8 @@ public class ForForDemo {
         //类变量（静态变量）
         //成员变量（非静态变量）
 
-        for(int i=0;i<20;i++){
-            for(int j=1;j<i;j++){
+        for (int i = 0; i < 20; i++) {
+            for (int j = 1; j < i; j++) {
                 System.out.print("* ");
             }
             System.out.println();

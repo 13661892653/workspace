@@ -5,10 +5,10 @@ public class DoWhileDemo {
         //局部变量
         //类变量（静态变量）
         //成员变量（非静态变量）
-        int i=1;
-        do{
+        int i = 1;
+        do {
             System.out.println(i);
             i++;
-        }while(i<5);
+        } while (i < 5);
     }
 }

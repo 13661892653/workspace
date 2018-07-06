@@ -6,6 +6,6 @@ public class Person {
     int age;
 
     public void Personal() {
-        System.out.println("姓名："+name +" 性别："+ sex+" 年龄：" + age);
+        System.out.println("姓名：" + name + " 性别：" + sex + " 年龄：" + age);
     }
 }

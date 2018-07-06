@@ -3,8 +3,8 @@ package com.easyrong.data.days04;
 public class SwitchDemo {
     public static void main(String args[]) {
         //switch后面跟表达式
-        int week=1;
-        switch(week){
+        int week = 1;
+        switch (week) {
             case 1:
                 System.out.println("1");
                 break;
