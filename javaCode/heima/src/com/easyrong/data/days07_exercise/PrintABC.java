@@ -14,5 +14,8 @@ public class PrintABC {
         for (int i = 97; i <= 122; i++) {
             System.out.print((char) i);
         }
+
+        int[] i={1,2,3,4,5};
+
     }
 }
