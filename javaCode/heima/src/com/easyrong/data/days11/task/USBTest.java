@@ -1,4 +1,6 @@
 package com.easyrong.data.days11.task;
+import java.sql.Driver;
+import java.sql.DriverManager;
 
 public class USBTest {
     /*
@@ -13,5 +15,6 @@ public class USBTest {
         com.useUSB(new KeyBoard());
 
         com.closeComputer();
+
     }
 }
