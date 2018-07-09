@@ -39,11 +39,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/easyrong/data/days12/task/test.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
               <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test13.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/easyrong/data/days13/Test13.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -98,7 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/easyrong/data/days02/LogicDemo.java" />
         <option value="$PROJECT_DIR$/src/com/easyrong/data/days07_exercise/PrintArray.java" />
         <option value="$PROJECT_DIR$/src/com/easyrong/data/days07_exercise/ReverseArray.java" />
         <option value="$PROJECT_DIR$/src/com/easyrong/data/days07_exercise/BubbleSort.java" />
@@ -149,6 +157,7 @@
         <option value="$PROJECT_DIR$/src/com/easyrong/data/days12/task/Person.java" />
         <option value="$PROJECT_DIR$/src/com/easyrong/data/days12/task/Student.java" />
         <option value="$PROJECT_DIR$/src/com/easyrong/data/days12/task/test.java" />
+        <option value="$PROJECT_DIR$/src/com/easyrong/data/days13/Test13.java" />
       </list>
     </option>
   </component>
@@ -203,15 +212,7 @@
               <item name="heima" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="days12" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="heima" type="b2602c69:ProjectViewProjectNode" />
-              <item name="heima" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="days12" type="462c0819:PsiDirectoryNode" />
-              <item name="job" type="462c0819:PsiDirectoryNode" />
+              <item name="days13" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -337,10 +338,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116911000" />
+    <option name="totallyTimeSpent" value="117762000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -352,11 +354,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.3298272" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.34748602" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.326257" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34748602" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.326257" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12899786" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12899786" />
       <window_info anchor="right" id="Database" order="3" weight="0.3298272" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24943651" />
@@ -404,7 +406,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/easyrong/data/days07_exercise/BubbleSort.java" />
     <entry file="file://$PROJECT_DIR$/src/com/easyrong/data/days07_exercise/PrintArray.java" />
     <entry file="file://$PROJECT_DIR$/src/com/easyrong/data/days07_exercise/ASCII.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -811,6 +812,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/easyrong/data/days13/Test13.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>
