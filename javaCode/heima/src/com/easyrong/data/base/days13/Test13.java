@@ -2,9 +2,8 @@ package com.easyrong.data.base.days13;
 
 public class Test13 {
     public static void main(String args[]) {
-        /*
-         *
-         *
+        /**
+         * 
          */
         PersonStaticDemo p1 =new PersonStaticDemo();
         PersonStaticDemo p2 =new PersonStaticDemo();

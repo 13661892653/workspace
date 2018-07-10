@@ -2,11 +2,12 @@ package com.easyrong.data.base.days14;
 
 import com.easyrong.data.base.days14.*;
 
+import java.util.DoubleSummaryStatistics;
+
 public class Test {
-    public static void main(String args[]) {
-        /*
-         *
-         * */
-        System.out.println(GetSum.getSum(1,2));
-    }
+
+    public static void main(String[] args) {
+		System.out.println("llllllllll");
+		System.out.println("000000000");
+	}
 }
