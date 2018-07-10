@@ -2,7 +2,7 @@ package com.easyrong.data.base.days13;
 
 public class Outer {
     /**
-     * 
+     *
      */
     private int a=1;
     class Inner{

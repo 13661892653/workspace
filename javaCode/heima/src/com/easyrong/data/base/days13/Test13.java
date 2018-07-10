@@ -1,7 +1,5 @@
 package com.easyrong.data.base.days13;
 
-import com.easyrong.data.days09.Person;
-
 public class Test13 {
     public static void main(String args[]) {
         /*
