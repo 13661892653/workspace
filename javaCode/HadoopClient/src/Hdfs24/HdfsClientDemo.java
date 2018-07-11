@@ -1,21 +1,21 @@
 package Hdfs24;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
+//import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Arrays;
+//import java.net.URISyntaxException;
+//import java.util.Arrays;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
-import org.apache.hadoop.fs.FSDataOutputStream;
-import org.apache.hadoop.fs.FileStatus;
+//import org.apache.hadoop.fs.FSDataOutputStream;
+//import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.LocatedFileStatus;
+//import org.apache.hadoop.fs.LocatedFileStatus;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.fs.RemoteIterator;
+//import org.apache.hadoop.fs.RemoteIterator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,14 +24,14 @@ public class HdfsClientDemo {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		Configuration conf=new Configuration();
-		//ÉÏ´«ÎÄ¼ş±£´æµÄ¸±±¾Êı
+		//ä¸Šä¼ æ–‡ä»¶ä¿å­˜çš„å‰¯æœ¬æ•°
 		conf.set("dfs.replication","1");
-		//ÉÏ´«ÎÄ¼şÇĞ¿éµÄ¹æ¸ñ´óĞ¡
+		//ä¸Šä¼ æ–‡ä»¶åˆ‡å—çš„è§„æ ¼å¤§å°
 		conf.set("dfs.blocksize","64m");
-		//·ÃÎÊÖ¸¶¨HDFSÏµÍ³¿Í»§¶Ë¶ÔÏó
+		//è®¿é—®æŒ‡å®šHDFSç³»ç»Ÿå®¢æˆ·ç«¯å¯¹è±¡
 		FileSystem fs=FileSystem.get(new URI("hdfs://BIGDATA:9000"), conf, "root");
-		//ÉÏ´«Ò»¸öÎÄ¼şHDFSÎÄ¼şÏµÍ³
-		//hadoop fs.copyFromLocalFile(new Path("F:\\ÄÚ²¿×ÊÁÏ\\´óÊı¾İ\\Hadoop-day01-¼¯Èº°²×°²¿Êğ\\09.ÒµÎñÏµÍ³ÖĞÈÕÖ¾Éú³É»úÖÆºÍ´úÂëÕ¹Ê¾.mp4"), new Path("/"));
+		//ä¸Šä¼ ä¸€ä¸ªæ–‡ä»¶HDFSæ–‡ä»¶ç³»ç»Ÿ
+		//hadoop fs.copyFromLocalFile(new Path("F:\\å†…éƒ¨èµ„æ–™\\å¤§æ•°æ®\\Hadoop-day01-é›†ç¾¤å®‰è£…éƒ¨ç½²\\09.ä¸šåŠ¡ç³»ç»Ÿä¸­æ—¥å¿—ç”Ÿæˆæœºåˆ¶å’Œä»£ç å±•ç¤º.mp4"), new Path("/"));
 		fs.close();
 	}
 	
@@ -49,7 +49,7 @@ public class HdfsClientDemo {
 	}
 	
 	/**
-	 * ÔÚhdfsÖĞ´´½¨ÎÄ¼ş¼Ğ
+	 * åœ¨hdfsä¸­åˆ›å»ºæ–‡ä»¶å¤¹
 	 *//*
 	@Test
 	public void testMkdir() throws Exception {

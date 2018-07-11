@@ -9,6 +9,6 @@ public class ASCII {
         char c = '伦';
         int i = c + 1;
         System.out.println(i);
-
+        System.out.println();
     }
 }

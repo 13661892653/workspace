@@ -21,20 +21,20 @@ public class CollectTask extends TimerTask {
 	public void run() {
 		// TODO Auto-generated method stub
 		/**
-		 * ¡ª¡ª¶¨Ê±Ì½²âÈÕÖ¾Ô´Ä¿Â¼
-		 * ¡ª¡ª»ñÈ¡ĞèÒª²É¼¯µÄÎÄ¼ş
-		 * ¡ª¡ªÒÆ¶¯ÕâĞ©ÎÄ¼şµ½Ò»¸ö´ıÉÏ´«ÁÙÊ±Ä¿Â¼
-		 * ¡ª¡ª±éÀú´ıÉÏ´«Ä¿Â¼ÖĞ¸÷ÎÄ¼ş£¬ÖğÒ»´«Êäµ½HDFSµÄÄ¿±êÂ·¾¶£¬Í¬Ê±½«´«ÊäÍê³ÉµÄÎÄ¼şÒÆ¶¯µ½±¸·İÄ¿Â¼
+		 * â€”â€”å®šæ—¶æ¢æµ‹æ—¥å¿—æºç›®å½•
+		 * â€”â€”è·å–éœ€è¦é‡‡é›†çš„æ–‡ä»¶
+		 * â€”â€”ç§»åŠ¨è¿™äº›æ–‡ä»¶åˆ°ä¸€ä¸ªå¾…ä¸Šä¼ ä¸´æ—¶ç›®å½•
+		 * â€”â€”éå†å¾…ä¸Šä¼ ç›®å½•ä¸­å„æ–‡ä»¶ï¼Œé€ä¸€ä¼ è¾“åˆ°HDFSçš„ç›®æ ‡è·¯å¾„ï¼ŒåŒæ—¶å°†ä¼ è¾“å®Œæˆçš„æ–‡ä»¶ç§»åŠ¨åˆ°å¤‡ä»½ç›®å½•
 		 */
-		//¹¹½¨log4j¶ÔÏó
+		//æ„å»ºlog4jå¯¹è±¡
 		Logger logger = Logger.getLogger("logRollingFile");
 		
-		//»ñÈ¡±¾´Î²É¼¯Ê±µÄÈÕÆÚ
+		//è·å–æœ¬æ¬¡é‡‡é›†æ—¶çš„æ—¥æœŸ
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH");
 		String day=sdf.format(new Date());
 		
 		File srcDir=new File("E:/testlog");
-		//ÁĞ³öÈÕÖ¾Ô´Ä¿Â¼ÖĞĞèÒª²É¼¯µÄÎÄ¼ş
+		//åˆ—å‡ºæ—¥å¿—æºç›®å½•ä¸­éœ€è¦é‡‡é›†çš„æ–‡ä»¶
 		File[] listFiles=srcDir.listFiles(new FilenameFilter() {
 			
 			@Override
@@ -47,23 +47,23 @@ public class CollectTask extends TimerTask {
 		});
 		
 		try{
-		//½«Òª²É¼¯µÄÎÄ¼şÒÆ¶¯µ½´ıÉÏ´«µÄÁÙÊ±Ä¿Â¼
+		//å°†è¦é‡‡é›†çš„æ–‡ä»¶ç§»åŠ¨åˆ°å¾…ä¸Šä¼ çš„ä¸´æ—¶ç›®å½•
 		File toUploadDir=new File("E:/toupload/");
 		for (File file:listFiles){
 			FileUtils.moveFileToDirectory(file, toUploadDir,true);
 		}
 		
-		//¹¹ÔìÒ»¸öHDFSµÄ¿Í»§¶Ë¶ÔÏó
+		//æ„é€ ä¸€ä¸ªHDFSçš„å®¢æˆ·ç«¯å¯¹è±¡
 		
 			FileSystem fs=FileSystem.get(new URI("hdfs://BIGDATA:9000"), new Configuration(), "root");
 			File[] touploadFiles=toUploadDir.listFiles();
 			
-			//¼ì²éHDFSµÄÈÕÆÚÄ¿Â¼ÊÇ·ñ´æÔÚ£¬Èç¹û²»´æÔÚÔò´´½¨
+			//æ£€æŸ¥HDFSçš„æ—¥æœŸç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œå¦‚æœä¸å­˜åœ¨åˆ™åˆ›å»º
 			Path hdfsDesPath=new Path("/logs/"+day);
 			if (!fs.exists(hdfsDesPath)){
 				fs.mkdirs(hdfsDesPath);
 			}
-			//¼ì²é±¾µØµÄ±¸·İÄ¿Â¼ÊÇ·ñ´æÔÚ£¬Èç¹û²»´æÔÚÔò´´½¨
+			//æ£€æŸ¥æœ¬åœ°çš„å¤‡ä»½ç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œå¦‚æœä¸å­˜åœ¨åˆ™åˆ›å»º
 			File backupDir=new File("e:/backup/"+day+"/");
 			if (!backupDir.exists()){
 				backupDir.mkdirs();
