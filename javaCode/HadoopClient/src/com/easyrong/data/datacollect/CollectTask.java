@@ -13,7 +13,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 public class CollectTask extends TimerTask {
 
@@ -27,7 +27,7 @@ public class CollectTask extends TimerTask {
 		 * ——遍历待上传目录中各文件，逐一传输到HDFS的目标路径，同时将传输完成的文件移动到备份目录
 		 */
 		//构建log4j对象
-		Logger logger = Logger.getLogger("logRollingFile");
+		//Logger logger = Logger.getLogger("logRollingFile");
 		
 		//获取本次采集时的日期
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH");
