@@ -1,4 +1,4 @@
-package com.easyrong.data.set;
+package com.easyrong.data.set.days19;
 
 public class HelloWorld {
 
