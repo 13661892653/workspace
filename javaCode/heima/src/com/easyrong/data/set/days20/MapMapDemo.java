@@ -23,7 +23,7 @@ public class MapMapDemo {
 			HashMap<String,String> StudentMap=czbk.get(className);
 			Set<String> studentSet=StudentMap.keySet();
 			for(String StudentNum:studentSet) {
-				System.out.println(className+" "+StudentNum+" "+StudentMap.get(StudentNum));
+				System.out.println(className+"->"+StudentNum+"="+StudentMap.get(StudentNum));
 			}
 		}		
 	}
