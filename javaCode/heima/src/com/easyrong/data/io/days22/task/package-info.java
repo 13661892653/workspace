@@ -5,4 +5,4 @@
  * @author chenlun
  *
  */
-package com.easyrong.data.io.days23;
+package com.easyrong.data.io.days22.task;
