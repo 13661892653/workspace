@@ -1,5 +1,6 @@
 package com.easyrong.data.io.days23;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -13,8 +14,10 @@ public class FileOutputStreamDemo {
 	}
 	
 	public static void funtion01() throws IOException {
-		FileOutputStream fos= new FileOutputStream("E:\\tmp\\a.txt");
-		fos.write("我的名字叫colby".getBytes());
+		File file=new File("E:\\tmp\\a.txt");
+		FileOutputStream fos= new FileOutputStream(file,true);//true代表追加
+		fos.write("ddd".getBytes());
+		fos.write("ddd".getBytes());
 		fos.close();
 	}
 }

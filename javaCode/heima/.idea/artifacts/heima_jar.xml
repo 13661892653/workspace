@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="heima:jar">
-    <output-path>E:/heima_jar</output-path>
-    <root id="archive" name="heima.jar">
-      <element id="module-output" name="heima" />
-    </root>
-  </artifact>
-</component>
