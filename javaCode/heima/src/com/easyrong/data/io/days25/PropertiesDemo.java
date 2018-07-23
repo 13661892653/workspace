@@ -19,9 +19,9 @@ public class PropertiesDemo {
 		System.out.println(pro);
 		System.out.println(pro.getProperty("age"));
 		Set<String> set=pro.stringPropertyNames();//跟keySet类似，entrySet
-//		for(String key:set) {
-//			System.out.println(key+"->"+pro.getProperty(key));
-//		}
+		for(String key:set) {
+			System.out.println(key+"->"+pro.getProperty(key));
+		}
 	}
 	
 	public static void readPropertiesFile() throws IOException {
