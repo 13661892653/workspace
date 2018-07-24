@@ -7,5 +7,4 @@ public class ThreadDemo {
 		
 		System.out.println("end");
 	}
-
 }
