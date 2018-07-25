@@ -1,19 +1,24 @@
 package com.easyrong.data.thread.days27;
 
-public class RunnableDemo implements Runnable {
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.Lock;
 
+public class RunnableDemo implements Runnable {
 	private int tickt = 100;
-	public synchronized void run() {
+	private Lock lock = new ReentrantLock();
+
+	public void run() {
 		while (true) {
-				if (tickt > 0) {
-					try {
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					System.out.println(Thread.currentThread().getName() + "正在出售：" + (tickt--));
+			lock.lock();
+			if (tickt > 0) {
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
+				System.out.println(Thread.currentThread().getName() + "正在出售：" + (tickt--));
+			}
+			lock.lock();
 		}
 	}
 }
