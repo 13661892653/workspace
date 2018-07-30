@@ -9,11 +9,12 @@ public class ReflectDemo {
 		System.out.println(person.getClass());
 		
 		//类名获取类名第二种方法
-		Class<Person> c=Person.class;
-		System.out.println(c);
+		Class<Person> c1=Person.class;
+		System.out.println(c1);
 		
 		//Class类的静态方法获取forName（字符串的类名）
-		Class.forName("com.heima.data.io.days25.Person");
+		Class<?> c2=Class.forName("com.heima.data.io.days25.Person");
+		System.out.println(c2);
 	}
 	
 }

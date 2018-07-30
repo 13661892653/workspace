@@ -27,7 +27,7 @@ public class PropertiesDemo {
 	public static void readPropertiesFile() throws IOException {
 		Properties pro=new Properties();
 		FileReader fr=
-				new FileReader("E:\\project\\workspace\\javaCode\\heima\\src\\com\\easyrong\\data\\io\\days25\\application.properties");
+				new FileReader("E:\\project\\workspace\\javaCode\\heima\\src\\com\\heima\\data\\io\\days25\\application.properties");
 		pro.load(fr);
 		Set<String> set=pro.stringPropertyNames();
 		for(String key:set) {

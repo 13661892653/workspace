@@ -2,20 +2,24 @@ package com.heima.data.jdbc.days29;
 
 public class Sort {
 	private int sid;
-	private String sname;
+	public String sname;
 	private double sprice;
 	private String sdesc;
-	
+	public String test;
 	public Sort(int sid, String sname, String sdesc, double sprice) {
 		this.sid = sid;
 		this.sname = sname;
 		this.sprice = sprice;
 		this.sdesc = sdesc;
 	}
-	
+	private Sort(int sid, String sname) {
+		this.sid = sid;
+		this.sname = sname;
+	}
 	public Sort() {}
 	
 	public int getSid() {
+		System.out.println("获取sid");
 		return sid;
 	}
 	public void setSid(int sid) {
@@ -37,6 +41,7 @@ public class Sort {
 		return sdesc;
 	}
 	public void setSdesc(String sdesc) {
+		System.out.println(sdesc);
 		this.sdesc = sdesc;
 	}
 	
