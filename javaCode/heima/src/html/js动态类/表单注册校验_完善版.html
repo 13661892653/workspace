@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>注册</title>
+</head>
+<body>
+	<form action="#" style="border: black solid 1px" method="get"
+		name="regForm" onsubmit="return checkForm()">
+		<!--
+        readonly="readonly" 文本框只读
+        maxlength="5" 文本框长度等于5
+        placeholder="请输入用户名" 提示信息
+        name="username" 文本框的名字，见名之意
+    	-->
+		用户名<input type="text" name="username" id="userid" size="30px"
+			maxlength="5" /><br /> 密码<input type="password" id="pid1"
+			name="password" /><br /> 确认密码<input id="pid2" type="password" /><br />
+		邮箱地址<input id="emailid" type="text" /><br />
+		<!-- radio
+        checkbox类型的组件
+        select的option选项，均需指定value值
+        get查询的时候，获取的是value的值
+    	-->
+		性别<input type="radio" value="男" name="sex" checked="checked" />男<br />
+		<input type="radio" value="女" name="sex" />女<br /> 爱好 <input
+			type="checkbox" name="like" checked="checked" />钓鱼<br /> <input
+			type="checkbox" name="like" />看书 <input type="checkbox" name="like" />跑步<br />
+		<input type="checkbox" name="like" />下棋<br /> 头像<input type="file"
+			name="filename" /><br /> 籍贯 <select name="province">
+			<option value="0">-请选择-</option>
+			<option value="1">云南</option>
+			<option value="2" selected="selected">广东</option>
+			<option value="3">新疆</option>
+		</select><br /> 自我介绍
+		<textarea rows="5" cols="30"></textarea>
+		<br />
+
+		<!-- 按钮不需要指定name属性 -->
+		<input type="submit" value="提交注册" />
+		<!--    <input type="reset" value="重置信息"/>
+        <input type="button" value="普通按钮"/>-->
+	</form>
+</body>
+<script>
+	/* window.onload = function () {
+	     //获取指定id的标签元素
+	     var user = document.getElementById("userid");
+	     //获取指定id的标签元素的值
+	     var username = user.value;
+	     alert(username);
+	 };*/
+
+	function checkForm() {
+		//alert("绑定成功");
+		//获取用户输入的数据
+		var user = document.getElementById("userid").value;
+		//校验用户名不能为空
+		if (user == "") {
+			alert("用户名不能为空");
+			return false;
+		}
+
+		var password = document.getElementById("pid1").value;
+		if (password == "") {
+			alert("密码不能为空");
+			return false;
+		}
+
+		//校验两次密码输入是否相同
+		var repassword = document.getElementById("pid2").value;
+		if (password != repassword) {
+			alert("两次密码输入不一致");
+			return false;
+		}
+
+		//邮箱校验,正则表达式注意加上双引号
+		var emailV = document.getElementById("emailid");
+		if (!"/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+.([a-zA-Z0-9_-])+/"
+				.test(emailV)) {
+			alert("邮箱地址不合法");
+			return false;
+		}
+
+	}
+</script>
+</html>

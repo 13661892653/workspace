@@ -12,6 +12,7 @@
     <orderEntry type="module" module-name="cyzone" />
     <orderEntry type="module" module-name="Crm" />
     <orderEntry type="module" module-name="gkcx" />
+    <orderEntry type="module" module-name="src" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />
