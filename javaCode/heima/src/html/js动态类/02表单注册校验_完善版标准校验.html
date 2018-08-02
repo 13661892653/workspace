@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>注册</title>
+    <script src="../../javascript/register.js"></script>
 </head>
 <body>
 	<form action="#" style="border: black solid 1px" method="get"
@@ -13,10 +14,14 @@
         placeholder="请输入用户名" 提示信息
         name="username" 文本框的名字，见名之意
     	-->
-		用户名<input type="text" name="username" id="userid" size="30px"
-			maxlength="5" /><br /> 密码<input type="password" id="pid1"
-			name="password" /><br /> 确认密码<input id="pid2" type="password" /><br />
-		邮箱地址<input id="emailid" type="text" /><br />
+		用户名<input type="text" name="username" id="userid" size="30px" maxlength="5"
+                  onfocus="showTips('userid','用户名必填')" onblur="check('userid','用户名不能为空！')"/><span id="useridspan"></span><br />
+		密码<input type="password" id="pid1" name="password"
+                 onfocus="showTips('pid1','密码必填')" onblur="check('pid1','密码不能为空！')"/><span id="pid1span"></span><br />
+		确认密码<input id="pid2" type="password"
+                   onfocus="showTips('pid2','请确认您的密码')" onblur="check('pid2','请确认您的密码！')"/><span id="pid2span"></span><br />
+		邮箱地址<input id="emailid" type="text"
+                   onfocus="showTips('emailid','邮箱必填')" onblur="check('emailid','邮箱不能为空！')"/><span id="emailidspan"></span><br />
 		<!-- radio
         checkbox类型的组件
         select的option选项，均需指定value值
@@ -42,46 +47,4 @@
         <input type="button" value="普通按钮"/>-->
 	</form>
 </body>
-<script>
-	/* window.onload = function () {
-	     //获取指定id的标签元素
-	     var user = document.getElementById("userid");
-	     //获取指定id的标签元素的值
-	     var username = user.value;
-	     alert(username);
-	 };*/
-
-	function checkForm() {
-		//alert("绑定成功");
-		//获取用户输入的数据
-		var user = document.getElementById("userid").value;
-		//校验用户名不能为空
-		if (user == "") {
-			alert("用户名不能为空");
-			return false;
-		}
-
-		var password = document.getElementById("pid1").value;
-		if (password == "") {
-			alert("密码不能为空");
-			return false;
-		}
-
-		//校验两次密码输入是否相同
-		var repassword = document.getElementById("pid2").value;
-		if (password != repassword) {
-			alert("两次密码输入不一致");
-			return false;
-		}
-
-		//邮箱校验,正则表达式注意加上双引号
-		var emailV = document.getElementById("emailid");
-		if (!"/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+.([a-zA-Z0-9_-])+/"
-				.test(emailV)) {
-			alert("邮箱地址不合法");
-			return false;
-		}
-
-	}
-</script>
 </html>
