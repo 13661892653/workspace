@@ -15,7 +15,7 @@
     <session id="-1014389152">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.opened" value="2" />
@@ -23,46 +23,51 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="21" />
+          <entry key="html" value="23" />
           <entry key="jpg" value="3" />
-          <entry key="js" value="8" />
+          <entry key="js" value="10" />
           <entry key="png" value="1" />
           <entry key="ts" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="21" />
+          <entry key="HTML" value="23" />
           <entry key="Image" value="4" />
-          <entry key="JavaScript" value="8" />
+          <entry key="JavaScript" value="10" />
           <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="2594" />
-          <entry key="js" value="814" />
+          <entry key="html" value="3124" />
+          <entry key="js" value="893" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="2594" />
-          <entry key="JavaScript" value="814" />
+          <entry key="HTML" value="3124" />
+          <entry key="JavaScript" value="893" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/html/js动态类/05全选与反向全选.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/html/js动态类/06省市区二级联动.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1410">
-              <caret line="47" column="58" lean-forward="true" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
-              <folding>
-                <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#0;n#thead#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="330">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/javascript/provinceCityChange.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -72,8 +77,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -96,6 +101,11 @@
         <option value="$PROJECT_DIR$/src/html/js动态类/表格隔行换色.html" />
         <option value="$PROJECT_DIR$/src/html/js动态类/表格高亮显示.html" />
         <option value="$PROJECT_DIR$/src/html/js动态类/05全选与反向全选.html" />
+        <option value="$PROJECT_DIR$/src/html/js动态类/07动态添加城市.html" />
+        <option value="$PROJECT_DIR$/src/html/js动态类/05动态添加城市.html" />
+        <option value="$PROJECT_DIR$/src/javascript/provinceArr.js" />
+        <option value="$PROJECT_DIR$/src/html/js动态类/06省市区二级联动.html" />
+        <option value="$PROJECT_DIR$/src/javascript/provinceCityChange.js" />
       </list>
     </option>
   </component>
@@ -186,10 +196,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.05全选与反向全选.html">
-    <configuration name="02表单注册校验_完善版标准校验.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/heima/src/html/js动态类/02表单注册校验_完善版标准校验.html">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="JavaScript Debug.06省市区二级联动.html">
     <configuration name="03表格隔行换色.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/heima/src/html/js动态类/03表格隔行换色.html">
       <method v="2" />
     </configuration>
@@ -199,26 +206,29 @@
     <configuration name="05全选与反向全选.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/heima/src/html/js动态类/05全选与反向全选.html">
       <method v="2" />
     </configuration>
+    <configuration name="05动态添加城市.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/heima/src/html/js动态类/05动态添加城市.html">
+      <method v="2" />
+    </configuration>
+    <configuration name="06省市区二级联动.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/heima/src/html/js动态类/06省市区二级联动.html">
+      <method v="2" />
+    </configuration>
     <configuration name="定时弹出广告图片.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/heima/src/html/js动态类/定时弹出广告图片.html">
       <method v="2" />
     </configuration>
-    <configuration name="register.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="register.js" working-dir="$PROJECT_DIR$/src/javascript">
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="JavaScript Debug.02表单注册校验_完善版标准校验.html" />
-      <item itemvalue="Node.js.register.js" />
       <item itemvalue="JavaScript Debug.03表格隔行换色.html" />
       <item itemvalue="JavaScript Debug.04表格高亮显示.html" />
       <item itemvalue="JavaScript Debug.05全选与反向全选.html" />
+      <item itemvalue="JavaScript Debug.05动态添加城市.html" />
+      <item itemvalue="JavaScript Debug.06省市区二级联动.html" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.06省市区二级联动.html" />
+        <item itemvalue="JavaScript Debug.05动态添加城市.html" />
         <item itemvalue="JavaScript Debug.05全选与反向全选.html" />
         <item itemvalue="JavaScript Debug.04表格高亮显示.html" />
         <item itemvalue="JavaScript Debug.03表格隔行换色.html" />
-        <item itemvalue="Node.js.register.js" />
-        <item itemvalue="JavaScript Debug.02表单注册校验_完善版标准校验.html" />
       </list>
     </recent_temporary>
   </component>
@@ -233,16 +243,15 @@
       <option name="presentableId" value="Default" />
       <updated>1533105506423</updated>
       <workItem from="1533105508362" duration="9810000" />
-      <workItem from="1533176296126" duration="18393000" />
+      <workItem from="1533176296126" duration="23147000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28203000" />
+    <option name="totallyTimeSpent" value="32957000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.170706" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -250,7 +259,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.12784399" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.07150596" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.07150596" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -296,13 +305,6 @@
           <folding>
             <element signature="n#style#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/html/js动态类/06省市区三级联动.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -394,12 +396,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/html/js动态类/05全选与反向全选.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="47" column="58" lean-forward="true" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
+        <state relative-caret-position="510">
+          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
           <folding>
             <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#0;n#thead#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/html/js动态类/05动态添加城市.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/javascript/provinceArr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/html/js动态类/06省市区二级联动.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/javascript/provinceCityChange.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
