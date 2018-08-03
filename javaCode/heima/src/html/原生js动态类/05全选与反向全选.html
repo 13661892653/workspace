@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+确定事件：单击事件onclick，绑定到全选复选框
+获取复选框，获取复选框的选中状态
+获取下面所有的复选框，跟“全选”保持一致
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>全选与全不选</title>
+    <script>
+        function checkAll(){
+            //获取全选按钮复选框
+            var checkTag=document.getElementById("checkid");
+            //获取name为checkname的所有复选框标签
+            var alls=document.getElementsByName("checkname");
+            //如果复选框被选中，则全部选中，否则全部取消选中
+            if(checkTag.checked==true){
+                for(var i=0;i<alls.length;i++){
+                    alls[i].checked=true;
+                }
+            }else{
+                for(var i=0;i<alls.length;i++){
+                    alls[i].checked=false;
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="checkAll()">
+<table id="table1id" align="center" border="1px" cellpadding="0px" cellspacing="0px" style="color:blue;border:#aa62ff solid 1px;width:600px;text-align: center;height: 300px;">
+    <thead>
+    <tr  style="height: 50px;">
+        <th><input type="checkbox" onclick="checkAll()" id="checkid"></th>
+        <th>服务器名称</th>
+        <th>ip地址</th>
+        <th>端口号</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox" name="checkname"/></td>
+        <td>数据服务器</td>
+        <td>192.168.1.10</td>
+        <td>3306</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="checkname"/></td>
+        <td>APP务器</td>
+        <td>192.168.1.11</td>
+        <td>8088</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="checkname"/></td>
+        <td>WEB服务器</td>
+        <td>192.168.1.12</td>
+        <td>8000</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="checkname"/></td>
+        <td>HADOOP服务器</td>
+        <td>192.168.1.13</td>
+        <td>50070</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="checkname"/></td>
+        <td>DB2服务器</td>
+        <td>192.168.1.14</td>
+        <td>50000</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="checkname"/></td>
+        <td>WAS服务器</td>
+        <td>192.168.1.15</td>
+        <td>6001</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
