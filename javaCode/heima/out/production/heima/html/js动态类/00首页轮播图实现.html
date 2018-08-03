@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+页面加载事件：window.onload事件
+定时调用函数跟表达式：setInterval,按照指定周期(毫秒计)调用
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>首页轮播图实现</title>
+    <script>
+        function init() {
+            setInterval("changeImage()", 1000);
+        }
+
+        var i = 0;
+
+        function changeImage() {
+            i++;
+            document.getElementById("imageid").src = "../../image/" + i + ".jpg";
+            if (i == 4) {
+                i = 0;
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+<div id="id1" style="position:fixed;left: 0px;right: 0px;top: 0;bottom: 0">
+    <img style="margin-left:30%;margin-top: 10%;border: #400040 solid 1px;width: 600px;height: 400px;text-align: center;"
+         id="imageid" src="../../image/1.jpg">
+</div>
+</body>
+
+</html>

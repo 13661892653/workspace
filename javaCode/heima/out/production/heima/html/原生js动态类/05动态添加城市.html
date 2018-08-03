@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态添加城市</title>
+    <script>
+        function addCity(){
+            //获取元素ID
+            var uid=document.getElementById("ulid");
+            //创建一个文本节点，实际上就是一段文字
+            var textNode=document.createTextNode(document.getElementById("input").value);
+            //创建一个li元素节点
+            var liEle=document.createElement("li");
+            //将文本节点添加到li元素节点
+            liEle.appendChild(textNode);
+            //再讲li节点添加到ul节点最后
+            uid.appendChild(liEle);
+        }
+    </script>
+</head>
+<body>
+
+    城市：<input type="text" id="input">
+    <button onclick="addCity()">添加</button><br/>
+    <ul id="ulid">
+        <li>北京</li>
+        <li>上海</li>
+        <li>广州</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省市区三级联动</title>
+    <script src="../../javascript/provinceArr.js"></script>
+    <script src="../../javascript/provinceCityChange.js"></script>
+</head>
+<body onload="provinceCityChange()">
+省份：<select id="proid"  onchange="getCity(this.selectedIndex)">
+          <option >请选择</option>
+      </select>
+
+市区：<select id="cityId">
+           <option >请选择</option>
+      </select>
+
+</body>
+</html>

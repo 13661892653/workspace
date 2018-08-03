@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.left{
+    position:fixed;
+    top: 50px;
+    left:0px;
+    width: 200px;
+    bottom: 0px;
+    background-color: #c0c0c0;
+    margin-right:0px;
+    border:0px;
+}
+/* */
+.right{
+    position:fixed;
+    top: 50px;
+    left:200px;
+    right:0px;
+    bottom: 0;
+    font-size: 35px;
+    color: red;
+    overflow: scroll;
+    margin-left:0px;
+    background-color: #408080;
+    border:0px;
+}

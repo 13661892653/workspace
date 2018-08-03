@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+确定事件：onMouseOver、onMouseOut两个事件
+鼠标移上去，对其设置背景颜色
+鼠标移开，还原背景色
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>表格高亮显示</title>
+    <script>
+        function changeColor(id,suffix){
+            if(suffix=="over"){
+                document.getElementById(id).style.background="red";
+            }else{
+                document.getElementById(id).style.background="white";
+            }
+        }
+    </script>
+</head>
+<body onload="changeColor()">
+<table id="table1id" align="center" border="1px" cellpadding="0px" cellspacing="0px" style="color:black;border:#aa62ff solid 1px;width:600px;text-align: center;height: 300px;">
+    <thead >
+    <tr style="height: 50px;">
+        <th>服务器名称</th>
+        <th>ip地址</th>
+        <th>端口号</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id="tr1" onmouseover="changeColor('tr1','over')" onmouseout="changeColor('tr1','out')">
+        <td>数据服务器</td>
+        <td>192.168.1.10</td>
+        <td>3306</td>
+    </tr>
+    <tr id="tr2" onmouseover="changeColor('tr2','over')" onmouseout="changeColor('tr2','out')">
+        <td>APP务器</td>
+        <td>192.168.1.11</td>
+        <td>8088</td>
+    </tr>
+    <tr id="tr3" onmouseover="changeColor('tr3','over')" onmouseout="changeColor('tr3','out')">
+        <td>WEB服务器</td>
+        <td>192.168.1.12</td>
+        <td>8000</td>
+    </tr>
+    <tr id="tr4" onmouseover="changeColor('tr4','over')" onmouseout="changeColor('tr4','out')">
+        <td>HADOOP服务器</td>
+        <td>192.168.1.13</td>
+        <td>50070</td>
+    </tr>
+    <tr id="tr5" onmouseover="changeColor('tr5','over')" onmouseout="changeColor('tr5','out')">
+        <td>DB2服务器</td>
+        <td>192.168.1.14</td>
+        <td>50000</td>
+    </tr>
+    <tr id="tr6" onmouseover="changeColor('tr6','over')" onmouseout="changeColor('tr6','out')">
+        <td>WAS服务器</td>
+        <td>192.168.1.15</td>
+        <td>6001</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
