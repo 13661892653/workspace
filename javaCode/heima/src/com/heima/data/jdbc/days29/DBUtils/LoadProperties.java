@@ -16,6 +16,7 @@ public class LoadProperties {
 		InputStream in=LoadProperties.class.getClassLoader().getResourceAsStream("db.properties");
 		Properties pro=new Properties();
 		//将输入流加载到Properties集合中
+		System.out.println("xxxxxxxxxxxx");
 		pro.load(in);
 		System.out.println(pro);
 		//从集合中根据键值获取Value
