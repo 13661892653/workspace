@@ -4,17 +4,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 
 public class JDBCUtilsConfig {
 	private static Connection conn = null;
-	private static String driverClass;
-	private static String url;
-	private static String username;
-	private static String password;
-
+	private static String driverClass=null;
+	private static String url=null;
+	private static String username=null;
+	private static String password=null;
+	
 	static {
 		readConfig();
 		// 测试连接是佛正常，打印链接信息
@@ -31,6 +34,11 @@ public class JDBCUtilsConfig {
 	}
 
 	private static void readConfig() {
+		
+		//加载配置文件，不需要加后缀
+/*		 * ResourceBundle bundle=ResourceBundle.getBundle("db");
+		 * String driver=bundle.getString("driver");*/
+
 		InputStream in = LoadProperties.class.getClassLoader().getResourceAsStream("db.properties");
 		Properties pro = new Properties();
 		// 将输入流加载到Properties集合中
@@ -48,5 +56,26 @@ public class JDBCUtilsConfig {
 
 	public static Connection getConnection() {
 		return conn;
+	}
+	
+	public static void release(Connection conn,PreparedStatement ps,ResultSet rs) {
+		if(rs!=null)
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		if(ps!=null)
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		if(conn!=null)
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 	}
 }
