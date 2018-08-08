@@ -1,4 +1,4 @@
-package com.heima.web.web09;
+package com.heima.web.web09JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,10 @@ import org.junit.Test;
 import com.heima.data.jdbc.days29.DBUtils.JDBCUtilsConfig;
 
 public class SelectDemo {
-
+	/**
+	 * 
+	 * @param username
+	 */
 	public static void Select(String username) {
 
 		Connection conn = null;
@@ -36,7 +39,7 @@ public class SelectDemo {
 
 	@Test
 	public void testJunit() {
-		//测试Select方法
+		// 测试Select方法
 		Select("colby");
 	}
 }

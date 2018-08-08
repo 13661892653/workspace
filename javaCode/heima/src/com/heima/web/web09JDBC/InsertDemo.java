@@ -1,4 +1,4 @@
-package com.heima.web.web09;
+package com.heima.web.web09JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,12 @@ import org.junit.Test;
 import com.heima.data.jdbc.days29.DBUtils.JDBCUtilsConfig;
 
 public class InsertDemo {
-
+/**
+ * 
+ * @param username
+ * @param phone
+ * @param password
+ */
 	public static void Insert(String username, String phone, String password) {
 
 		Connection conn = null;

@@ -1,4 +1,4 @@
-package com.heima.web.web09;
+package com.heima.web.web09JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,10 @@ import org.junit.Test;
 import com.heima.data.jdbc.days29.DBUtils.JDBCUtilsConfig;
 
 public class DeleteDemo {
-
+/**
+ * 
+ * @param id
+ */
 	public static void Delete(Integer id) {
 
 		Connection conn = null;

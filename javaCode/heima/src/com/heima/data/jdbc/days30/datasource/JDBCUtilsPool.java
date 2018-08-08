@@ -2,11 +2,10 @@ package com.heima.data.jdbc.days30.datasource;
 
 
 import javax.sql.DataSource;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
-public class JDBCUtils {
+public class JDBCUtilsPool {
 
 	private static BasicDataSource dataSource=new BasicDataSource();
 	

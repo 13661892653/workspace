@@ -1,4 +1,4 @@
-package com.heima.web.web09;
+package com.heima.web.web09JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,13 @@ import org.junit.Test;
 import com.heima.data.jdbc.days29.DBUtils.JDBCUtilsConfig;
 
 public class UpdateDemo {
+	/**
+	 * 
+	 * @param username
+	 * @param phone
+	 * @param password
+	 * @param id
+	 */
 
 	public static void Update(String username, String phone, String password, Integer id) {
 

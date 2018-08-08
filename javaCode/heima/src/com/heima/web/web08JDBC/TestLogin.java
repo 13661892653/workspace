@@ -1,4 +1,4 @@
-package com.heima.web.web08;
+package com.heima.web.web08JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
