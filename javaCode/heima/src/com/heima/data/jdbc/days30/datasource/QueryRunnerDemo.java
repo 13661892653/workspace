@@ -9,7 +9,7 @@ import org.apache.commons.dbutils.handlers.ArrayListHandler;
 
 public class QueryRunnerDemo {
 	public static void main(String[] args) throws SQLException {
-		insert();
+		//insert();
 		select();
 	}
 	

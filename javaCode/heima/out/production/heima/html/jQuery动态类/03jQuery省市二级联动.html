@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省市区三级联动</title>
+    <script src="../../javascript/provinceArr.js"></script>
+    <script src="../../javascript/jquery-1.11.0.js"></script>
+    <script>
+        $(function () {
+            //加载的时候将省份添加到select标签
+            $.each(provinceArr, function (i, n) {
+                $("#provinceid").append("<option>" + n + "</option>");
+            });
+
+            $("#provinceid").change(function () {
+                //选择省份的时候先清空城市列表
+                $("#cityid").empty();
+                //获取当前省份选择value值
+                var selectedProvince = this.value;
+                //遍历一遍城市数组的下标
+                $.each(cityArr, function (i, city) {
+                    //选择省份的值跟城市数组的第一个值相同的时候，再对对应的二维数组遍历
+                    if (city[0] == selectedProvince) {
+                        $.each(city, function (j, n) {
+                            //城市select的第一行添加“-请选择-”
+                            if (j == 0) {
+                                $("#cityid").append("<option>-请选择-</option>");
+                            } else {
+                                $("#cityid").append("<option>" + n + "</option>");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<!--
+this.selectedIndex 获取当前选择的索引编号
+this.value 获取当前选择的value值
+数组长度等于最大角标+1，最大长度不是当前已经有的个数。
+-->
+省(直辖市/自治区)：<select id="provinceid">
+    <option>请选择</option>
+</select><br/>
+
+市(自治州)：<select id="cityid">
+</select>
+
+</body>
+</html>

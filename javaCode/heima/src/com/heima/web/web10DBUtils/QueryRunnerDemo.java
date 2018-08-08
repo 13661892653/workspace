@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayListHandler;
 
+import com.heima.data.jdbc.days30.datasource.JDBCUtilsPool;
+
 
 public class QueryRunnerDemo {
 	public static void main(String[] args) throws SQLException {
@@ -14,6 +16,7 @@ public class QueryRunnerDemo {
 	}
 	
 	private static QueryRunner qr=new QueryRunner(JDBCUtilsPool.getDataSource());
+	
 	public static void insert() throws SQLException {
 		String sql="insert into sort(sname,sprice,sdesc) values(?,?,?)";
 		Object[] params= {"水果",100,"备注信息"};
