@@ -31,7 +31,7 @@ public class DBCPUtils {
 		return dataSource;
 	}
 	
-	public static Connection Connection() {
+	public static Connection getConnection() {
 		try {
 			return dataSource.getConnection();
 		} catch (SQLException e) {

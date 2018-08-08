@@ -23,6 +23,7 @@ import java.util.concurrent.Executor;
 /*
  * 	改造Connection，增强close()方法
  * 	通过close()实现 返回连接池
+ * 	prepareStatement这个方法也必须重写，否则空指针异常
  */
 
 public class MyConnection implements Connection{
