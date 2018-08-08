@@ -13,6 +13,7 @@ public class LoadProperties {
 	 */
 	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
 		//加载配置文件到输入流
+		//固定写法：当前类名.class.getClassLoader()
 		InputStream in=LoadProperties.class.getClassLoader().getResourceAsStream("db.properties");
 		Properties pro=new Properties();
 		//将输入流加载到Properties集合中
