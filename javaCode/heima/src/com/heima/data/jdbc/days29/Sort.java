@@ -2,7 +2,7 @@ package com.heima.data.jdbc.days29;
 
 public class Sort {
 	private int sid;
-	public String sname;
+	private String sname;
 	private double sprice;
 	private String sdesc;
 	public String test;
@@ -41,7 +41,7 @@ public class Sort {
 		return sdesc;
 	}
 	public void setSdesc(String sdesc) {
-		System.out.println(sdesc);
+		//System.out.println(sdesc);
 		this.sdesc = sdesc;
 	}
 	

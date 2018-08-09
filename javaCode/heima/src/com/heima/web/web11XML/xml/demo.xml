@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<!-- 一个元素可以有多个属性，但是不能出现多个同名的属性 -->
+<user>
+	<row id="1">
+		<id>1</id>
+		<username>colby</username>
+		<phone>13688888888</phone>
+		<des>新用户登记</des>
+	</row>
+
+	<row id="2">
+		<id>1</id>
+		<username>colby</username>
+		<phone>13688888888</phone>
+		<des>新用户登记</des>
+	</row>
+
+	<row id="3">
+		<id>1</id>
+		<username>colby</username>
+		<phone>13688888888</phone>
+		<des>新用户登记</des>
+	</row>
+	<![CDATA[
+		DFADSFA ,,.'"文本内容]的]>
+	]]>
+</user>

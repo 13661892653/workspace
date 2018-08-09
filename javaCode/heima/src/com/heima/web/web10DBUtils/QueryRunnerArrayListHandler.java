@@ -8,9 +8,10 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayListHandler;
 
 import com.heima.data.jdbc.days29.DBUtils.*;
+import com.heima.web.web10DBUtils.dbcp.DBCPUtils;
 
 public class QueryRunnerArrayListHandler {
-	private static Connection conn=JDBCUtilsConfig.getConnection();
+	private static Connection conn=DBCPUtils.getConnection();
 	public static void main(String[] args) throws SQLException {
 		arrayListHandler();
 	}

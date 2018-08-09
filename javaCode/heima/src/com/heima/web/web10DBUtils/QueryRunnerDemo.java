@@ -7,6 +7,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayListHandler;
 
 import com.heima.data.jdbc.days30.datasource.JDBCUtilsPool;
+import com.heima.web.web10DBUtils.dbcp.DBCPUtils;
 
 
 public class QueryRunnerDemo {
@@ -15,7 +16,7 @@ public class QueryRunnerDemo {
 		select();
 	}
 	
-	private static QueryRunner qr=new QueryRunner(JDBCUtilsPool.getDataSource());
+	private static QueryRunner qr=new QueryRunner(DBCPUtils.getDataSource());
 	
 	public static void insert() throws SQLException {
 		String sql="insert into sort(sname,sprice,sdesc) values(?,?,?)";

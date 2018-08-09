@@ -8,9 +8,10 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import com.heima.data.jdbc.days29.Sort;
 import com.heima.data.jdbc.days29.DBUtils.*;
+import com.heima.web.web10DBUtils.dbcp.DBCPUtils;
 
 public class QueryRunnerBeanHandler {
-	private static Connection conn=JDBCUtilsConfig.getConnection();
+	private static Connection conn=DBCPUtils.getConnection();
 	public static void main(String[] args) throws SQLException {
 		beanHandler();
 	}

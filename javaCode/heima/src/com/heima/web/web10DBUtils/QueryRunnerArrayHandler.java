@@ -7,9 +7,10 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
 
 import com.heima.data.jdbc.days29.DBUtils.*;
+import com.heima.web.web10DBUtils.c3p0.C3P0Utils;
 
 public class QueryRunnerArrayHandler {
-	private static Connection conn=JDBCUtilsConfig.getConnection();
+	private static Connection conn=C3P0Utils.getConnection();
 	public static void main(String[] args) throws SQLException {
 		arrayHandler();
 	}

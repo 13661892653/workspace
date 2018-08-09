@@ -4,14 +4,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.heima.data.jdbc.days29.Sort;
-import com.heima.data.jdbc.days29.DBUtils.*;
+import com.heima.web.web10DBUtils.dbcp.DBCPUtils;
 
 public class QueryRunnerBeanListHandler {
-	private static Connection conn=JDBCUtilsConfig.getConnection();
+	private static Connection conn=DBCPUtils.getConnection();
 	public static void main(String[] args) throws SQLException {
 		beanListHandler();
 	}
@@ -28,7 +27,6 @@ public class QueryRunnerBeanListHandler {
 		//传入的是Sort类的class文件
 		List<Sort> result = qr.query(conn, sql,new BeanListHandler<Sort>(Sort.class));
 		for(Sort s:result) {
-			
 			System.out.println(s);
 		}
 

@@ -1,9 +1,7 @@
 package com.heima.web.web10DBUtils.dbcp;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 /*import java.util.ResourceBundle;*/
