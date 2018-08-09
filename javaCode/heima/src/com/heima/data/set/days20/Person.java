@@ -42,7 +42,9 @@ public class Person extends Object {
 	public String toString() {
 		return "Person [name=" + name + ", age=" + age + "]";
 	}
-
+	public Person() {
+		
+	}
 	public Person(String name, int age) {
 		super();
 		this.name = name;
