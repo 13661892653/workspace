@@ -35,3 +35,6 @@
 /javaCode/heima/.idea
 /javaCode/.idea
 /javaCode/heima/.settings
+/javaCode/heimaWeb/.settings
+/javaCode/heimaWeb/*.project
+/javaCode/heimaWeb/*.classpath
