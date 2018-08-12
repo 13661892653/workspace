@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
-public class Product implements Servlet{
+public class Product implements Servlet {
 
 	@Override
 	public void destroy() {
@@ -31,11 +31,10 @@ public class Product implements Servlet{
 
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-		HttpServletResponse response=(HttpServletResponse) res;
+		HttpServletResponse response = (HttpServletResponse) res;
 		System.out.println(req.getServletContext());
 		response.getWriter().write("My name is colby");
-		
-		
+
 	}
-	
+
 }
