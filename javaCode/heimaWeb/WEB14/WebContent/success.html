@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录成功，即将跳转...</title>
+<script type="text/javascript">
+	second = 5;
+	function success() {
+		timer = setInterval(fun, 1000);
+	}
+
+	function fun() {
+		document.getElementById("spanid").innerHTML = second;
+		second--;
+		if (second == 0) {
+			clearInterval(timer);
+			location.href = "http://www.baidu.com";
+		}
+	}
+</script>
+</head>
+<body onload="success()">
+	登录成功，
+	<span id="spanid">5</span>秒后将跳转到登录页面，未跳转点
+	<a href="http://www.baidu.com">这里</a>
+</body>
+</html>

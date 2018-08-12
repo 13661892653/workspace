@@ -1,6 +1,9 @@
 package com.heima.data.jdbc.days30.datasource;
 
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -24,5 +27,14 @@ public class JDBCUtilsPool {
 	
 	public static DataSource getDataSource() {
 		return dataSource;
+	}
+	
+	public static Connection getConnection() {
+		try {
+			return dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException();
+		}
 	}
 }

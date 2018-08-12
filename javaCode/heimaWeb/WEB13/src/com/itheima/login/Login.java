@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,17 +31,26 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
+	public void init() {
+//		第一次创建servlet对象的时候，初始化域对象变量count
+		int count = 0;
+		this.getServletContext().setAttribute("count", count);
+	}
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String sql = "select * from user where username=? and password=?";
 		System.out.println("conn" + conn);
 		User user = null;
+		// 记录登录成功的用户数，不考虑同一以用户登录多次
+		Integer count = (Integer) this.getServletContext().getAttribute("count");
+		this.getServletContext().setAttribute("count", ++count);
+
 		try {
 			QueryRunner qr = new QueryRunner();
 			user = qr.query(conn, sql, new BeanHandler<User>(User.class), username, password);
@@ -49,8 +59,10 @@ public class Login extends HttpServlet {
 			e.printStackTrace();
 		} finally {
 			if (user != null) {
+
+				System.out.println(user.toString());
 				// 用户登录成功
-				response.getWriter().write(user.toString());
+				response.getWriter().write(user.toString() + "您是第" + count + "位登录成功的用户");
 			} else {
 				response.getWriter().write("Your user or password is error！");
 			}
@@ -62,8 +74,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
