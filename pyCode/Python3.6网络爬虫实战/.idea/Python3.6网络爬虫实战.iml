@@ -13,6 +13,7 @@
     <orderEntry type="module" module-name="Crm" />
     <orderEntry type="module" module-name="gkcx" />
     <orderEntry type="module" module-name="src" />
+    <orderEntry type="module" module-name="Crm" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />
