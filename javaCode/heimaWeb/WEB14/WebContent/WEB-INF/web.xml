@@ -39,4 +39,14 @@
     <servlet-name>DownloadCN</servlet-name>
     <url-pattern>/downloadCN</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckImgServlet</display-name>
+    <servlet-name>CheckImgServlet</servlet-name>
+    <servlet-class>com.yr.demo.CheckImgServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckImgServlet</servlet-name>
+    <url-pattern>/checkImgServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

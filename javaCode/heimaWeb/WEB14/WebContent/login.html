@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>验证码</title>
+<script type="text/javascript">
+	function changeImg(obj) {
+		obj.src = "/WEB14/checkImgServlet?time=" + new Date().getTime();
+	}
+</script>
+</head>
+<body>	
+	<div>
+		<form action="/WEB13/login" method="post">
+			<div>用户名：<input type="text" name="username"></div>
+			<div>密码：<input type="password" name="password"></div>
+			<div style="">
+				<div>验证码：<input type="text" name="username"></div>
+				<div><img onclick="changeImg(this)" src="/WEB14/checkImgServlet"></div>
+			</div>
+			<input type="submit" value="登录"><br/>
+		</form>
+	</div>
+</body>
+</html>
