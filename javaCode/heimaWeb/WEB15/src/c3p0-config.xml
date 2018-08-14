@@ -12,7 +12,7 @@
   
   <named-config name="yr"> 
     <property name="driverClass">com.mysql.jdbc.Driver</property>
-	<property name="jdbcUrl">jdbc:mysql://127.0.0.1:3306/world</property>
+	<property name="jdbcUrl">jdbc:mysql://127.0.0.1:3306/heima</property>
 	<property name="user">root</property>
 	<property name="password">root</property>
   </named-config>

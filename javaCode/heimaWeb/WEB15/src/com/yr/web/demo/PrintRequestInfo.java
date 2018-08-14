@@ -31,9 +31,9 @@ public class PrintRequestInfo extends HttpServlet {
 		String uri = request.getRequestURI();
 		StringBuffer url = request.getRequestURL();
 		// web应用的名称
-		String context = request.getContextPath(); 
+		String context = request.getContextPath();
 		// get提交url地址后的参数字符串
-		String queryString = request.getQueryString(); 
+		String queryString = request.getQueryString();
 		System.out.println("客户端提交方法：" + method);
 		System.out.println("客户端uri：" + uri);
 		System.out.println("客户端url：" + url);

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.main {
+	text-align: center;
+	width: 500px;
+	height: 300px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	border:blue solid 2px;
+	transform: translate(-50%, -50%);
+}
+.back{background: pink;
+
+	}
+</style>
+</head>
+<body>
+	<div class="main">
+		<div style="margin-top:30px;background: blue;color:white;height: 50px;line-height: 50px;">用户登录</div>
+		<form action="/WEB15/form" method="get">
+			<div style="margin-top: 20px;">
+				用户名：<input type="text" name="username">
+			</div>
+			<div style="margin-top: 20px;">
+				密码：<input type="password" name="password">
+			</div>
+			<div style="margin-top: 20px;">
+				籍贯：<select>
+						<option value="四川">四川</option>
+						<option value="宁夏">宁夏</option>
+						<option value="上海">上海</option>
+						<option value="北京">北京</option>
+					</select>
+			</div>
+			<div style="margin-top: 20px;">
+				足球<input type="checkbox" name="like" value="zuqiu">
+				篮球<input type="checkbox" name="like" value="lanqiu">
+				羽毛球<input type="checkbox" name="like" value="yumaoqiu">
+			</div>
+			<div style="margin-top: 20px;">
+				<input type="submit" value="登录">
+			</div>
+		</form>
+	</div>
+</body>
+</html>
